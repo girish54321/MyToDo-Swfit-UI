@@ -38,5 +38,5 @@ struct SelectedToDoScreenType: Identifiable, Hashable {
         return lhs.identifier == rhs.identifier
     }
     let id = UUID()
-    var selectedToDo : ToDo?
+    var selectedToDo : TodoItem?
 }

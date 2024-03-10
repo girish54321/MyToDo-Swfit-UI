@@ -8,11 +8,11 @@
 import Foundation
 // MARK: - ToDo
 struct ToDo: Codable {
-    let todo: [Todo]?
+    var todo: [TodoItem]?
 }
 
 // MARK: - Todo
-struct Todo: Codable {
+struct TodoItem: Codable,  Identifiable, Hashable {
     let id: Int?
     let title, body, status: String?
     let todoImage: String?

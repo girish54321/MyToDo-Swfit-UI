@@ -92,7 +92,7 @@ struct CreateAccountScreen: View {
             result in
             switch result {
             case .success(let data):
-                print("login done")
+                print("Crate Accoutn Done")
                 appViewModel.toggle()
                 print(data.accessToken)
                 withAnimation {

@@ -36,6 +36,10 @@ class RestAPIClient {
         print(encodedURL)
         print("Tokan")
         print("Bearer \(token)")
+        print("1")
+        print(parameters)
+        print("1")
+      
         AF.request(encodedURL,method: method,parameters: parameters,headers: headers)
             .response { response in
                 ApiError().handleError(response: response) { result in

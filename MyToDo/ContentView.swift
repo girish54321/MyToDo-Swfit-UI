@@ -20,6 +20,7 @@ struct ContentView: App {
                 HomeMain()
                     .environmentObject(AppViewModel())
                     .environmentObject(AuthViewModel())
+                    .environmentObject(ToDoViewModal())
                     .environmentObject(ToDoNavigationStackViewModal())
                
             } else {

@@ -36,7 +36,13 @@
 		F48CC1C72B9B64CC00EF7704 /* MyToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CC1C62B9B64CC00EF7704 /* MyToDoTests.swift */; };
 		F48CC1D12B9B64CC00EF7704 /* MyToDoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CC1D02B9B64CC00EF7704 /* MyToDoUITests.swift */; };
 		F48CC1D32B9B64CC00EF7704 /* MyToDoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CC1D22B9B64CC00EF7704 /* MyToDoUITestsLaunchTests.swift */; };
+		F48D06992B9DB4BD004F9D88 /* SelectedToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48D06982B9DB4BD004F9D88 /* SelectedToDo.swift */; };
+		F48D069B2B9DB7AB004F9D88 /* ToDoViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48D069A2B9DB7AB004F9D88 /* ToDoViewModal.swift */; };
+		F48D069E2B9DB9A3004F9D88 /* CreateToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48D069D2B9DB9A3004F9D88 /* CreateToDo.swift */; };
+		F48D06A02B9DCA3A004F9D88 /* CreateTodoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48D069F2B9DCA3A004F9D88 /* CreateTodoModal.swift */; };
 		F4A68A132B9CB34A00CEFF91 /* ToDoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A122B9CB34A00CEFF91 /* ToDoModal.swift */; };
+		F4A68A182B9CB4F100CEFF91 /* ToDoServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A172B9CB4F100CEFF91 /* ToDoServices.swift */; };
+		F4A68A1A2B9CB51100CEFF91 /* ToDoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A192B9CB51100CEFF91 /* ToDoEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +93,13 @@
 		F48CC1CC2B9B64CC00EF7704 /* MyToDoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyToDoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48CC1D02B9B64CC00EF7704 /* MyToDoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToDoUITests.swift; sourceTree = "<group>"; };
 		F48CC1D22B9B64CC00EF7704 /* MyToDoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToDoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F48D06982B9DB4BD004F9D88 /* SelectedToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedToDo.swift; sourceTree = "<group>"; };
+		F48D069A2B9DB7AB004F9D88 /* ToDoViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewModal.swift; sourceTree = "<group>"; };
+		F48D069D2B9DB9A3004F9D88 /* CreateToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDo.swift; sourceTree = "<group>"; };
+		F48D069F2B9DCA3A004F9D88 /* CreateTodoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTodoModal.swift; sourceTree = "<group>"; };
 		F4A68A122B9CB34A00CEFF91 /* ToDoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModal.swift; sourceTree = "<group>"; };
+		F4A68A172B9CB4F100CEFF91 /* ToDoServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoServices.swift; sourceTree = "<group>"; };
+		F4A68A192B9CB51100CEFF91 /* ToDoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +133,8 @@
 		F440A5442B9C70C400FE6C9C /* App */ = {
 			isa = PBXGroup;
 			children = (
+				F48D069C2B9DB98E004F9D88 /* CreateToDo */,
+				F48D06972B9DB4AA004F9D88 /* SelectedToDo */,
 				F440A5782B9CA56400FE6C9C /* ToDoList */,
 				F440A5752B9C9F6500FE6C9C /* HomeMain */,
 				F440A54A2B9C718300FE6C9C /* View */,
@@ -163,6 +177,7 @@
 				F440A5552B9C736900FE6C9C /* NavModal.swift */,
 				F440A56B2B9C902500FE6C9C /* LoginSuccess.swift */,
 				F4A68A122B9CB34A00CEFF91 /* ToDoModal.swift */,
+				F48D069F2B9DCA3A004F9D88 /* CreateTodoModal.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -170,6 +185,7 @@
 		F440A55B2B9C8DD100FE6C9C /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F4A68A142B9CB48A00CEFF91 /* ToDoServers */,
 				F440A5662B9C8F4900FE6C9C /* AuthServers */,
 				F440A55C2B9C8DF000FE6C9C /* RestAPIClient.swift */,
 				F440A5642B9C8F1600FE6C9C /* ApiError.swift */,
@@ -192,6 +208,7 @@
 				F440A5712B9C913800FE6C9C /* AppViewModel.swift */,
 				F440A5732B9C919500FE6C9C /* AuthViewModal.swift */,
 				F440A57B2B9CA5D700FE6C9C /* NavigationStackViewModal.swift */,
+				F48D069A2B9DB7AB004F9D88 /* ToDoViewModal.swift */,
 			);
 			path = GlobalState;
 			sourceTree = "<group>";
@@ -273,6 +290,31 @@
 				F48CC1D22B9B64CC00EF7704 /* MyToDoUITestsLaunchTests.swift */,
 			);
 			path = MyToDoUITests;
+			sourceTree = "<group>";
+		};
+		F48D06972B9DB4AA004F9D88 /* SelectedToDo */ = {
+			isa = PBXGroup;
+			children = (
+				F48D06982B9DB4BD004F9D88 /* SelectedToDo.swift */,
+			);
+			path = SelectedToDo;
+			sourceTree = "<group>";
+		};
+		F48D069C2B9DB98E004F9D88 /* CreateToDo */ = {
+			isa = PBXGroup;
+			children = (
+				F48D069D2B9DB9A3004F9D88 /* CreateToDo.swift */,
+			);
+			path = CreateToDo;
+			sourceTree = "<group>";
+		};
+		F4A68A142B9CB48A00CEFF91 /* ToDoServers */ = {
+			isa = PBXGroup;
+			children = (
+				F4A68A172B9CB4F100CEFF91 /* ToDoServices.swift */,
+				F4A68A192B9CB51100CEFF91 /* ToDoEndpoint.swift */,
+			);
+			path = ToDoServers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,22 +460,28 @@
 				F440A5742B9C919500FE6C9C /* AuthViewModal.swift in Sources */,
 				F440A56A2B9C8F5700FE6C9C /* AuthServices.swift in Sources */,
 				F440A57E2B9CA88300FE6C9C /* ToDoItem.swift in Sources */,
+				F48D06A02B9DCA3A004F9D88 /* CreateTodoModal.swift in Sources */,
 				F48CC1B72B9B64CB00EF7704 /* ContentView.swift in Sources */,
 				F440A5562B9C736900FE6C9C /* NavModal.swift in Sources */,
 				F440A5512B9C72D900FE6C9C /* AppConst.swift in Sources */,
 				F440A5582B9C753700FE6C9C /* AuthMainView.swift in Sources */,
+				F48D069E2B9DB9A3004F9D88 /* CreateToDo.swift in Sources */,
 				F440A5692B9C8F5700FE6C9C /* AuthApiEndpoint.swift in Sources */,
 				F440A5722B9C913800FE6C9C /* AppViewModel.swift in Sources */,
 				F440A5532B9C731300FE6C9C /* AppButton.swift in Sources */,
+				F48D069B2B9DB7AB004F9D88 /* ToDoViewModal.swift in Sources */,
 				F440A54C2B9C719500FE6C9C /* AppInputBox.swift in Sources */,
 				F48CC1B52B9B64CB00EF7704 /* MyToDoApp.swift in Sources */,
 				F440A5402B9C4EAA00FE6C9C /* DataModel.swift in Sources */,
 				F440A55D2B9C8DF000FE6C9C /* RestAPIClient.swift in Sources */,
+				F4A68A182B9CB4F100CEFF91 /* ToDoServices.swift in Sources */,
+				F48D06992B9DB4BD004F9D88 /* SelectedToDo.swift in Sources */,
 				F440A5772B9C9F7300FE6C9C /* HomeMain.swift in Sources */,
 				F4A68A132B9CB34A00CEFF91 /* ToDoModal.swift in Sources */,
 				F440A5492B9C716F00FE6C9C /* CreateAccountScreen.swift in Sources */,
 				F440A57C2B9CA5D700FE6C9C /* NavigationStackViewModal.swift in Sources */,
 				F440A5652B9C8F1600FE6C9C /* ApiError.swift in Sources */,
+				F4A68A1A2B9CB51100CEFF91 /* ToDoEndpoint.swift in Sources */,
 				F440A57A2B9CA5A600FE6C9C /* ToDoList.swift in Sources */,
 				F440A54F2B9C71E600FE6C9C /* UIHelper.swift in Sources */,
 				F440A56C2B9C902500FE6C9C /* LoginSuccess.swift in Sources */,

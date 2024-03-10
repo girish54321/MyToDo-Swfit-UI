@@ -7,21 +7,24 @@
 
 import SwiftUI
 
-struct ToDoItem: View {
+struct ToDoViewItem: View {
+    var todo: TodoItem
+    let baseURLString = "https://picsum.photos/id/12/"
+    
     var body: some View {
         VStack(alignment: .leading) {
-                   Text("title")
+            Text(todo.title ?? "NA")
                        .font(.title)
                        .foregroundColor(.accentColor)
-                   Text("description")
+            Text(todo.body ?? "NA")
                        .font(.body)
                        .foregroundColor(.secondary)
                }
     }
 }
 
-struct ToDoItem_Previews: PreviewProvider {
+struct ToDoViewItem_Previews: PreviewProvider {
     static var previews: some View {
-        ToDoItem()
+        ToDoViewItem(todo: TodoItem(id: 1, title: "", body: "", status: "", todoImage: "", userID: 1, createdAt: "", updatedAt: ""))
     }
 }

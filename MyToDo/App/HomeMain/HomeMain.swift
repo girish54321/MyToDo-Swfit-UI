@@ -13,17 +13,42 @@ struct HomeMain: View {
     @State private var thirdSelectedDataItem: DataModel?
     
     @EnvironmentObject var appViewModel: AppViewModel
+    
     var body: some View {
-        TabView {
+        #if targetEnvironment(macCatalyst)
+        NavigationSplitView {
+            List {
+                Text("ToDo")
+                Text("Add New")
+                Text("Profile")
+            }
+            .navigationTitle("ToDo")
+        } content: {
             ToDoList()
+        } detail: {
+            CreateToDo()
+        }
+        .toast(isPresenting: $appViewModel.show){
+            appViewModel.alertToast
+        }
+        .alert(isPresented: $appViewModel.showAlert) { () -> Alert in
+            Alert(title: Text("Error"), message: Text(appViewModel.errorMessage))
+        }
+        .safeAreaInset(edge: .bottom) {
+        }
+        #else
+        TabView {
+//            NavigationStack {
+                ToDoList()
+//            }
             .tabItem {
                 Image(systemName: AppIconsSF.homeIcon)
-                Text("For You")
+                Text("ToDo")
             }
-            Text("Waht")
+            CreateToDo()
                 .tabItem {
                     Image(systemName: AppIconsSF.trandingIcon)
-                    Text("Trading")
+                    Text("Add New")
                 }
             Text("Waht")
                 .tabItem {
@@ -41,6 +66,7 @@ struct HomeMain: View {
             appViewModel.alertToast = AppMessage.loadingView
             appViewModel.show.toggle()
         }
+        #endif
     }
 }
 

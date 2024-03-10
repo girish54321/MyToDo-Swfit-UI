@@ -12,6 +12,7 @@ import SwiftUI
 
 struct AppConst {
     static let baseurl = "https://deploy-todo-sql.onrender.com/api/v1/"
+    static let todoimagesPath = "https://deploy-todo-sql.onrender.com/"
     static let LoginUrl = "auth/login"
     static let usersListUrl = "users"
     static let isLoggedIn = "isLoggedIn"
@@ -44,6 +45,7 @@ struct AppIconsSF {
     static let closeIcon = "xmark"
     static let removeIcon = "trash"
     static let filtterIcon = "checkmark.square"
+    static let attachmentIcon = "attachment"
 }
 
 struct AppKeyBoardType {
