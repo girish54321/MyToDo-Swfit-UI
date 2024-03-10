@@ -37,24 +37,25 @@ struct HomeMain: View {
         .safeAreaInset(edge: .bottom) {
         }
         #else
-        TabView {
-//            NavigationStack {
-                ToDoList()
-//            }
+        TabView (selection: $appViewModel.slectedTabIndex) {
+            ToDoList()
             .tabItem {
                 Image(systemName: AppIconsSF.homeIcon)
                 Text("ToDo")
             }
+            .tag(0)
             CreateToDo()
                 .tabItem {
                     Image(systemName: AppIconsSF.trandingIcon)
                     Text("Add New")
                 }
+                .tag(1)
             Text("Waht")
                 .tabItem {
                     Image(systemName: AppIconsSF.userIcon)
                     Text("Profile")
                 }
+                .tag(2)
         }
         .alert(isPresented: $appViewModel.showAlert) { () -> Alert in
             Alert(title: Text("Error"), message: Text(appViewModel.errorMessage))

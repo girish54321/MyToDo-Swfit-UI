@@ -22,7 +22,7 @@ struct SelectedToDo: View {
                 Text(todoViewModal.selectedTodo?.body ?? "NA")
             }
             .alert(isPresented: $deleteToDo) {
-                Alert(title: Text("Log out?"),
+                Alert(title: Text("Delete?"),
                       message: Text("Are you sure you want to Delete?."),
                       primaryButton: .destructive(Text("Yes")) {
                     deleteMyToDo()
@@ -50,7 +50,11 @@ struct SelectedToDo: View {
             switch result {
             case .success(let data):
                 appViewModel.toggle()
-                navStack.presentedScreen.removeLast()
+                if(data.deleted == true) {
+                    navStack.presentedScreen.removeLast()
+                } else {
+                    appViewModel.errorMessage = "Can't delete ToDo."
+                }
             case .failure(let error):
                 print("Error man")
                 print(error)

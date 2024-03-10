@@ -61,11 +61,9 @@ struct CreateToDo: View {
             case .success(let data):
                 print("Create todo Done")
                 appViewModel.toggle()
-                print(data.post?.title)
-                withAnimation {
-//                    token = data.accessToken
-                }
-//                authViewModel.saveUser(data: data)
+                titleText = ""
+                bodyText = ""
+                appViewModel.slectedTabIndex = 0
             case .failure(let error):
                 print("Error man")
                 print(error)

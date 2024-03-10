@@ -55,8 +55,8 @@ struct ToDoList: View {
                 trailing:
                     VStack {
                         Button(action: {
-//                            showLogOutAlert.toggle()
-                            getUserNotes()
+                            showLogOutAlert.toggle()
+//                            getUserNotes()
                         }) {
                             Text("Logout")
                         }

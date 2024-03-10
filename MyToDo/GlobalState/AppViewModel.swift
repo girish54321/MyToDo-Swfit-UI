@@ -10,6 +10,8 @@ import AlertToast
 
 class AppViewModel: ObservableObject {
     
+    @Published var slectedTabIndex = 0
+    
     @Published var show = false
     @Published var alertToast = AlertToast(displayMode: .banner(.slide), type: .regular, title: "SOME TITLE"){
           didSet {
