@@ -17,17 +17,9 @@ struct HomeMain: View {
     var body: some View {
         #if targetEnvironment(macCatalyst)
         NavigationSplitView {
-//            List {
-//                Text("ToDo")
-//                Text("Add New")
-//                Text("Profile")
-//            }
             ToDoList()
             .navigationTitle("ToDo")
         }
-//    content: {
-//            ToDoList()
-//        }
     detail: {
             CreateToDo()
         }

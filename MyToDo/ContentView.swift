@@ -14,16 +14,6 @@ struct ContentView: App {
     @AppStorage(AppConst.isSkipped) var isSkipped: Bool = false
     @AppStorage(AppConst.token) var token: String = ""
     
-//    @StateObject var appViewModel = AppViewModel()
-    
-//    @StateObject var firstObject = FirstObservableObject()
-//    @StateObject var secondObject: SecondObservableObject
-//
-//    init() {
-//        let secondObject = SecondObservableObject(firstObservableObject: FirstObservableObject())
-//        _secondObject = StateObject(wrappedValue: secondObject)
-//    }
-    
     
     var body: some Scene {
         WindowGroup {
@@ -31,7 +21,6 @@ struct ContentView: App {
                 HomeMain()
                     .environmentObject(AppViewModel())
                     .environmentObject(AuthViewModel())
-//                    .environmentObject(ToDoViewModal(appViewModel: appViewModel))
                     .environmentObject(ToDoViewModal())
                     .environmentObject(ToDoNavigationStackViewModal())
                     .environmentObject(ProfileNavigationStackViewModal())

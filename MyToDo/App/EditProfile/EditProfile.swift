@@ -74,10 +74,9 @@ struct EditProfile: View {
                 result in
                 switch result {
                 case .success(let data):
-                    print("Update profile Done")
                     navStack.presentedScreen.removeLast()
                 case .failure(let error):
-                    print("Error man")
+                    print("Edit Profile Error")
                     print(error)
                     switch error {
                     case .NetworkErrorAPIError(let errorMessage):

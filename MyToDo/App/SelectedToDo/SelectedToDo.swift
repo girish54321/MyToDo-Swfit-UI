@@ -63,7 +63,7 @@ struct SelectedToDo: View {
                     appViewModel.errorMessage = "Can't delete ToDo."
                 }
             case .failure(let error):
-                print("Error man")
+                print("Delete Todo Error")
                 print(error)
                 switch error {
                 case .NetworkErrorAPIError(let errorMessage):

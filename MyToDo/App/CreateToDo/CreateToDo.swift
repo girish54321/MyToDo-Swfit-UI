@@ -32,13 +32,12 @@ struct CreateToDo: View {
             result in
             switch result {
             case .success(let data):
-                print("Create todo Done")
                 appViewModel.toggle()
                 titleText = ""
                 bodyText = ""
                 appViewModel.slectedTabIndex = 0
             case .failure(let error):
-                print("Error man")
+                print("Create Todo Error")
                 print(error)
                 switch error {
                 case .NetworkErrorAPIError(let errorMessage):

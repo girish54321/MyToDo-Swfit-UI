@@ -82,13 +82,6 @@ class RestAPIClient {
                                     return
                                 }
                                 print(jsonData)
-//                                do {
-//                                    completion(.failure(.NetworkErrorAPIError("Display error")))
-//                                } catch {
-//                                    print("Error deserializing JSON: \(error)")
-//                                    completion(.failure(.NetworkErrorAPIError("Error deserializing JSON")))
-//                                }
-
                                 do {
                                     let json = try JSONSerialization.jsonObject(with: jsonData) as? [String: Any]
                                 } catch {

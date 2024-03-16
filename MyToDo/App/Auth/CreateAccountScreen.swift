@@ -92,15 +92,13 @@ struct CreateAccountScreen: View {
             result in
             switch result {
             case .success(let data):
-                print("Crate Accoutn Done")
                 appViewModel.toggle()
-                print(data.accessToken)
                 withAnimation {
                     token = data.accessToken
                 }
                 authViewModel.saveUser(data: data)
             case .failure(let error):
-                print("Error man")
+                print("Create Account Error")
                 print(error)
                 switch error {
                 case .NetworkErrorAPIError(let errorMessage):

@@ -41,13 +41,12 @@ struct EditToDo: View {
             result in
             switch result {
             case .success(let data):
-                print("Update todo Done")
                 let upDatedToto = todo
                 todoViewModal.selectedTodo = upDatedToto
                 appViewModel.toggle()
                 navStack.presentedScreen.removeLast()
             case .failure(let error):
-                print("Error man")
+                print("Update todo Error")
                 print(error)
                 switch error {
                 case .NetworkErrorAPIError(let errorMessage):
