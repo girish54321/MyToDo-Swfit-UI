@@ -13,11 +13,12 @@ struct AddToDo: Codable {
 }
 
 struct AddToDoParams {
+    var id: String?
     var title: String?
     var body: String?
     
     func toDictionary() -> [String: Any] {
-        let params = ["title": title,"body": body].compactMapValues { $0 }
+        let params = ["title": title,"body": body,"id": id].compactMapValues { $0 }
         return params
     }
 }

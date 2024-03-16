@@ -12,12 +12,12 @@ struct ToDo: Codable {
 }
 
 // MARK: - Todo
-struct TodoItem: Codable,  Identifiable, Hashable {
-    let id: Int?
-    let title, body, status: String?
-    let todoImage: String?
-    let userID: Int?
-    let createdAt, updatedAt: String?
+struct TodoItem: Codable, Identifiable, Hashable {
+    var id: Int?
+    var title, body, status: String?
+    var todoImage: String?
+    var userID: Int?
+    var createdAt, updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
         case id, title, body, status, todoImage

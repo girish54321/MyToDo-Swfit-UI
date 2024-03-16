@@ -11,8 +11,9 @@ struct SelectedToDo: View {
     @EnvironmentObject var todoViewModal: ToDoViewModal
     @EnvironmentObject var appViewModel: AppViewModel
     @EnvironmentObject var navStack: ToDoNavigationStackViewModal
-    
+
     @State private var deleteToDo = false
+    
     var body: some View {
         List {
             Section("Title") {
@@ -30,13 +31,19 @@ struct SelectedToDo: View {
             }
             .navigationBarItems(
                 trailing:
-                    VStack {
+                    HStack {
+                        Button(action: {
+                            let data = EditToDoScreenType(selectedToDo: todoViewModal.selectedTodo)
+                            navStack.presentedScreen.append(data)
+                        }) {
+                            Image(systemName: AppIconsSF.editIcon)
+                        }
                         Button(action: {
                             deleteToDo.toggle()
                         }) {
-                            Text("Delete")
+                            Image(systemName: AppIconsSF.removeIcon)
+                                .foregroundColor(.red)
                         }
-                        
                     }
             )
             .navigationTitle(todoViewModal.selectedTodo?.title ?? "NA")

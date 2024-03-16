@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - LoginSuccess
 struct LoginSuccess: Codable {
     let accessToken, refreshToken: String
 }
@@ -20,7 +19,33 @@ struct UserAuthParams {
     
     func toDictionary() -> [String: Any] {
         let params = ["firstName": firstName,"lastName": lastName,"email": email, "password": password].compactMapValues { $0 }
-//        return ["user": params]
+        return params
+    }
+}
+
+struct UserProfileRes: Codable {
+    let users: [Userres]?
+}
+
+struct Userres: Codable {
+    var id: Int?
+    var firstName, lastName, email: String?
+    var profileimage: String?
+    var createdAt, updatedAt: String?
+    var todo: [TodoItem]?
+}
+
+struct UpdateUser: Codable {
+    var user: Userres?
+}
+
+struct UpdateUserParams {
+    var firstName: String?
+    var lastName: String?
+    var email: String
+    
+    func toDictionary() -> [String: Any] {
+        let params = ["firstName": firstName,"lastName": lastName,"email": email].compactMapValues { $0 }
         return params
     }
 }

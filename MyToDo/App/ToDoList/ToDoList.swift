@@ -15,6 +15,7 @@ struct ToDoList: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var todoViewModal: ToDoViewModal
+    @EnvironmentObject var appViewModel: AppViewModel
     
     @AppStorage(AppConst.isSkipped) var isSkipped: Bool = false
     @AppStorage(AppConst.token) var token: String = ""
@@ -56,7 +57,6 @@ struct ToDoList: View {
                     VStack {
                         Button(action: {
                             showLogOutAlert.toggle()
-//                            getUserNotes()
                         }) {
                             Text("Logout")
                         }
@@ -64,6 +64,9 @@ struct ToDoList: View {
             )
             .navigationDestination(for: SelectedToDoScreenType.self) { type in
                 SelectedToDo()
+            }
+            .navigationDestination(for: EditToDoScreenType.self) { type in
+                EditToDo(todo: todoViewModal.selectedTodo!)
             }
         }
     }
@@ -81,9 +84,7 @@ struct ToDoList: View {
                 print(error)
                 switch error {
                 case .NetworkErrorAPIError(let errorMessage):
-                    print("Error")
-                    print(errorMessage)
-                    print(errorMessage)
+                    appViewModel.errorMessage = errorMessage
                 case .BadURL: break
                 case .NoData: break
                 case .DecodingError: break

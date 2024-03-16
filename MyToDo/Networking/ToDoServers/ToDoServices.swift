@@ -31,6 +31,17 @@ class ToDoServices {
             )
         }
     
+    func updateToDo (
+        parameters: Parameters?,
+        completion: @escaping(Result<AddToDo,NetworkError>) -> Void){
+            return RestAPIClient.request(type: AddToDo.self,
+                                         endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .updateTodo),
+                                         method:.post,
+                                         parameters:parameters,
+                                         completion: completion
+            )
+        }
+    
     func deleteToDo (
         parameters: Parameters?,
         endpoint: String,

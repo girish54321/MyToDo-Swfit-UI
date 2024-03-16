@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F43206A92BA43FAF00AD8AC8 /* ToDoForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43206A82BA43FAF00AD8AC8 /* ToDoForm.swift */; };
+		F43206AC2BA4431500AD8AC8 /* EditToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43206AB2BA4431500AD8AC8 /* EditToDo.swift */; };
+		F43206AF2BA457E200AD8AC8 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43206AE2BA457E200AD8AC8 /* UserProfile.swift */; };
+		F43206B22BA45E0400AD8AC8 /* UserServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43206B12BA45E0400AD8AC8 /* UserServise.swift */; };
+		F43206B42BA45E1800AD8AC8 /* UserEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43206B32BA45E1800AD8AC8 /* UserEndPoint.swift */; };
+		F43206B72BA4612100AD8AC8 /* NetworkImage in Frameworks */ = {isa = PBXBuildFile; productRef = F43206B62BA4612100AD8AC8 /* NetworkImage */; };
+		F43206BA2BA4BE3800AD8AC8 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43206B92BA4BE3800AD8AC8 /* EditProfile.swift */; };
 		F440A5402B9C4EAA00FE6C9C /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440A53F2B9C4EAA00FE6C9C /* DataModel.swift */; };
 		F440A5492B9C716F00FE6C9C /* CreateAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440A5482B9C716F00FE6C9C /* CreateAccountScreen.swift */; };
 		F440A54C2B9C719500FE6C9C /* AppInputBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440A54B2B9C719500FE6C9C /* AppInputBox.swift */; };
@@ -43,6 +50,7 @@
 		F4A68A132B9CB34A00CEFF91 /* ToDoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A122B9CB34A00CEFF91 /* ToDoModal.swift */; };
 		F4A68A182B9CB4F100CEFF91 /* ToDoServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A172B9CB4F100CEFF91 /* ToDoServices.swift */; };
 		F4A68A1A2B9CB51100CEFF91 /* ToDoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A192B9CB51100CEFF91 /* ToDoEndpoint.swift */; };
+		F4E732EE2BA58ED000A6B2F2 /* SwiftEmailValidator in Frameworks */ = {isa = PBXBuildFile; productRef = F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +71,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F43206A82BA43FAF00AD8AC8 /* ToDoForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoForm.swift; sourceTree = "<group>"; };
+		F43206AB2BA4431500AD8AC8 /* EditToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDo.swift; sourceTree = "<group>"; };
+		F43206AE2BA457E200AD8AC8 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		F43206B12BA45E0400AD8AC8 /* UserServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServise.swift; sourceTree = "<group>"; };
+		F43206B32BA45E1800AD8AC8 /* UserEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndPoint.swift; sourceTree = "<group>"; };
+		F43206B92BA4BE3800AD8AC8 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		F440A53F2B9C4EAA00FE6C9C /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		F440A5482B9C716F00FE6C9C /* CreateAccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountScreen.swift; sourceTree = "<group>"; };
 		F440A54B2B9C719500FE6C9C /* AppInputBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInputBox.swift; sourceTree = "<group>"; };
@@ -108,8 +122,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F440A56F2B9C906A00FE6C9C /* AlertToast in Frameworks */,
+				F43206B72BA4612100AD8AC8 /* NetworkImage in Frameworks */,
 				F440A5632B9C8ECF00FE6C9C /* SwiftyJSON in Frameworks */,
 				F440A5602B9C8EB800FE6C9C /* Alamofire in Frameworks */,
+				F4E732EE2BA58ED000A6B2F2 /* SwiftEmailValidator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,9 +146,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F43206AA2BA442FF00AD8AC8 /* EditToDo */ = {
+			isa = PBXGroup;
+			children = (
+				F43206AB2BA4431500AD8AC8 /* EditToDo.swift */,
+			);
+			path = EditToDo;
+			sourceTree = "<group>";
+		};
+		F43206AD2BA457D400AD8AC8 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				F43206AE2BA457E200AD8AC8 /* UserProfile.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		F43206B02BA45DE800AD8AC8 /* UserServers */ = {
+			isa = PBXGroup;
+			children = (
+				F43206B12BA45E0400AD8AC8 /* UserServise.swift */,
+				F43206B32BA45E1800AD8AC8 /* UserEndPoint.swift */,
+			);
+			path = UserServers;
+			sourceTree = "<group>";
+		};
+		F43206B82BA4BE1400AD8AC8 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				F43206B92BA4BE3800AD8AC8 /* EditProfile.swift */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
 		F440A5442B9C70C400FE6C9C /* App */ = {
 			isa = PBXGroup;
 			children = (
+				F43206B82BA4BE1400AD8AC8 /* EditProfile */,
+				F43206AD2BA457D400AD8AC8 /* UserProfile */,
+				F43206AA2BA442FF00AD8AC8 /* EditToDo */,
 				F48D069C2B9DB98E004F9D88 /* CreateToDo */,
 				F48D06972B9DB4AA004F9D88 /* SelectedToDo */,
 				F440A5782B9CA56400FE6C9C /* ToDoList */,
@@ -158,6 +210,7 @@
 				F440A54B2B9C719500FE6C9C /* AppInputBox.swift */,
 				F440A5522B9C731300FE6C9C /* AppButton.swift */,
 				F440A57D2B9CA88300FE6C9C /* ToDoItem.swift */,
+				F43206A82BA43FAF00AD8AC8 /* ToDoForm.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -185,6 +238,7 @@
 		F440A55B2B9C8DD100FE6C9C /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F43206B02BA45DE800AD8AC8 /* UserServers */,
 				F4A68A142B9CB48A00CEFF91 /* ToDoServers */,
 				F440A5662B9C8F4900FE6C9C /* AuthServers */,
 				F440A55C2B9C8DF000FE6C9C /* RestAPIClient.swift */,
@@ -337,6 +391,8 @@
 				F440A55F2B9C8EB800FE6C9C /* Alamofire */,
 				F440A5622B9C8ECF00FE6C9C /* SwiftyJSON */,
 				F440A56E2B9C906A00FE6C9C /* AlertToast */,
+				F43206B62BA4612100AD8AC8 /* NetworkImage */,
+				F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */,
 			);
 			productName = MyToDo;
 			productReference = F48CC1B12B9B64CB00EF7704 /* MyToDo.app */;
@@ -414,6 +470,8 @@
 				F440A55E2B9C8EB800FE6C9C /* XCRemoteSwiftPackageReference "Alamofire" */,
 				F440A5612B9C8ECF00FE6C9C /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				F440A56D2B9C906A00FE6C9C /* XCRemoteSwiftPackageReference "AlertToast" */,
+				F43206B52BA4612100AD8AC8 /* XCRemoteSwiftPackageReference "NetworkImage" */,
+				F4E732EC2BA58ED000A6B2F2 /* XCRemoteSwiftPackageReference "SwiftEmailValidator" */,
 			);
 			productRefGroup = F48CC1B22B9B64CB00EF7704 /* Products */;
 			projectDirPath = "";
@@ -460,6 +518,7 @@
 				F440A5742B9C919500FE6C9C /* AuthViewModal.swift in Sources */,
 				F440A56A2B9C8F5700FE6C9C /* AuthServices.swift in Sources */,
 				F440A57E2B9CA88300FE6C9C /* ToDoItem.swift in Sources */,
+				F43206BA2BA4BE3800AD8AC8 /* EditProfile.swift in Sources */,
 				F48D06A02B9DCA3A004F9D88 /* CreateTodoModal.swift in Sources */,
 				F48CC1B72B9B64CB00EF7704 /* ContentView.swift in Sources */,
 				F440A5562B9C736900FE6C9C /* NavModal.swift in Sources */,
@@ -468,15 +527,20 @@
 				F48D069E2B9DB9A3004F9D88 /* CreateToDo.swift in Sources */,
 				F440A5692B9C8F5700FE6C9C /* AuthApiEndpoint.swift in Sources */,
 				F440A5722B9C913800FE6C9C /* AppViewModel.swift in Sources */,
+				F43206A92BA43FAF00AD8AC8 /* ToDoForm.swift in Sources */,
+				F43206B22BA45E0400AD8AC8 /* UserServise.swift in Sources */,
 				F440A5532B9C731300FE6C9C /* AppButton.swift in Sources */,
 				F48D069B2B9DB7AB004F9D88 /* ToDoViewModal.swift in Sources */,
 				F440A54C2B9C719500FE6C9C /* AppInputBox.swift in Sources */,
+				F43206AF2BA457E200AD8AC8 /* UserProfile.swift in Sources */,
 				F48CC1B52B9B64CB00EF7704 /* MyToDoApp.swift in Sources */,
 				F440A5402B9C4EAA00FE6C9C /* DataModel.swift in Sources */,
 				F440A55D2B9C8DF000FE6C9C /* RestAPIClient.swift in Sources */,
 				F4A68A182B9CB4F100CEFF91 /* ToDoServices.swift in Sources */,
+				F43206B42BA45E1800AD8AC8 /* UserEndPoint.swift in Sources */,
 				F48D06992B9DB4BD004F9D88 /* SelectedToDo.swift in Sources */,
 				F440A5772B9C9F7300FE6C9C /* HomeMain.swift in Sources */,
+				F43206AC2BA4431500AD8AC8 /* EditToDo.swift in Sources */,
 				F4A68A132B9CB34A00CEFF91 /* ToDoModal.swift in Sources */,
 				F440A5492B9C716F00FE6C9C /* CreateAccountScreen.swift in Sources */,
 				F440A57C2B9CA5D700FE6C9C /* NavigationStackViewModal.swift in Sources */,
@@ -842,6 +906,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F43206B52BA4612100AD8AC8 /* XCRemoteSwiftPackageReference "NetworkImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/NetworkImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		F440A55E2B9C8EB800FE6C9C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -866,9 +938,22 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		F4E732EC2BA58ED000A6B2F2 /* XCRemoteSwiftPackageReference "SwiftEmailValidator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ekscrypto/SwiftEmailValidator.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F43206B62BA4612100AD8AC8 /* NetworkImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F43206B52BA4612100AD8AC8 /* XCRemoteSwiftPackageReference "NetworkImage" */;
+			productName = NetworkImage;
+		};
 		F440A55F2B9C8EB800FE6C9C /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F440A55E2B9C8EB800FE6C9C /* XCRemoteSwiftPackageReference "Alamofire" */;
@@ -883,6 +968,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F440A56D2B9C906A00FE6C9C /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4E732EC2BA58ED000A6B2F2 /* XCRemoteSwiftPackageReference "SwiftEmailValidator" */;
+			productName = SwiftEmailValidator;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

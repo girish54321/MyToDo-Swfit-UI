@@ -40,3 +40,36 @@ struct SelectedToDoScreenType: Identifiable, Hashable {
     let id = UUID()
     var selectedToDo : TodoItem?
 }
+
+struct EditToDoScreenType: Identifiable, Hashable {
+    var identifier: String {
+        return UUID().uuidString
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        return hasher.combine(identifier)
+    }
+    
+    public static func == (lhs: EditToDoScreenType, rhs: EditToDoScreenType) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+    let id = UUID()
+    var selectedToDo : TodoItem?
+}
+
+
+struct EditProfileScreenType: Identifiable, Hashable {
+    var identifier: String {
+        return UUID().uuidString
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        return hasher.combine(identifier)
+    }
+    
+    public static func == (lhs: EditProfileScreenType, rhs: EditProfileScreenType) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+    let id = UUID()
+    var userData : UserProfileRes?
+}

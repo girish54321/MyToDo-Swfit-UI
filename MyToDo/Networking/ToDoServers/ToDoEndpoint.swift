@@ -12,6 +12,7 @@ class ToDoApiEndpoint {
         case getToDo
         case addTodo
         case delete
+        case updateTodo
     }
     
     func createEndPoint(endPoint: ToDoApiType) -> String {
@@ -22,6 +23,8 @@ class ToDoApiEndpoint {
             return createApi(endPoint: "todo/addtodo")
         case .delete:
             return createApi(endPoint: "todo/deletetodo/")
+        case .updateTodo:
+            return createApi(endPoint: "todo/updatetodo")
         }
     }
     

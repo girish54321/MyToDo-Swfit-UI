@@ -17,15 +17,18 @@ struct HomeMain: View {
     var body: some View {
         #if targetEnvironment(macCatalyst)
         NavigationSplitView {
-            List {
-                Text("ToDo")
-                Text("Add New")
-                Text("Profile")
-            }
-            .navigationTitle("ToDo")
-        } content: {
+//            List {
+//                Text("ToDo")
+//                Text("Add New")
+//                Text("Profile")
+//            }
             ToDoList()
-        } detail: {
+            .navigationTitle("ToDo")
+        }
+//    content: {
+//            ToDoList()
+//        }
+    detail: {
             CreateToDo()
         }
         .toast(isPresenting: $appViewModel.show){
@@ -50,7 +53,7 @@ struct HomeMain: View {
                     Text("Add New")
                 }
                 .tag(1)
-            Text("Waht")
+           UserProfile()
                 .tabItem {
                     Image(systemName: AppIconsSF.userIcon)
                     Text("Profile")

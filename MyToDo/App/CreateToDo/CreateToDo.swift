@@ -20,34 +20,7 @@ struct CreateToDo: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Form {
-                    Text("Yes!\n\nYou can do it")
-                    Section {
-                        TextField("Title", text: $titleText)
-                            .textInputAutocapitalization(.never)
-                        TextField("Place",text: $bodyText)
-                             .frame(minHeight: 100)
-                    }
-                    Section {
-                        HStack {
-                            PhotosPicker("Select Image", selection: $avatarItem, matching: .images)
-                                .task(id: avatarItem) {
-                                    avatarImage = try? await avatarItem?.loadTransferable(type: Image.self)
-                                }
-                            Spacer()
-                            Image(systemName: AppIconsSF.checkMark)
-                                .foregroundColor(.accentColor)
-                        }
-                        avatarImage?
-                            .resizable()
-                            .scaledToFit()
-                    }
-                    Section("Save your todo") {
-                            Button("Add Todo") {
-                                addToDo()
-                            }
-                        }
-            }
+                ToDoForm(titleText: $titleText, bodyText: $bodyText, avatarItem: $avatarItem, avatarImage: $avatarImage, onSubmit: addToDo,iSupDate: false)
             }
             .navigationTitle("Add ToDo")
         }
