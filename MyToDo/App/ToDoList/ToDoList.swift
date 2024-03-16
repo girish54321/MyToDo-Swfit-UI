@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct ToDoList: View {
-    
-    @EnvironmentObject var navStack: ToDoNavigationStackViewModal
     @State private var firstSelectedDataItem: TodoItem?
-    @State private var toDoList: ToDo?
     
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var todoViewModal: ToDoViewModal
     @EnvironmentObject var appViewModel: AppViewModel
+    
+    @EnvironmentObject var navStack: ToDoNavigationStackViewModal
     
     @AppStorage(AppConst.isSkipped) var isSkipped: Bool = false
     @AppStorage(AppConst.token) var token: String = ""
@@ -25,7 +24,7 @@ struct ToDoList: View {
     var body: some View {
         NavigationStack (path: $navStack.presentedScreen) {
             VStack {
-                List(toDoList?.todo ?? [],selection: $firstSelectedDataItem) { item in
+                List(todoViewModal.toDoListData?.todo ?? [],selection: $firstSelectedDataItem) { item in
                     ToDoViewItem(todo: item)
                         .onTapGesture {
                             let data = SelectedToDoScreenType(selectedToDo: item)
@@ -34,11 +33,11 @@ struct ToDoList: View {
                         }
                     }
                 .refreshable {
-                    getUserNotes()
+                    todoViewModal.getUserNotes()
                 }
             }
             .onAppear {
-                getUserNotes()
+                todoViewModal.getUserNotes()
             }
             .navigationTitle("Your ToDo")
             .alert(isPresented: $showLogOutAlert) {
@@ -56,7 +55,8 @@ struct ToDoList: View {
                 trailing:
                     VStack {
                         Button(action: {
-                            showLogOutAlert.toggle()
+//                            showLogOutAlert.toggle()
+//                            print(todoViewModal.toDoListData.todo![0]!.body)
                         }) {
                             Text("Logout")
                         }
@@ -70,34 +70,12 @@ struct ToDoList: View {
             }
         }
     }
-    
-    
-    func getUserNotes() {
-        ToDoServices().getUserToDo(parameters: nil) {
-            result in
-            switch result {
-            case .success(let data):
-                print("Get Todo done")
-                toDoList = data
-            case .failure(let error):
-                print("Error man")
-                print(error)
-                switch error {
-                case .NetworkErrorAPIError(let errorMessage):
-                    appViewModel.errorMessage = errorMessage
-                case .BadURL: break
-                case .NoData: break
-                case .DecodingError: break
-                }
-            }
-        }
-    }
 }
 
-struct ToDoList_Previews: PreviewProvider {
-    static var previews: some View {
-            ToDoList()
-                .environmentObject(ToDoNavigationStackViewModal())
-                .environmentObject(ToDoViewModal())
-    }
-}
+//struct ToDoList_Previews: PreviewProvider {
+//    static var previews: some View {
+//            ToDoList()
+//                .environmentObject(ToDoNavigationStackViewModal())
+//                .environmentObject(ToDoViewModal())
+//    }
+//}

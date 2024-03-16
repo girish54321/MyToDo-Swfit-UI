@@ -79,11 +79,11 @@ struct SelectedToDo: View {
     }
 }
 
-struct SelectedToDo_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack{
-            SelectedToDo().environmentObject(ToDoViewModal())
-                .environmentObject(AppViewModel())
-        }
-    }
-}
+//struct SelectedToDo_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack{
+//            SelectedToDo().environmentObject(ToDoViewModal())
+//                .environmentObject(AppViewModel())
+//        }
+//    }
+//}
