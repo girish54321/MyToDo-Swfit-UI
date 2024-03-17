@@ -16,8 +16,7 @@ struct ToDoList: View {
     
     var body: some View {
         NavigationStack (path: $navStack.presentedScreen) {
-            VStack {
-                List(todoViewModal.toDoListData?.todo ?? [],selection: $firstSelectedDataItem) { item in
+                List(todoViewModal.toDoListData?.todo ?? [],id: \.self,selection: $firstSelectedDataItem) { item in
                     ToDoViewItem(todo: item)
                         .onTapGesture {
                             let data = SelectedToDoScreenType(selectedToDo: item)
@@ -28,10 +27,6 @@ struct ToDoList: View {
                 .refreshable {
                     todoViewModal.getUserNotes()
                 }
-            }
-            .onAppear {
-                todoViewModal.getUserNotes()
-            }
             .navigationTitle("Your ToDo")
             .navigationDestination(for: SelectedToDoScreenType.self) { type in
                 SelectedToDo()
@@ -43,10 +38,10 @@ struct ToDoList: View {
     }
 }
 
-//struct ToDoList_Previews: PreviewProvider {
-//    static var previews: some View {
-//            ToDoList()
-//                .environmentObject(ToDoNavigationStackViewModal())
-//                .environmentObject(ToDoViewModal())
-//    }
-//}
+struct ToDoList_Previews: PreviewProvider {
+    static var previews: some View {
+            ToDoList()
+                .environmentObject(ToDoNavigationStackViewModal())
+                .environmentObject(ToDoViewModal())
+    }
+}

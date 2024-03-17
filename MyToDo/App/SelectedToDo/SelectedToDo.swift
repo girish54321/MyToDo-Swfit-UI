@@ -14,13 +14,24 @@ struct SelectedToDo: View {
 
     @State private var deleteToDo = false
     
+    @State var todo: TodoItem = TodoItem()
+    
     var body: some View {
-        List {
-            Section("Title") {
-                Text(todoViewModal.selectedTodo?.title ?? "NA")
-            }
-            Section {
-                Text(todoViewModal.selectedTodo?.body ?? "NA")
+        VStack {
+            Form {
+                Section("Title") {
+                    Text(todoViewModal.selectedTodo?.title ?? "NA")
+                }
+                Section {
+                    Text(todoViewModal.selectedTodo?.body ?? "NA")
+                }
+                Picker("Status", selection: $todo.status.toUnwrapped(defaultValue: "OPEN")) {
+                        ForEach(ToDoStatuList.todoStatus) { option in
+                                        Text(option.text)
+                                            .tag(option.type)
+                                    }
+                                }
+                .pickerStyle(.inline)
             }
             .alert(isPresented: $deleteToDo) {
                 Alert(title: Text("Delete?"),
@@ -47,6 +58,9 @@ struct SelectedToDo: View {
                     }
             )
             .navigationTitle(todoViewModal.selectedTodo?.title ?? "NA")
+            .onAppear {
+                todo = todoViewModal.selectedTodo!
+            }
         }
     }
     
@@ -79,11 +93,11 @@ struct SelectedToDo: View {
     }
 }
 
-//struct SelectedToDo_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationStack{
-//            SelectedToDo().environmentObject(ToDoViewModal())
-//                .environmentObject(AppViewModel())
-//        }
-//    }
-//}
+struct SelectedToDo_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack{
+            SelectedToDo().environmentObject(ToDoViewModal())
+                .environmentObject(AppViewModel())
+        }
+    }
+}

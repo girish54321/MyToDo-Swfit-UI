@@ -14,6 +14,10 @@ class ToDoViewModal: ObservableObject {
     @Published var selectedTodo: TodoItem? = nil
     @Published var toDoListData: ToDo? = nil
     
+    init() {
+        getUserNotes()
+    }
+    
     func pickToDo(data:TodoItem?)  {
         selectedTodo = data
     }

@@ -8,22 +8,8 @@
 import SwiftUI
 import NetworkImage
 
-func convertDateFormat(inputDate: String) -> String {
-
-     let olDateFormatter = DateFormatter()
-     olDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-
-     let oldDate = olDateFormatter.date(from: inputDate)
-
-     let convertDateFormatter = DateFormatter()
-     convertDateFormatter.dateFormat = "MMM dd yyyy h:mm a"
-
-     return convertDateFormatter.string(from: oldDate ?? Date())
-}
-
-
 struct UserProfile: View {
-    @State private var userData: UserProfileRes?
+  
     @State private var showLogOutAlert = false
     
     @EnvironmentObject var appViewModel: AppViewModel
@@ -41,13 +27,13 @@ struct UserProfile: View {
                         HStack {
                             VStack (alignment: .leading, spacing: 16) {
                                 HStack {
-                                    Text(userData?.users?[0].firstName ?? "Loading")
-                                    Text(userData?.users?[0].lastName ?? "Loading")
+                                    Text(authViewModel.userData?.users?[0].firstName ?? "Loading")
+                                    Text(authViewModel.userData?.users?[0].lastName ?? "Loading")
                                 }
-                                Text(userData?.users?[0].email ?? "Loading")
+                                Text(authViewModel.userData?.users?[0].email ?? "Loading")
                             }
                             Spacer()
-                            NetworkImage(url: URL(string: AppConst.todoimagesPath + (userData?.users?[0].profileimage ?? "Loading"))) { image in
+                            NetworkImage(url: URL(string: AppConst.todoimagesPath + (authViewModel.userData?.users?[0].profileimage ?? "Loading"))) { image in
                                 image
                                     .resizable()
                                 .scaledToFill()
@@ -69,12 +55,12 @@ struct UserProfile: View {
                     HStack {
                         Text("Joined At")
                         Spacer()
-                        Text(convertDateFormat(inputDate: userData?.users?[0].createdAt ?? "Some data"))
+                        Text(authViewModel.userData?.users?[0].createdAt ?? "Some data")
                     }
                     HStack {
                         Text("Update At")
                         Spacer()
-                        Text(convertDateFormat(inputDate: userData?.users?[0].updatedAt ?? "Some data"))
+                        Text(authViewModel.userData?.users?[0].updatedAt ?? "Some data")
                     }
                    
                 }
@@ -85,7 +71,7 @@ struct UserProfile: View {
                 .navigationBarItems(
                     trailing:
                             Button(action: {
-                                let data = EditProfileScreenType(userData: userData)
+                                let data = EditProfileScreenType(userData: authViewModel.userData)
                                 navStack.presentedScreen.append(data)
                             }) {
                                 Image(systemName: AppIconsSF.settingsIcon)
@@ -93,7 +79,7 @@ struct UserProfile: View {
                 )
                 .navigationTitle("User Profile")
                 .navigationDestination(for: EditProfileScreenType.self) { type in
-                    EditProfile(userData:(userData?.users![0])!)
+                    EditProfile(userData:(authViewModel.userData?.users![0])!)
                 }
                 .alert(isPresented: $showLogOutAlert) {
                     Alert(title: Text("Log out?"),
@@ -101,9 +87,6 @@ struct UserProfile: View {
                           primaryButton: .destructive(Text("Yes")) {
                         userLogOut()
                     }, secondaryButton: .cancel())
-                }
-                .onAppear {
-                    getUserProfile()
                 }
             }
         }
@@ -115,26 +98,6 @@ struct UserProfile: View {
         authViewModel.isLoggedIn = false
         isSkipped = false
         token = ""
-    }
-    
-    func getUserProfile() {
-        UserServise().getProfile(parameters: nil) {
-            result in
-            switch result {
-            case .success(let data):
-                userData = data
-            case .failure(let error):
-                print("User Profile Error")
-                print(error)
-                switch error {
-                case .NetworkErrorAPIError(let errorMessage):
-                    appViewModel.errorMessage = errorMessage
-                case .BadURL: break
-                case .NoData: break
-                case .DecodingError: break
-                }
-            }
-        }
     }
 }
 

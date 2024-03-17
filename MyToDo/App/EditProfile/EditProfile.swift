@@ -73,8 +73,9 @@ struct EditProfile: View {
             UserServise().updateProfile(parameters: postData.toDictionary()) {
                 result in
                 switch result {
-                case .success(let data):
+                case .success(_):
                     navStack.presentedScreen.removeLast()
+                    authViewModel.getUserProfile()
                 case .failure(let error):
                     print("Edit Profile Error")
                     print(error)
@@ -98,7 +99,7 @@ struct EditProfile: View {
 struct EditProfile_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            EditProfile(userData: Userres())
+            EditProfile(userData: Userres(id: 2,firstName: "name", lastName: "last name",email: "Email.com"))
         }
     }
 }

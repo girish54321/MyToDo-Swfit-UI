@@ -16,24 +16,6 @@ struct AuthMainView: View {
     @EnvironmentObject var appViewModel: AppViewModel
     
     var body: some View {
-        #if targetEnvironment(macCatalyst)
-        NavigationSplitView {
-            List(SampleData.authItem, selection: $authItem) { item in
-                NavigationLink(item.text, value: item)
-            }
-            .navigationTitle("Auth")
-        } detail: {
-            CreateAccountScreen()
-        }
-        .toast(isPresenting: $appViewModel.show){
-            appViewModel.alertToast
-        }
-        .alert(isPresented: $appViewModel.showAlert) { () -> Alert in
-            Alert(title: Text("Error"), message: Text(appViewModel.errorMessage))
-        }
-        .safeAreaInset(edge: .bottom) {
-        }
-        #else
         NavigationStack {
             CreateAccountScreen()
         }
@@ -45,7 +27,6 @@ struct AuthMainView: View {
         }
         .safeAreaInset(edge: .bottom) {
         }
-        #endif
     }
 }
 

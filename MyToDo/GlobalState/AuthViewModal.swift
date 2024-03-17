@@ -12,41 +12,37 @@ class AuthViewModel: ObservableObject {
     @Published var isLoggedIn = false
     @Published var token: String? = nil
     @Published var userState: LoginSuccess? = nil
-//    @Published var userArticle: TrendingArticles? = nil
     @Published var isLoading: Bool = true
     
+    @Published var userData: UserProfileRes?
+    
     init() {
-        getProfile()
+        getUserProfile()
     }
     
     func saveUser(data:LoginSuccess)  {
         userState = data
     }
     
-    func getProfile() {
-//        AuthServices().getUser(parameters: nil) {
-//            result in
-//            switch result {
-//            case .success(let data):
-//                self.userState = data
-//                self.isLoggedIn = true
-//                self.isLoading = false
-//            case .failure(let error):
-//                self.userState = nil
-//                self.isLoggedIn = false
-//                self.isLoading = false
-//                switch error {
-//                case .NetworkErrorAPIError(let errorMessage):
-//                    print(errorMessage)
-//                case .BadURL:
-//                    print("BadURL")
-//                case .NoData:
-//                    print("NoData")
-//                case .DecodingError:
-//                    print("DecodingError")
-//                }
-//            }
-//        }
+    func getUserProfile() {
+        UserServise().getProfile(parameters: nil) {
+            result in
+            switch result {
+            case .success(let data):
+                self.userData = data
+            case .failure(let error):
+                print("User Profile Error")
+                print(error)
+                switch error {
+                case .NetworkErrorAPIError(let errorMessage):
+                    print(errorMessage)
+//                    appViewModel.errorMessage = errorMessage
+                case .BadURL: break
+                case .NoData: break
+                case .DecodingError: break
+                }
+            }
+        }
     }
 }
 

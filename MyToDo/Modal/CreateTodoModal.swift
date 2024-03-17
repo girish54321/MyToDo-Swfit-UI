@@ -16,9 +16,10 @@ struct AddToDoParams {
     var id: String?
     var title: String?
     var body: String?
+    var status: String?
     
     func toDictionary() -> [String: Any] {
-        let params = ["title": title,"body": body,"id": id].compactMapValues { $0 }
+        let params = ["title": title,"body": body,"id": id,"status":status].compactMapValues { $0 }
         return params
     }
 }

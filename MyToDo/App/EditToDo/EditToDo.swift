@@ -24,7 +24,7 @@ struct EditToDo: View {
         VStack {
             ToDoForm(titleText:$todo.title.toUnwrapped(defaultValue: ""),
                      bodyText: $todo.body.toUnwrapped(defaultValue: ""),
-                     avatarItem: $avatarItem,
+                     todoState: $todo.status.toUnwrapped(defaultValue: "OPEN"), avatarItem: $avatarItem,
                      avatarImage: $avatarImage,
                      onSubmit: {
                         update()
@@ -36,14 +36,15 @@ struct EditToDo: View {
     
     func update() {
         appViewModel.toggle()
-        let postData = AddToDoParams(id: String(todo.id ?? 2), title: todo.title,body: todo.body)
+        let postData = AddToDoParams(id: String(todo.id ?? 2), title: todo.title,body: todo.body,status: todo.status)
         ToDoServices().updateToDo(parameters: postData.toDictionary()) {
             result in
             switch result {
-            case .success(let data):
+            case .success(_):
                 let upDatedToto = todo
                 todoViewModal.selectedTodo = upDatedToto
                 appViewModel.toggle()
+                todoViewModal.getUserNotes()
                 navStack.presentedScreen.removeLast()
             case .failure(let error):
                 print("Update todo Error")

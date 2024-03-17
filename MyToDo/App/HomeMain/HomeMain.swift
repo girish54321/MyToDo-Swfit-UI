@@ -14,14 +14,27 @@ struct HomeMain: View {
     
     @EnvironmentObject var appViewModel: AppViewModel
     
+    @State private var authItem: DataModel? = MainHomeData.homeData[0]
+    
     var body: some View {
         #if targetEnvironment(macCatalyst)
         NavigationSplitView {
-            ToDoList()
-            .navigationTitle("ToDo")
+            List (MainHomeData.homeData, id: \.self,selection: $authItem) { item in
+                Button(item.text, action: {
+                    authItem = item
+                })
+                .buttonStyle(.plain)
+            }
+            .navigationTitle("MyToDo")
         }
-    detail: {
-            CreateToDo()
+        detail: {
+            if(authItem?.type == MainHomeScreeType.home){
+                ToDoList()
+            } else if (authItem?.type == MainHomeScreeType.createTodo){
+                CreateToDo()
+            } else {
+                UserProfile()
+            }
         }
         .toast(isPresenting: $appViewModel.show){
             appViewModel.alertToast
@@ -35,8 +48,13 @@ struct HomeMain: View {
         TabView (selection: $appViewModel.slectedTabIndex) {
             ToDoList()
             .tabItem {
-                Image(systemName: AppIconsSF.homeIcon)
-                Text("ToDo")
+                Image(systemName: AppIconsSF.trandingIcon)
+                Text("Home")
+//                Image(systemName: "square.stack.3d.up")
+//                                   .symbolEffect(.variableColor.iterative, value: appViewModel.slectedTabIndex)
+
+//                    .symbolEffect(.bounce, value: appViewModel.slectedTabIndex)
+//                Text("ToDo")
             }
             .tag(0)
             CreateToDo()
@@ -70,6 +88,7 @@ struct HomeMain_Previews: PreviewProvider {
     static var previews: some View {
         HomeMain()
             .environmentObject(AppViewModel())
+            .environmentObject(ToDoViewModal())
             .environmentObject(ToDoNavigationStackViewModal())
     }
 }

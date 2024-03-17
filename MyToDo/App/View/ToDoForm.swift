@@ -9,9 +9,9 @@ import SwiftUI
 import PhotosUI
 
 struct ToDoForm: View {
-//    @Binding var value: String
     @Binding var titleText: String
     @Binding var bodyText: String
+    @Binding var todoState: String
     
     @Binding var avatarItem: PhotosPickerItem?
     @Binding var avatarImage: Image?
@@ -41,6 +41,15 @@ struct ToDoForm: View {
                 avatarImage?
                     .resizable()
                     .scaledToFit()
+            }
+            if iSupDate{
+                Picker("Status", selection: $todoState) {
+                    ForEach(ToDoStatuList.todoStatus) { option in
+                                    Text(option.text)
+                                        .tag(option.type)
+                                }
+                            }
+                .pickerStyle(.inline)
             }
             Section("Save your todo") {
                 Button(iSupDate ? "Update Todo" : "Add Todo") {

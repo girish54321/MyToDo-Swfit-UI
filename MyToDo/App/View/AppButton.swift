@@ -20,13 +20,11 @@ struct AppButton: View {
                 leftIcon ?? leftIcon
                 Spacer()
                 Text(text).fontWeight(.semibold)
-//                    .foregroundColor(Color("ButtonText"))
                 rightIcon ?? rightIcon
                 Spacer()
             }
             .frame(height:25)
             .padding(12)
-//            .background(Color("ButtonColor"))
             .overlay(
                 RoundedRectangle(cornerRadius: 6)
                     .stroke(Color.accentColor, lineWidth: 3)
