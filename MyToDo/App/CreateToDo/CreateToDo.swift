@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import Alamofire
 
 struct CreateToDo: View {
     @State private var titleText: String = ""
@@ -15,6 +16,7 @@ struct CreateToDo: View {
     
     @State private var avatarItem: PhotosPickerItem?
     @State private var avatarImage: Image?
+    @State private var avatarImageUi: UIImage?
     
     @EnvironmentObject var appViewModel: AppViewModel
     @EnvironmentObject var todoViewModal: ToDoViewModal
@@ -23,6 +25,9 @@ struct CreateToDo: View {
         NavigationStack {
             VStack {
                 ToDoForm(titleText: $titleText, bodyText: $bodyText, todoState: $todoState, avatarItem: $avatarItem, avatarImage: $avatarImage, onSubmit: addToDo,iSupDate: false)
+                Button("Upload Image", action: {
+                    uploadImage()
+                })
             }
             .navigationTitle("Add ToDo")
         }
@@ -54,6 +59,45 @@ struct CreateToDo: View {
             }
         }
     }
+    
+    func uploadImage () {
+        Task {
+            guard let image = avatarImage else { return }
+//            let imageData  = try? await avatarItem?.loadTransferable(type: Image.self)
+            let data = try? await avatarItem?.loadTransferable(type: Data.self)
+            let parameters = [
+                "body": "john_doe",
+                "title": "Sample Image Upload"
+            ]
+            var headers: HTTPHeaders? = nil
+             headers = [
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxOCIsImlhdCI6MTcxMTE4Mjk0MCwiZXhwIjoxNzExMTg2NTQwLCJpc3MiOiJnaXJpc2guY29tIn0.EyHfy_vbzQ6ZYSuUCh3zNU8ArFeO6ngHNT5KhG3iqco",
+                "Accept": "application/json"
+            ]
+            // Define the endpoint URL
+            let url = "http://localhost:5000/api/v1/todo/addtodo"
+            
+            // Use Alamofire's upload function with multipartFormData to create the request
+            AF.upload(
+                multipartFormData: { multipartFormData in
+                // Add image data to the request
+                multipartFormData.append(data!, withName: "todoimage", fileName: "image.jpg", mimeType: "image/jpeg")
+                
+                // Add other parameters to the request
+                for (key, value) in parameters {
+                    if let data = value.data(using: .utf8) {
+                        multipartFormData.append(data, withName: key)
+                    }
+                }
+            }, to: url,headers: headers)
+            .validate() // Optional: Validate the response
+            .response { response in
+                // Handle the response here
+                debugPrint(response)
+            }
+        }
+    }
+
 }
 
 struct CreateToDo_Previews: PreviewProvider {

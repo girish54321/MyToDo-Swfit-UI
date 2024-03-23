@@ -50,6 +50,7 @@
 		F4A68A132B9CB34A00CEFF91 /* ToDoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A122B9CB34A00CEFF91 /* ToDoModal.swift */; };
 		F4A68A182B9CB4F100CEFF91 /* ToDoServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A172B9CB4F100CEFF91 /* ToDoServices.swift */; };
 		F4A68A1A2B9CB51100CEFF91 /* ToDoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A192B9CB51100CEFF91 /* ToDoEndpoint.swift */; };
+		F4B41CEE2BAE9FFF00DEAB1C /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F4B41CED2BAE9FFF00DEAB1C /* SwiftDate */; };
 		F4E732EE2BA58ED000A6B2F2 /* SwiftEmailValidator in Frameworks */ = {isa = PBXBuildFile; productRef = F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,7 @@
 			files = (
 				F440A56F2B9C906A00FE6C9C /* AlertToast in Frameworks */,
 				F43206B72BA4612100AD8AC8 /* NetworkImage in Frameworks */,
+				F4B41CEE2BAE9FFF00DEAB1C /* SwiftDate in Frameworks */,
 				F440A5632B9C8ECF00FE6C9C /* SwiftyJSON in Frameworks */,
 				F440A5602B9C8EB800FE6C9C /* Alamofire in Frameworks */,
 				F4E732EE2BA58ED000A6B2F2 /* SwiftEmailValidator in Frameworks */,
@@ -393,6 +395,7 @@
 				F440A56E2B9C906A00FE6C9C /* AlertToast */,
 				F43206B62BA4612100AD8AC8 /* NetworkImage */,
 				F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */,
+				F4B41CED2BAE9FFF00DEAB1C /* SwiftDate */,
 			);
 			productName = MyToDo;
 			productReference = F48CC1B12B9B64CB00EF7704 /* MyToDo.app */;
@@ -472,6 +475,7 @@
 				F440A56D2B9C906A00FE6C9C /* XCRemoteSwiftPackageReference "AlertToast" */,
 				F43206B52BA4612100AD8AC8 /* XCRemoteSwiftPackageReference "NetworkImage" */,
 				F4E732EC2BA58ED000A6B2F2 /* XCRemoteSwiftPackageReference "SwiftEmailValidator" */,
+				F4B41CEC2BAE9FFF00DEAB1C /* XCRemoteSwiftPackageReference "SwiftDate" */,
 			);
 			productRefGroup = F48CC1B22B9B64CB00EF7704 /* Products */;
 			projectDirPath = "";
@@ -938,6 +942,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		F4B41CEC2BAE9FFF00DEAB1C /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		F4E732EC2BA58ED000A6B2F2 /* XCRemoteSwiftPackageReference "SwiftEmailValidator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ekscrypto/SwiftEmailValidator.git";
@@ -968,6 +980,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F440A56D2B9C906A00FE6C9C /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		F4B41CED2BAE9FFF00DEAB1C /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4B41CEC2BAE9FFF00DEAB1C /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
 		};
 		F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */ = {
 			isa = XCSwiftPackageProductDependency;

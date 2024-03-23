@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftDate
 
 struct SelectedToDo: View {
     @EnvironmentObject var todoViewModal: ToDoViewModal
@@ -32,6 +33,18 @@ struct SelectedToDo: View {
                                     }
                                 }
                 .pickerStyle(.inline)
+                Section ("Time Stamp") {
+                    HStack {
+                        Text("Created At")
+                        Spacer()
+                        Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.createdAt ?? "")!))
+                    }
+                    HStack {
+                        Text("Update At")
+                        Spacer()
+                        Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.updatedAt ?? "")!))
+                    }
+                }
             }
             .alert(isPresented: $deleteToDo) {
                 Alert(title: Text("Delete?"),

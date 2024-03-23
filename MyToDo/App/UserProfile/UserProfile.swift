@@ -7,6 +7,7 @@
 
 import SwiftUI
 import NetworkImage
+import SwiftDate
 
 struct UserProfile: View {
   
@@ -19,6 +20,9 @@ struct UserProfile: View {
     @AppStorage(AppConst.isSkipped) var isSkipped: Bool = false
     @AppStorage(AppConst.token) var token: String = ""
     
+    let date = DateInRegion()
+
+ 
     var body: some View {
         NavigationStack (path: $navStack.presentedScreen) {
             List {
@@ -55,14 +59,13 @@ struct UserProfile: View {
                     HStack {
                         Text("Joined At")
                         Spacer()
-                        Text(authViewModel.userData?.users?[0].createdAt ?? "Some data")
+                        Text(DateHelper().formDate(date: Date(authViewModel.userData?.users?[0].createdAt ?? "") ?? Date.now))
                     }
                     HStack {
                         Text("Update At")
                         Spacer()
-                        Text(authViewModel.userData?.users?[0].updatedAt ?? "Some data")
+                        Text(DateHelper().formDate(date: Date(authViewModel.userData?.users?[0].updatedAt ?? "") ?? Date.now))
                     }
-                   
                 }
                 Button("Logout!", action: {
                     showLogOutAlert.toggle()
@@ -91,6 +94,18 @@ struct UserProfile: View {
             }
         }
     }
+    
+    func getDate(from dateString: String) -> Date? {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            return dateFormatter.date(from: dateString)
+        }
+
+        func formatDate(_ date: Date) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, yyyy h:mm a"
+            return dateFormatter.string(from: date)
+        }
     
     func userLogOut()  {
         authViewModel.userState = nil

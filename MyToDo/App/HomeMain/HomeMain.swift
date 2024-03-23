@@ -46,9 +46,9 @@ struct HomeMain: View {
         }
         #else
         TabView (selection: $appViewModel.slectedTabIndex) {
-            ToDoList()
+           ToDoList()
             .tabItem {
-                Image(systemName: AppIconsSF.trandingIcon)
+                Image(systemName: AppIconsSF.homeIcon)
                 Text("Home")
 //                Image(systemName: "square.stack.3d.up")
 //                                   .symbolEffect(.variableColor.iterative, value: appViewModel.slectedTabIndex)
@@ -57,13 +57,13 @@ struct HomeMain: View {
 //                Text("ToDo")
             }
             .tag(0)
-            CreateToDo()
+           CreateToDo()
                 .tabItem {
-                    Image(systemName: AppIconsSF.trandingIcon)
+                    Image(systemName: AppIconsSF.addNoteIcon)
                     Text("Add New")
                 }
                 .tag(1)
-           UserProfile()
+          UserProfile()
                 .tabItem {
                     Image(systemName: AppIconsSF.userIcon)
                     Text("Profile")
