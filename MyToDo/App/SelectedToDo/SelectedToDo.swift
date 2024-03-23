@@ -27,11 +27,11 @@ struct SelectedToDo: View {
                     Text(todoViewModal.selectedTodo?.body ?? "NA")
                 }
                 Picker("Status", selection: $todo.status.toUnwrapped(defaultValue: "OPEN")) {
-                        ForEach(ToDoStatuList.todoStatus) { option in
-                                        Text(option.text)
-                                            .tag(option.type)
-                                    }
-                                }
+                    ForEach(ToDoStatuList.todoStatus) { option in
+                        Text(option.text)
+                            .tag(option.type)
+                    }
+                }
                 .pickerStyle(.inline)
                 Section ("Time Stamp") {
                     HStack {
@@ -44,6 +44,9 @@ struct SelectedToDo: View {
                         Spacer()
                         Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.updatedAt ?? "")!))
                     }
+                }
+                if (todoViewModal.selectedTodo?.todoImage != nil) {
+                    ToToImageView(imageUrl: todoViewModal.selectedTodo?.todoImage ?? "")
                 }
             }
             .alert(isPresented: $deleteToDo) {

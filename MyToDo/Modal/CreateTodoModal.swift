@@ -17,13 +17,28 @@ struct AddToDoParams {
     var title: String?
     var body: String?
     var status: String?
+    var deleteFile: Bool?
     
-    func toDictionary() -> [String: Any] {
-        let params = ["title": title,"body": body,"id": id,"status":status].compactMapValues { $0 }
+    func toDictionary() -> [String: String] {
+        var params = [String: String]()
+        if let id = id {
+            params["id"] = id
+        }
+        if let title = title {
+            params["title"] = title
+        }
+        if let body = body {
+            params["body"] = body
+        }
+        if let status = status {
+            params["status"] = status
+        }
+        if let deleteFile = deleteFile {
+            params["deleteFile"] = String(deleteFile)
+        }
         return params
     }
 }
-
 
 
 struct DeleteoDoParams {

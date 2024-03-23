@@ -31,6 +31,30 @@ class ToDoServices {
             )
         }
     
+    func createToDoWithImage (
+        parameters: Parameters?,
+        multipartFormData: @escaping (MultipartFormData) -> Void,
+        completion: @escaping(Result<AddToDo,NetworkError>) -> Void){
+            return UploadFileClient.request(type: AddToDo.self,
+                                            endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .addTodo),
+                                            multipartFormData:multipartFormData,
+                                            parameters:parameters,
+                                            completion: completion
+            )
+        }
+    
+    func updateToDoWithImage (
+        parameters: Parameters?,
+        multipartFormData: @escaping (MultipartFormData) -> Void,
+        completion: @escaping(Result<AddToDo,NetworkError>) -> Void){
+            return UploadFileClient.request(type: AddToDo.self,
+                                         endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .updateTodo),
+                                         multipartFormData:multipartFormData,
+                                         parameters:parameters,
+                                         completion: completion
+            )
+        }
+    
     func updateToDo (
         parameters: Parameters?,
         completion: @escaping(Result<AddToDo,NetworkError>) -> Void){

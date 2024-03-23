@@ -11,8 +11,8 @@ import AlertToast
 import SwiftUI
 
 struct AppConst {
-    static let baseurl = "https://deploy-todo-sql.onrender.com/api/v1/"
-    static let todoimagesPath = "https://deploy-todo-sql.onrender.com/"
+    static let baseurl = "http://localhost:5000/api/v1/"
+    static let todoimagesPath = "http://localhost:5000/"
     static let LoginUrl = "auth/login"
     static let usersListUrl = "users"
     static let isLoggedIn = "isLoggedIn"
@@ -22,7 +22,7 @@ struct AppConst {
     static let imagePath = "https://media5.bollywoodhungama.in/wp-content/uploads/2021/03/WhatsApp-Image-2021-03-26-at-5.08.26-PM.jpeg"
     
     struct ApiConst {
-         let apiEndPoint = "https://deploy-todo-sql.onrender.com/api/v1/"
+         let apiEndPoint = "http://localhost:5000/api/v1/"
     }
 }
 
@@ -46,7 +46,7 @@ struct AppIconsSF {
     static let closeIcon = "xmark"
     static let removeIcon = "trash"
     static let filtterIcon = "checkmark.square"
-    static let attachmentIcon = "attachment"
+    static let attachmentIcon = "paperclip"
 }
 
 struct AppKeyBoardType {

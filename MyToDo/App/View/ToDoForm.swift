@@ -13,10 +13,13 @@ struct ToDoForm: View {
     @Binding var bodyText: String
     @Binding var todoState: String
     
-    @Binding var avatarItem: PhotosPickerItem?
-    @Binding var avatarImage: Image?
+    @Binding var todoImagePicker: PhotosPickerItem?
+    @Binding var todoImage: Image?
+    
+    var imageUrl: String?
     
     var onSubmit: (() -> Void)
+    var onRemoveImage: (() -> Void)
     var iSupDate: Bool = true
     
     var body: some View {
@@ -25,32 +28,38 @@ struct ToDoForm: View {
             Section {
                 TextField("Title", text: $titleText)
                     .textInputAutocapitalization(.never)
-                TextField("Place",text: $bodyText)
-                     .frame(minHeight: 100)
+                TextField("Body",text: $bodyText)
+                    .frame(minHeight: 100)
             }
-            Section {
-                HStack {
-                    PhotosPicker("Select Image", selection: $avatarItem, matching: .images)
-                        .task(id: avatarItem) {
-                            avatarImage = try? await avatarItem?.loadTransferable(type: Image.self)
-                        }
-                    Spacer()
-                    Image(systemName: AppIconsSF.checkMark)
-                        .foregroundColor(.accentColor)
-                }
-                avatarImage?
-                    .resizable()
-                    .scaledToFit()
-            }
-            if iSupDate{
-                Picker("Status", selection: $todoState) {
-                    ForEach(ToDoStatuList.todoStatus) { option in
-                                    Text(option.text)
-                                        .tag(option.type)
-                                }
+            if (imageUrl != nil && todoImagePicker == nil ) {
+                ToToImageView(imageUrl: imageUrl!)
+            } else {
+                Section {
+                    VStack {
+                        PhotosPicker(selection: $todoImagePicker, matching: .images){
+                            HStack {
+                                Image(systemName: AppIconsSF.attachmentIcon)
+                                Text("Pick Image")
                             }
-                .pickerStyle(.inline)
+                        }
+                        .task(id: todoImagePicker) {
+                            todoImage = try? await todoImagePicker?.loadTransferable(type: Image.self)
+                        }
+                    }
+                    todoImage?
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(6)
+                }
             }
+            if (todoImage != nil || imageUrl != nil) {
+                Button(iSupDate ? "Delete Image" : "Remove Image", action: {
+                    onRemoveImage()
+                })
+                .buttonStyle(.automatic)
+                .foregroundColor(.red)
+            }
+          
             Section("Save your todo") {
                 Button(iSupDate ? "Update Todo" : "Add Todo") {
                         onSubmit()
@@ -60,8 +69,20 @@ struct ToDoForm: View {
     }
 }
 
-//struct ToDoForm_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ToDoForm()
-//    }
-//}
+struct ToDoForm_Previews: PreviewProvider {
+    @State static var titleText: String = ""
+    @State static var bodyText: String = ""
+    @State static var todoState: String = "OPEN"
+    
+    @State static var todoImagePicker: PhotosPickerItem?
+    @State static var todoImage: Image?
+
+    
+    static var previews: some View {
+        ToDoForm(titleText: $titleText, bodyText: $bodyText, todoState: $todoState, todoImagePicker: $todoImagePicker, todoImage: $todoImage, onSubmit: {
+            
+        },onRemoveImage:{
+            
+        }, iSupDate: false)
+    }
+}
