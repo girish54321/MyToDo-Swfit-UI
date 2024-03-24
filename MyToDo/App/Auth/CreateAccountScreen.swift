@@ -65,7 +65,11 @@ struct CreateAccountScreen: View {
                 title:"Password", value: $passwordText
             )
             AppButton(text: screenType.isCreateAccount ?? true ? "Sign Up": "Login", clicked: {
-                UserLoginApi(email: emailText, password: passwordText)
+                    if(screenType.isCreateAccount == true) {
+                        createAccout()
+                    }else{
+                        UserLoginApi(email: emailText, password: passwordText)
+                    }
                 }
             )
             .padding(.top)
@@ -82,6 +86,34 @@ struct CreateAccountScreen: View {
     func toggleLoginState()  {
         withAnimation {
             screenType.isCreateAccount = !(screenType.isCreateAccount ?? false)
+        }
+    }
+    
+    func createAccout () {
+        appViewModel.alertToast = AppMessage.loadingView
+        let authParams = UserAuthParams(firstName: firstName, lastName: lastName, email: emailText, password: passwordText)
+        AuthServices().createAccount(parameters: authParams.toDictionary()) {
+            result in
+            switch result {
+            case .success(let data):
+                appViewModel.toggle()
+                withAnimation {
+                    token = data.accessToken
+                }
+                authViewModel.saveUser(data: data)
+            case .failure(let error):
+                print("Create Account Error")
+                print(error)
+                switch error {
+                case .NetworkErrorAPIError(let errorMessage):
+                    appViewModel.toggle()
+                    appViewModel.errorMessage = errorMessage
+                    print(errorMessage)
+                case .BadURL: break
+                case .NoData: break
+                case .DecodingError: break
+                }
+            }
         }
     }
     

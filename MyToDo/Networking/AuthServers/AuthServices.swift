@@ -21,15 +21,14 @@ class AuthServices {
             )
         }
     
-//    func createAccount (
-//        parameters: Parameters?,
-//        completion: @escaping(Result<CreateAccountResponse,NetworkError>) -> Void){
-//            return RestAPIClient.request(type: CreateAccountResponse.self,
-//                                         endPoint: AuthApiEndpoint().createEndPoint(endPoint: .register),
-//                                         method:.post,
-//                                         parameters:parameters,
-//                                         completion: completion
-//            )
-//        }
-    
+    func createAccount (
+        parameters: Parameters?,
+        completion: @escaping(Result<LoginSuccess,NetworkError>) -> Void){
+            return RestAPIClient.request(type: LoginSuccess.self,
+                                         endPoint: AuthApiEndpoint().createEndPoint(endPoint: .register),
+                                         method:.post,
+                                         parameters:parameters,
+                                         completion: completion
+            )
+        }
 }

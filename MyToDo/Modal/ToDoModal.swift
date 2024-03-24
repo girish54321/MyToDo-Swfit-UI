@@ -11,6 +11,11 @@ struct ToDo: Codable {
     var todo: [TodoItem]?
 }
 
+struct SelectedToDoType: Codable {
+    var todo: TodoItem?
+}
+
+
 // MARK: - Todo
 struct TodoItem: Codable, Identifiable, Hashable {
     var id: Int?
@@ -25,3 +30,4 @@ struct TodoItem: Codable, Identifiable, Hashable {
         case createdAt, updatedAt
     }
 }
+

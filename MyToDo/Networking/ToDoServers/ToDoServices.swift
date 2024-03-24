@@ -20,6 +20,17 @@ class ToDoServices {
             )
         }
     
+    func getSelectedToDo (
+        parameters: Parameters?,
+        completion: @escaping(Result<SelectedToDoType,NetworkError>) -> Void){
+            return RestAPIClient.request(type: SelectedToDoType.self,
+                                         endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .getToDo),
+                                         method:.get,
+                                         parameters:parameters,
+                                         completion: completion
+            )
+        }
+    
     func createToDo (
         parameters: Parameters?,
         completion: @escaping(Result<AddToDo,NetworkError>) -> Void){

@@ -24,8 +24,14 @@ struct UserAuthParams {
 }
 
 struct UserProfileRes: Codable {
-    let users: [Userres]?
+    var users: [Userres]?
 }
+
+
+struct UserProfileImageUpdateRes: Codable {
+    var user: Userres?
+}
+
 
 struct Userres: Codable {
     var id: Int?
@@ -43,9 +49,10 @@ struct UpdateUserParams {
     var firstName: String?
     var lastName: String?
     var email: String
+    var deleteImage: String
     
     func toDictionary() -> [String: Any] {
-        let params = ["firstName": firstName,"lastName": lastName,"email": email].compactMapValues { $0 }
+        let params = ["firstName": firstName,"lastName": lastName,"email": email,"deleteImage":deleteImage].compactMapValues { $0 }
         return params
     }
 }

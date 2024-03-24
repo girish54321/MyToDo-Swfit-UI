@@ -44,6 +44,8 @@ struct CreateToDo: View {
                 titleText = ""
                 bodyText = ""
                 appViewModel.slectedTabIndex = 0
+                todoImagePicker = nil
+                todoImage = nil
                 todoViewModal.getUserNotes()
             case .failure(let error):
                 print("Create Todo Error")
@@ -84,6 +86,8 @@ struct CreateToDo: View {
                     bodyText = ""
                     appViewModel.slectedTabIndex = 0
                     todoViewModal.getUserNotes()
+                    todoImagePicker = nil
+                    todoImage = nil
                 case .failure(let error):
                     print("Create Todo Error")
                     print(error)

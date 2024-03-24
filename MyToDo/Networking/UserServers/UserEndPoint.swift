@@ -11,6 +11,8 @@ class UserEndPoint {
     enum UserEndPointType {
         case getProfile
         case updateProfile
+        case updateProfileImage
+        case deleteAccount
     }
     
     func createEndPoint(endPoint: UserEndPointType) -> String {
@@ -20,6 +22,12 @@ class UserEndPoint {
 
         case .updateProfile:
             return createApi(endPoint: "users/updateprofile")
+            
+        case .updateProfileImage:
+            return createApi(endPoint: "users/updateprofileimage")
+            
+        case .deleteAccount:
+            return createApi(endPoint: "users/deleteaccount")
         }
     }
     

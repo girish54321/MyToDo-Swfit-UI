@@ -18,7 +18,7 @@ struct ToDoForm: View {
     
     var imageUrl: String?
     
-    var onSubmit: (() -> Void)
+    var onSubmit: (() -> Void) 
     var onRemoveImage: (() -> Void)
     var iSupDate: Bool = true
     

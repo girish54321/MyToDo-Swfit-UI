@@ -13,6 +13,8 @@ import SwiftUI
 struct AppConst {
     static let baseurl = "http://localhost:5000/api/v1/"
     static let todoimagesPath = "http://localhost:5000/"
+    // static let baseurl = "https://deploy-todo-sql.onrender.com/api/v1/"
+    // static let todoimagesPath = "https://deploy-todo-sql.onrender.com/"
     static let LoginUrl = "auth/login"
     static let usersListUrl = "users"
     static let isLoggedIn = "isLoggedIn"
@@ -23,6 +25,7 @@ struct AppConst {
     
     struct ApiConst {
          let apiEndPoint = "http://localhost:5000/api/v1/"
+         //let apiEndPoint = "https://deploy-todo-sql.onrender.com/api/v1/"
     }
 }
 
