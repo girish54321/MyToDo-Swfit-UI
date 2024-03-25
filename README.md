@@ -35,6 +35,6 @@ MyToDo is a sleek and intuitive ToDo app built using Swift UI. It aims to provid
 - Open `MyToDo.xcodeproj`
 - Open `AppConst` file and comment or uncomment remort or local server Endpoint
 
-## Installation
+## Backend
 
 The backend code for My ToDo App is available in a separate repository. You can find it [here](https://github.com/girish54321/deploy-local-sql-main).
