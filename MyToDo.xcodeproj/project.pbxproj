@@ -50,6 +50,9 @@
 		F4A68A132B9CB34A00CEFF91 /* ToDoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A122B9CB34A00CEFF91 /* ToDoModal.swift */; };
 		F4A68A182B9CB4F100CEFF91 /* ToDoServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A172B9CB4F100CEFF91 /* ToDoServices.swift */; };
 		F4A68A1A2B9CB51100CEFF91 /* ToDoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A192B9CB51100CEFF91 /* ToDoEndpoint.swift */; };
+		F4B41CEE2BAE9FFF00DEAB1C /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F4B41CED2BAE9FFF00DEAB1C /* SwiftDate */; };
+		F4B41CF02BAEDB2100DEAB1C /* UploadFileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B41CEF2BAEDB2100DEAB1C /* UploadFileClient.swift */; };
+		F4B41CF22BAF0FCD00DEAB1C /* ToToImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B41CF12BAF0FCD00DEAB1C /* ToToImageView.swift */; };
 		F4E732EE2BA58ED000A6B2F2 /* SwiftEmailValidator in Frameworks */ = {isa = PBXBuildFile; productRef = F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +117,8 @@
 		F4A68A122B9CB34A00CEFF91 /* ToDoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModal.swift; sourceTree = "<group>"; };
 		F4A68A172B9CB4F100CEFF91 /* ToDoServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoServices.swift; sourceTree = "<group>"; };
 		F4A68A192B9CB51100CEFF91 /* ToDoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoEndpoint.swift; sourceTree = "<group>"; };
+		F4B41CEF2BAEDB2100DEAB1C /* UploadFileClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileClient.swift; sourceTree = "<group>"; };
+		F4B41CF12BAF0FCD00DEAB1C /* ToToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToToImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +128,7 @@
 			files = (
 				F440A56F2B9C906A00FE6C9C /* AlertToast in Frameworks */,
 				F43206B72BA4612100AD8AC8 /* NetworkImage in Frameworks */,
+				F4B41CEE2BAE9FFF00DEAB1C /* SwiftDate in Frameworks */,
 				F440A5632B9C8ECF00FE6C9C /* SwiftyJSON in Frameworks */,
 				F440A5602B9C8EB800FE6C9C /* Alamofire in Frameworks */,
 				F4E732EE2BA58ED000A6B2F2 /* SwiftEmailValidator in Frameworks */,
@@ -211,6 +217,7 @@
 				F440A5522B9C731300FE6C9C /* AppButton.swift */,
 				F440A57D2B9CA88300FE6C9C /* ToDoItem.swift */,
 				F43206A82BA43FAF00AD8AC8 /* ToDoForm.swift */,
+				F4B41CF12BAF0FCD00DEAB1C /* ToToImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,6 +250,7 @@
 				F440A5662B9C8F4900FE6C9C /* AuthServers */,
 				F440A55C2B9C8DF000FE6C9C /* RestAPIClient.swift */,
 				F440A5642B9C8F1600FE6C9C /* ApiError.swift */,
+				F4B41CEF2BAEDB2100DEAB1C /* UploadFileClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -393,6 +401,7 @@
 				F440A56E2B9C906A00FE6C9C /* AlertToast */,
 				F43206B62BA4612100AD8AC8 /* NetworkImage */,
 				F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */,
+				F4B41CED2BAE9FFF00DEAB1C /* SwiftDate */,
 			);
 			productName = MyToDo;
 			productReference = F48CC1B12B9B64CB00EF7704 /* MyToDo.app */;
@@ -472,6 +481,7 @@
 				F440A56D2B9C906A00FE6C9C /* XCRemoteSwiftPackageReference "AlertToast" */,
 				F43206B52BA4612100AD8AC8 /* XCRemoteSwiftPackageReference "NetworkImage" */,
 				F4E732EC2BA58ED000A6B2F2 /* XCRemoteSwiftPackageReference "SwiftEmailValidator" */,
+				F4B41CEC2BAE9FFF00DEAB1C /* XCRemoteSwiftPackageReference "SwiftDate" */,
 			);
 			productRefGroup = F48CC1B22B9B64CB00EF7704 /* Products */;
 			projectDirPath = "";
@@ -520,6 +530,7 @@
 				F440A57E2B9CA88300FE6C9C /* ToDoItem.swift in Sources */,
 				F43206BA2BA4BE3800AD8AC8 /* EditProfile.swift in Sources */,
 				F48D06A02B9DCA3A004F9D88 /* CreateTodoModal.swift in Sources */,
+				F4B41CF02BAEDB2100DEAB1C /* UploadFileClient.swift in Sources */,
 				F48CC1B72B9B64CB00EF7704 /* ContentView.swift in Sources */,
 				F440A5562B9C736900FE6C9C /* NavModal.swift in Sources */,
 				F440A5512B9C72D900FE6C9C /* AppConst.swift in Sources */,
@@ -548,6 +559,7 @@
 				F4A68A1A2B9CB51100CEFF91 /* ToDoEndpoint.swift in Sources */,
 				F440A57A2B9CA5A600FE6C9C /* ToDoList.swift in Sources */,
 				F440A54F2B9C71E600FE6C9C /* UIHelper.swift in Sources */,
+				F4B41CF22BAF0FCD00DEAB1C /* ToToImageView.swift in Sources */,
 				F440A56C2B9C902500FE6C9C /* LoginSuccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -938,6 +950,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		F4B41CEC2BAE9FFF00DEAB1C /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		F4E732EC2BA58ED000A6B2F2 /* XCRemoteSwiftPackageReference "SwiftEmailValidator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ekscrypto/SwiftEmailValidator.git";
@@ -968,6 +988,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F440A56D2B9C906A00FE6C9C /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		F4B41CED2BAE9FFF00DEAB1C /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4B41CEC2BAE9FFF00DEAB1C /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
 		};
 		F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */ = {
 			isa = XCSwiftPackageProductDependency;

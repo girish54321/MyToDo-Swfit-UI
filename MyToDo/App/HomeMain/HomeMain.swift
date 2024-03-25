@@ -14,22 +14,27 @@ struct HomeMain: View {
     
     @EnvironmentObject var appViewModel: AppViewModel
     
+    @State private var authItem: DataModel? = MainHomeData.homeData[0]
+    
     var body: some View {
         #if targetEnvironment(macCatalyst)
         NavigationSplitView {
-//            List {
-//                Text("ToDo")
-//                Text("Add New")
-//                Text("Profile")
-//            }
-            ToDoList()
-            .navigationTitle("ToDo")
+            List (MainHomeData.homeData, id: \.self,selection: $authItem) { item in
+                Button(item.text, action: {
+                    authItem = item
+                })
+                .buttonStyle(.plain)
+            }
+            .navigationTitle("MyToDo")
         }
-//    content: {
-//            ToDoList()
-//        }
-    detail: {
-            CreateToDo()
+        detail: {
+            if(authItem?.type == MainHomeScreeType.home){
+                ToDoList()
+            } else if (authItem?.type == MainHomeScreeType.createTodo){
+                CreateToDo()
+            } else {
+                UserProfile()
+            }
         }
         .toast(isPresenting: $appViewModel.show){
             appViewModel.alertToast
@@ -41,19 +46,24 @@ struct HomeMain: View {
         }
         #else
         TabView (selection: $appViewModel.slectedTabIndex) {
-            ToDoList()
+           ToDoList()
             .tabItem {
                 Image(systemName: AppIconsSF.homeIcon)
-                Text("ToDo")
+                Text("Home")
+//                Image(systemName: "square.stack.3d.up")
+//                                   .symbolEffect(.variableColor.iterative, value: appViewModel.slectedTabIndex)
+
+//                    .symbolEffect(.bounce, value: appViewModel.slectedTabIndex)
+//                Text("ToDo")
             }
             .tag(0)
-            CreateToDo()
+           CreateToDo()
                 .tabItem {
-                    Image(systemName: AppIconsSF.trandingIcon)
+                    Image(systemName: AppIconsSF.addNoteIcon)
                     Text("Add New")
                 }
                 .tag(1)
-           UserProfile()
+          UserProfile()
                 .tabItem {
                     Image(systemName: AppIconsSF.userIcon)
                     Text("Profile")
@@ -78,6 +88,7 @@ struct HomeMain_Previews: PreviewProvider {
     static var previews: some View {
         HomeMain()
             .environmentObject(AppViewModel())
+            .environmentObject(ToDoViewModal())
             .environmentObject(ToDoNavigationStackViewModal())
     }
 }

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ToDoViewItem: View {
     var todo: TodoItem
-    let baseURLString = "https://picsum.photos/id/12/"
     
     var body: some View {
         VStack(alignment: .leading) {

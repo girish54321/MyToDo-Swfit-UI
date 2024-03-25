@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 import AlertToast
-//import HTMLEntities
 
 struct TitleModifier: ViewModifier {
     func body(content: Content) -> some View {

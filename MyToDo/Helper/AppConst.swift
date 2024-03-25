@@ -11,41 +11,34 @@ import AlertToast
 import SwiftUI
 
 struct AppConst {
-    static let baseurl = "https://deploy-todo-sql.onrender.com/api/v1/"
+
+    // MARK: Use with LocalHost
+//    static let todoimagesPath = "http://localhost:5000/"
+
+    // MARK: Use with Remort 
     static let todoimagesPath = "https://deploy-todo-sql.onrender.com/"
-    static let LoginUrl = "auth/login"
-    static let usersListUrl = "users"
     static let isLoggedIn = "isLoggedIn"
     static let token = "JWT_token"
     static let isSkipped = "SIKPED"
-    static let emailPattern = #"^\S+@\S+\.\S+$"#
-    static let imagePath = "https://media5.bollywoodhungama.in/wp-content/uploads/2021/03/WhatsApp-Image-2021-03-26-at-5.08.26-PM.jpeg"
     
     struct ApiConst {
+        // MARK: Use with LocalHost
+//         let apiEndPoint = "http://localhost:5000/api/v1/"
+        // MARK: Use with Remort 
          let apiEndPoint = "https://deploy-todo-sql.onrender.com/api/v1/"
     }
 }
 
 struct AppIconsSF {
+    static let homeIcon = "list.clipboard"
+    static let addNoteIcon = "plus.square"
     static let emailIcon = "envelope.fill"
     static let passwordIcon = "lock.fill"
-    static let eyeOpenIcon = ""
-    static let eyeCloseIcon = ""
-    static let checkMark = "checkmark.circle.fill"
-    static let worngMark = "x.circle"
     static let userIcon = "person.crop.circle.badge.checkmark"
-    static let homeIcon = "message"
-    static let trandingIcon = "flame.fill"
-    static let profileIcon = "book.fill"
-    static let settingsIcon = "gear"
+    static let settingsIcon = "gearshape.fill"
     static let editIcon = "pencil"
-    static let deleteIcon = "trash"
-    static let bookMarkIcon = "bookmark"
-    static let bookMarkFillIcon = "bookmark.fill"
-    static let closeIcon = "xmark"
     static let removeIcon = "trash"
-    static let filtterIcon = "checkmark.square"
-    static let attachmentIcon = "attachment"
+    static let attachmentIcon = "paperclip"
 }
 
 struct AppKeyBoardType {
@@ -61,6 +54,16 @@ struct AppKeyBoardType {
     static let twitter = 9 // A type optimized for twitter text entry (easy access to @ #)
     static let webSearch = 10 // A default keyboard type with URL-oriented addition (shows space . prominently).
     static let asciiCapableNumberPad = 11 // A number pad (0-9) that will always be ASCII digits.
+}
+
+class DateHelper {
+    
+    func formDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, h:mm a"
+        return formatter.string(from: date)
+    }
+    
 }
 
 

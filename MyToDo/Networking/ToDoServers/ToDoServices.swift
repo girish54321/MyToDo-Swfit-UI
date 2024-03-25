@@ -20,12 +20,47 @@ class ToDoServices {
             )
         }
     
+    func getSelectedToDo (
+        parameters: Parameters?,
+        completion: @escaping(Result<SelectedToDoType,NetworkError>) -> Void){
+            return RestAPIClient.request(type: SelectedToDoType.self,
+                                         endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .getToDo),
+                                         method:.get,
+                                         parameters:parameters,
+                                         completion: completion
+            )
+        }
+    
     func createToDo (
         parameters: Parameters?,
         completion: @escaping(Result<AddToDo,NetworkError>) -> Void){
             return RestAPIClient.request(type: AddToDo.self,
                                          endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .addTodo),
                                          method:.post,
+                                         parameters:parameters,
+                                         completion: completion
+            )
+        }
+    
+    func createToDoWithImage (
+        parameters: Parameters?,
+        multipartFormData: @escaping (MultipartFormData) -> Void,
+        completion: @escaping(Result<AddToDo,NetworkError>) -> Void){
+            return UploadFileClient.request(type: AddToDo.self,
+                                            endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .addTodo),
+                                            multipartFormData:multipartFormData,
+                                            parameters:parameters,
+                                            completion: completion
+            )
+        }
+    
+    func updateToDoWithImage (
+        parameters: Parameters?,
+        multipartFormData: @escaping (MultipartFormData) -> Void,
+        completion: @escaping(Result<AddToDo,NetworkError>) -> Void){
+            return UploadFileClient.request(type: AddToDo.self,
+                                         endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .updateTodo),
+                                         multipartFormData:multipartFormData,
                                          parameters:parameters,
                                          completion: completion
             )

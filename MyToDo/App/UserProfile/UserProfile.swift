@@ -7,13 +7,22 @@
 
 import SwiftUI
 import NetworkImage
+import SwiftDate
 
 struct UserProfile: View {
-    @State private var userData: UserProfileRes?
+  
+    @State private var showLogOutAlert = false
     
     @EnvironmentObject var appViewModel: AppViewModel
     @EnvironmentObject var navStack: ProfileNavigationStackViewModal
+    @EnvironmentObject var authViewModel: AuthViewModel
     
+    @AppStorage(AppConst.isSkipped) var isSkipped: Bool = false
+    @AppStorage(AppConst.token) var token: String = ""
+    
+    let date = DateInRegion()
+
+ 
     var body: some View {
         NavigationStack (path: $navStack.presentedScreen) {
             List {
@@ -22,13 +31,13 @@ struct UserProfile: View {
                         HStack {
                             VStack (alignment: .leading, spacing: 16) {
                                 HStack {
-                                    Text(userData?.users?[0].firstName ?? "Loading")
-                                    Text(userData?.users?[0].lastName ?? "Loading")
+                                    Text(authViewModel.userData?.users?[0].firstName ?? "Loading")
+                                    Text(authViewModel.userData?.users?[0].lastName ?? "Loading")
                                 }
-                                Text(userData?.users?[0].email ?? "Loading")
+                                Text(authViewModel.userData?.users?[0].email ?? "Loading")
                             }
                             Spacer()
-                            NetworkImage(url: URL(string: AppConst.todoimagesPath + (userData?.users?[0].profileimage ?? "Loading"))) { image in
+                            NetworkImage(url: URL(string: AppConst.todoimagesPath + (authViewModel.userData?.users?[0].profileimage ?? "Loading"))) { image in
                                 image
                                     .resizable()
                                 .scaledToFill()
@@ -48,20 +57,24 @@ struct UserProfile: View {
                 }
                 Section {
                     HStack {
-                        Text("Joined")
+                        Text("Joined At")
                         Spacer()
-                        Text(userData?.users?[0].createdAt ?? "Some data")
+                        Text(DateHelper().formDate(date: Date(authViewModel.userData?.users?[0].createdAt ?? "") ?? Date.now))
                     }
-                   
+                    HStack {
+                        Text("Update At")
+                        Spacer()
+                        Text(DateHelper().formDate(date: Date(authViewModel.userData?.users?[0].updatedAt ?? "") ?? Date.now))
+                    }
                 }
                 Button("Logout!", action: {
-                    
+                    showLogOutAlert.toggle()
                 })
                 .foregroundColor(.red)
                 .navigationBarItems(
                     trailing:
                             Button(action: {
-                                let data = EditProfileScreenType(userData: userData)
+                                let data = EditProfileScreenType(userData: authViewModel.userData)
                                 navStack.presentedScreen.append(data)
                             }) {
                                 Image(systemName: AppIconsSF.settingsIcon)
@@ -69,35 +82,37 @@ struct UserProfile: View {
                 )
                 .navigationTitle("User Profile")
                 .navigationDestination(for: EditProfileScreenType.self) { type in
-//                    EditProfile(userData:userData?.users![0])
-                    EditProfile(userData:(userData?.users![0])!)
+                    EditProfile(userData:(authViewModel.userData?.users![0])!)
                 }
-                .onAppear {
-                    getUserProfile()
+                .alert(isPresented: $showLogOutAlert) {
+                    Alert(title: Text("Log out?"),
+                          message: Text("Are you sure you want to logout out? Press 'OK' to confirm or 'Cancel' to stay Logged in."),
+                          primaryButton: .destructive(Text("Yes")) {
+                        userLogOut()
+                    }, secondaryButton: .cancel())
                 }
             }
         }
     }
     
-    func getUserProfile() {
-        UserServise().getProfile(parameters: nil) {
-            result in
-            switch result {
-            case .success(let data):
-                print("I have data")
-                userData = data
-            case .failure(let error):
-                print("Error man")
-                print(error)
-                switch error {
-                case .NetworkErrorAPIError(let errorMessage):
-                    appViewModel.errorMessage = errorMessage
-                case .BadURL: break
-                case .NoData: break
-                case .DecodingError: break
-                }
-            }
+    func getDate(from dateString: String) -> Date? {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            return dateFormatter.date(from: dateString)
         }
+
+        func formatDate(_ date: Date) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, yyyy h:mm a"
+            return dateFormatter.string(from: date)
+        }
+    
+    func userLogOut()  {
+        authViewModel.userState = nil
+        authViewModel.token = ""
+        authViewModel.isLoggedIn = false
+        isSkipped = false
+        token = ""
     }
 }
 

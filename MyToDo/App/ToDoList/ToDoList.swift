@@ -9,23 +9,14 @@ import SwiftUI
 
 struct ToDoList: View {
     
-    @EnvironmentObject var navStack: ToDoNavigationStackViewModal
     @State private var firstSelectedDataItem: TodoItem?
-    @State private var toDoList: ToDo?
     
-    @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var todoViewModal: ToDoViewModal
-    @EnvironmentObject var appViewModel: AppViewModel
-    
-    @AppStorage(AppConst.isSkipped) var isSkipped: Bool = false
-    @AppStorage(AppConst.token) var token: String = ""
-    
-    @State private var showLogOutAlert = false
+    @EnvironmentObject var navStack: ToDoNavigationStackViewModal
     
     var body: some View {
         NavigationStack (path: $navStack.presentedScreen) {
-            VStack {
-                List(toDoList?.todo ?? [],selection: $firstSelectedDataItem) { item in
+                List(todoViewModal.toDoListData?.todo ?? [],id: \.self,selection: $firstSelectedDataItem) { item in
                     ToDoViewItem(todo: item)
                         .onTapGesture {
                             let data = SelectedToDoScreenType(selectedToDo: item)
@@ -34,61 +25,14 @@ struct ToDoList: View {
                         }
                     }
                 .refreshable {
-                    getUserNotes()
+                    todoViewModal.getUserNotes()
                 }
-            }
-            .onAppear {
-                getUserNotes()
-            }
             .navigationTitle("Your ToDo")
-            .alert(isPresented: $showLogOutAlert) {
-                Alert(title: Text("Log out?"),
-                      message: Text("Are you sure you want to logout out? Press 'OK' to confirm or 'Cancel' to stay Logged in."),
-                      primaryButton: .destructive(Text("Yes")) {
-                    authViewModel.userState = nil
-                    authViewModel.token = ""
-                    authViewModel.isLoggedIn = false
-                    isSkipped = false
-                    token = ""
-                }, secondaryButton: .cancel())
-            }
-            .navigationBarItems(
-                trailing:
-                    VStack {
-                        Button(action: {
-                            showLogOutAlert.toggle()
-                        }) {
-                            Text("Logout")
-                        }
-                    }
-            )
             .navigationDestination(for: SelectedToDoScreenType.self) { type in
                 SelectedToDo()
             }
             .navigationDestination(for: EditToDoScreenType.self) { type in
                 EditToDo(todo: todoViewModal.selectedTodo!)
-            }
-        }
-    }
-    
-    
-    func getUserNotes() {
-        ToDoServices().getUserToDo(parameters: nil) {
-            result in
-            switch result {
-            case .success(let data):
-                print("Get Todo done")
-                toDoList = data
-            case .failure(let error):
-                print("Error man")
-                print(error)
-                switch error {
-                case .NetworkErrorAPIError(let errorMessage):
-                    appViewModel.errorMessage = errorMessage
-                case .BadURL: break
-                case .NoData: break
-                case .DecodingError: break
-                }
             }
         }
     }

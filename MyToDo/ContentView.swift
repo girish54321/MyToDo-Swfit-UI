@@ -14,6 +14,7 @@ struct ContentView: App {
     @AppStorage(AppConst.isSkipped) var isSkipped: Bool = false
     @AppStorage(AppConst.token) var token: String = ""
     
+    
     var body: some Scene {
         WindowGroup {
             if isSkipped == true || token != "" {

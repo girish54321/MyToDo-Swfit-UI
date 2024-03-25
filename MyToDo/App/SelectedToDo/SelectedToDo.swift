@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftDate
 
 struct SelectedToDo: View {
     @EnvironmentObject var todoViewModal: ToDoViewModal
@@ -14,13 +15,39 @@ struct SelectedToDo: View {
 
     @State private var deleteToDo = false
     
+    @State var todo: TodoItem = TodoItem()
+    
     var body: some View {
-        List {
-            Section("Title") {
-                Text(todoViewModal.selectedTodo?.title ?? "NA")
-            }
-            Section {
-                Text(todoViewModal.selectedTodo?.body ?? "NA")
+        VStack {
+            Form {
+                Section("Title") {
+                    Text(todoViewModal.selectedTodo?.title ?? "NA")
+                }
+                Section {
+                    Text(todoViewModal.selectedTodo?.body ?? "NA")
+                }
+                Picker("Status", selection: $todo.status.toUnwrapped(defaultValue: "OPEN")) {
+                    ForEach(ToDoStatuList.todoStatus) { option in
+                        Text(option.text)
+                            .tag(option.type)
+                    }
+                }
+                .pickerStyle(.inline)
+                Section ("Time Stamp") {
+                    HStack {
+                        Text("Created At")
+                        Spacer()
+                        Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.createdAt ?? "")!))
+                    }
+                    HStack {
+                        Text("Update At")
+                        Spacer()
+                        Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.updatedAt ?? "")!))
+                    }
+                }
+                if (todoViewModal.selectedTodo?.todoImage != nil) {
+                    ToToImageView(imageUrl: todoViewModal.selectedTodo?.todoImage ?? "")
+                }
             }
             .alert(isPresented: $deleteToDo) {
                 Alert(title: Text("Delete?"),
@@ -47,6 +74,9 @@ struct SelectedToDo: View {
                     }
             )
             .navigationTitle(todoViewModal.selectedTodo?.title ?? "NA")
+            .onAppear {
+                todo = todoViewModal.selectedTodo!
+            }
         }
     }
     
@@ -56,14 +86,15 @@ struct SelectedToDo: View {
             result in
             switch result {
             case .success(let data):
-                appViewModel.toggle()
+                appViewModel.toggle() 
                 if(data.deleted == true) {
                     navStack.presentedScreen.removeLast()
+                    todoViewModal.getUserNotes()
                 } else {
                     appViewModel.errorMessage = "Can't delete ToDo."
                 }
             case .failure(let error):
-                print("Error man")
+                print("Delete Todo Error")
                 print(error)
                 switch error {
                 case .NetworkErrorAPIError(let errorMessage):

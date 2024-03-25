@@ -8,33 +8,45 @@
 //  DataModel.swift
 import Foundation
 
+enum MainHomeScreeType {
+    case home
+    case profile
+    case createTodo
+}
+
 struct DataModel: Identifiable, Hashable {
     let id = UUID()
     let text: String
+    let type: MainHomeScreeType
 }
+
+class ToDoStatuList {
+    static let todoStatus = [
+        ToDoStatu(text: "ToDo", type: "OPEN"),
+        ToDoStatu(text: "In-Progress", type: "In-Progress"),
+        ToDoStatu(text: "Done", type: "DONE"),
+    ]
+}
+struct ToDoStatu: Identifiable, Hashable {
+    let id = UUID()
+    let text: String
+    let type: String
+}
+
+class MainHomeData {
+    static let homeData = [
+        DataModel(text: "Home",type: MainHomeScreeType.home),
+        DataModel(text: "Create ToDo",type: MainHomeScreeType.createTodo),
+        DataModel(text: "Profile",type: MainHomeScreeType.profile),
+    ]
+}
+
 
 class SampleData {
     static let authItem = [
-        DataModel(text: "Login"),
-        DataModel(text: "Create Acccount"),
-        DataModel(text: "Info"),
+        DataModel(text: "Login",type: MainHomeScreeType.home),
+        DataModel(text: "Create Acccount",type: MainHomeScreeType.home),
+        DataModel(text: "Info",type: MainHomeScreeType.home),
     ]
-    
-    static let firstScreenData = [
-        DataModel(text: "🚂 Trains"),
-        DataModel(text: "✈️ Planes"),
-        DataModel(text: "🚗 Automobiles"),
-    ]
-    
-    static let secondScreenData = [
-        DataModel(text: "Slow"),
-        DataModel(text: "Regular"),
-        DataModel(text: "Fast"),
-    ]
-    
-    static let lastScreenData = [
-        DataModel(text: "Wrong"),
-        DataModel(text: "So-so"),
-        DataModel(text: "Right"),
-    ]
+
 }
