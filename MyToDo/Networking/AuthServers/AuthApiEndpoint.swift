@@ -11,8 +11,6 @@ class AuthApiEndpoint {
     enum AuthApiType {
         case login
         case register
-        case profile
-        case editProfile
     }
     
     func createEndPoint(endPoint: AuthApiType) -> String {
@@ -21,10 +19,6 @@ class AuthApiEndpoint {
             return createApi(endPoint: "auth/login")
         case .register:
             return createApi(endPoint: "auth/signup")
-        case .profile:
-            return createApi(endPoint: "user")
-        case .editProfile:
-            return createApi(endPoint: "user")
         }
     }
     

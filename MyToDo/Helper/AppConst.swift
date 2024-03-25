@@ -11,21 +11,21 @@ import AlertToast
 import SwiftUI
 
 struct AppConst {
-    static let baseurl = "http://localhost:5000/api/v1/"
-    static let todoimagesPath = "http://localhost:5000/"
-    // static let baseurl = "https://deploy-todo-sql.onrender.com/api/v1/"
-    // static let todoimagesPath = "https://deploy-todo-sql.onrender.com/"
-    static let LoginUrl = "auth/login"
-    static let usersListUrl = "users"
+
+    // MARK: Use with LocalHost
+//    static let todoimagesPath = "http://localhost:5000/"
+
+    // MARK: Use with Remort 
+    static let todoimagesPath = "https://deploy-todo-sql.onrender.com/"
     static let isLoggedIn = "isLoggedIn"
     static let token = "JWT_token"
     static let isSkipped = "SIKPED"
-    static let emailPattern = #"^\S+@\S+\.\S+$"#
-    static let imagePath = "https://media5.bollywoodhungama.in/wp-content/uploads/2021/03/WhatsApp-Image-2021-03-26-at-5.08.26-PM.jpeg"
     
     struct ApiConst {
-         let apiEndPoint = "http://localhost:5000/api/v1/"
-         //let apiEndPoint = "https://deploy-todo-sql.onrender.com/api/v1/"
+        // MARK: Use with LocalHost
+//         let apiEndPoint = "http://localhost:5000/api/v1/"
+        // MARK: Use with Remort 
+         let apiEndPoint = "https://deploy-todo-sql.onrender.com/api/v1/"
     }
 }
 
@@ -34,21 +34,10 @@ struct AppIconsSF {
     static let addNoteIcon = "plus.square"
     static let emailIcon = "envelope.fill"
     static let passwordIcon = "lock.fill"
-    static let eyeOpenIcon = ""
-    static let eyeCloseIcon = ""
-    static let checkMark = "checkmark.circle.fill"
-    static let worngMark = "x.circle"
     static let userIcon = "person.crop.circle.badge.checkmark"
-    static let trandingIcon = "flame.fill"
-    static let profileIcon = "book.fill"
     static let settingsIcon = "gearshape.fill"
-    static let editIcon = "pencil.and.list.clipboard"
-    static let deleteIcon = "trash"
-    static let bookMarkIcon = "bookmark"
-    static let bookMarkFillIcon = "bookmark.fill"
-    static let closeIcon = "xmark"
+    static let editIcon = "pencil"
     static let removeIcon = "trash"
-    static let filtterIcon = "checkmark.square"
     static let attachmentIcon = "paperclip"
 }
 

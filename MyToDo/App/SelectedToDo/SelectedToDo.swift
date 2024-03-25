@@ -86,9 +86,10 @@ struct SelectedToDo: View {
             result in
             switch result {
             case .success(let data):
-                appViewModel.toggle()
+                appViewModel.toggle() 
                 if(data.deleted == true) {
                     navStack.presentedScreen.removeLast()
+                    todoViewModal.getUserNotes()
                 } else {
                     appViewModel.errorMessage = "Can't delete ToDo."
                 }

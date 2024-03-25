@@ -30,6 +30,7 @@ class AuthViewModel: ObservableObject {
             switch result {
             case .success(let data):
                 self.userData = data
+                
             case .failure(let error):
                 print("User Profile Error")
                 print(error)

@@ -25,10 +25,16 @@ MyToDo is a sleek and intuitive ToDo app built using Swift UI. It aims to provid
 
 <img width="1604"  src="appimages/appbanner.png?raw=true">
 
+## MacOS
+
+<img width="560"  src="appimages/macosapp.png?raw=true">
+
 ## Installation
 
-To use YourProjectName, follow these steps:
+- Clone the reop
+- Open `MyToDo.xcodeproj`
+- Open `AppConst` file and comment or uncomment remort or local server Endpoint
 
-    Clone this repository.
-    Open the project in Xcode.
-    Build and run the app on your device or simulator.
+## Installation
+
+The backend code for My ToDo App is available in a separate repository. You can find it [here](https://github.com/girish54321/deploy-local-sql-main).

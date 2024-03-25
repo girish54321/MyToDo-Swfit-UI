@@ -48,22 +48,5 @@ class SampleData {
         DataModel(text: "Create Acccount",type: MainHomeScreeType.home),
         DataModel(text: "Info",type: MainHomeScreeType.home),
     ]
-    
-    static let firstScreenData = [
-        DataModel(text: "🚂 Trains",type: MainHomeScreeType.home),
-        DataModel(text: "✈️ Planes",type: MainHomeScreeType.home),
-        DataModel(text: "🚗 Automobiles",type: MainHomeScreeType.home),
-    ]
-    
-    static let secondScreenData = [
-        DataModel(text: "Slow",type: MainHomeScreeType.home),
-        DataModel(text: "Regular",type: MainHomeScreeType.home),
-        DataModel(text: "Fast",type: MainHomeScreeType.home),
-    ]
-    
-    static let lastScreenData = [
-        DataModel(text: "Wrong",type: MainHomeScreeType.home),
-        DataModel(text: "So-so",type: MainHomeScreeType.home),
-        DataModel(text: "Right",type: MainHomeScreeType.home),
-    ]
+
 }

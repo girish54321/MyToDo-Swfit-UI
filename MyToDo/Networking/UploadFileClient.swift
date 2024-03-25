@@ -32,13 +32,13 @@ class UploadFileClient {
         } else {
             headers = nil
         }
-        
-        print("DEBUG Only")
-        print("API EndPoint")
-        print(encodedURL)
-        print("Tokan")
-        print("Bearer \(token)")
-        print(parameters)
+//        UnCommet for Debug
+//        print("DEBUG Only")
+//        print("API EndPoint")
+//        print(encodedURL)
+//        print("Tokan")
+//        print("Bearer \(token)")
+//        print(parameters)
         
         AF.upload(
             multipartFormData: multipartFormData, to: encodedURL,headers: headers)
