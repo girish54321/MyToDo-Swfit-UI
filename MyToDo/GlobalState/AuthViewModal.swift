@@ -25,7 +25,7 @@ class AuthViewModel: ObservableObject {
     
     func saveUser(data:LoginSuccess)  {
         userState = data
-        token = data.accessToken 
+        token = data.accessToken
     }
     
     func getUserProfile() {
@@ -87,6 +87,36 @@ class AuthViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    //MARK: Update User Profilee
+    func updateUserProfile(imageData: Data?, parameters: [String:String], completion: @escaping(UserProfileImageUpdateRes?,String?)->()) {
+        UserServise().updateProfileWithImage(parameters: ["":""], multipartFormData: { multipartFormData in
+            // Adding image
+            if(imageData != nil){
+                multipartFormData.append(imageData!, withName: "profileimage", fileName: "image.jpg", mimeType: "image/jpeg")
+            }
+            //Adding post data here
+            for (key, value) in parameters {
+                if let data = value.data(using: .utf8) {
+                    multipartFormData.append(data, withName: key)
+                }
+            }
+        }, completion:  {
+            result in
+            switch result {
+            case .success(let userRes):
+                completion(userRes,nil)
+            case .failure(let error):
+                switch error {
+                case .NetworkErrorAPIError(let errorMessage):
+                    completion(nil,errorMessage)
+                case .BadURL: break
+                case .NoData: break
+                case .DecodingError: break
+                }
+            }
+        })
     }
 }
 

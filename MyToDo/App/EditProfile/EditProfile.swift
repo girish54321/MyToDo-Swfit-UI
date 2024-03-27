@@ -83,11 +83,7 @@ struct EditProfile: View {
                 }
                 Section("Save your profile") {
                     Button("SAVE") {
-                        if(avatarItem != nil){
-                            updateProfileWithImage()
-                        } else {
-                            updateProfile()
-                        }
+                        updateProfile()
                     }
                 }
                 
@@ -136,68 +132,30 @@ struct EditProfile: View {
         })
     }
     
-    func updateProfileWithImage () {
+    func updateProfile () {
         Task {
-            let imageData = try? await avatarItem?.loadTransferable(type: Data.self)
-           
-            UserServise().updateProfileWithImage(parameters: ["":""], multipartFormData: { multipartFormData in
-                // Adding image
-                multipartFormData.append(imageData!, withName: "profileimage", fileName: "image.jpg", mimeType: "image/jpeg")
-
-            }, completion:  {
-                result in
-                switch result {
-                case .success(let userRes):
-                    authViewModel.userData?.users![0] = userRes.user!
-                    navStack.presentedScreen.removeLast()
-//                    authViewModel.getUserProfile()
-                case .failure(let error):
-                    print(error)
-                    switch error {
-                    case .NetworkErrorAPIError(let errorMessage):
-                        print(errorMessage)
-                    case .BadURL: break
-                    case .NoData: break
-                    case .DecodingError: break
+            var deleteProfile = "false"
+            if(avatarItem == nil && userData.profileimage == nil) {
+                deleteProfile = "true"
+            }
+            if EmailSyntaxValidator.correctlyFormatted(userData.email ?? "") {
+                let postData = UpdateUserParams(
+                    firstName: userData.firstName,
+                    lastName: userData.lastName,
+                    email: userData.email ?? "",
+                    deleteImage: deleteProfile)
+                let imageData = try? await avatarItem?.loadTransferable(type: Data.self)
+                
+                authViewModel.updateUserProfile(imageData: imageData, parameters: postData.toDictionary()){
+                    (data,errorText) -> () in
+                    if(errorText != nil) {
+                        appViewModel.errorMessage = errorText!
+                        return
                     }
-                }
-            })
-        }
-    }
-    
-    func updateProfile() {
-        var deleteProfile = "false"
-        if(avatarItem == nil && userData.profileimage == nil) {
-            deleteProfile = "true"
-        }
-        if EmailSyntaxValidator.correctlyFormatted(userData.email ?? "") {
-            let postData = UpdateUserParams(
-                                firstName: userData.firstName,
-                                lastName: userData.lastName, email: userData.email ?? "",
-                                deleteImage: deleteProfile)
-            
-            UserServise().updateProfile(parameters: postData.toDictionary()) {
-                result in
-                switch result {
-                case .success(_):
+                    authViewModel.userData?.users![0] = (data?.user!)!
                     navStack.presentedScreen.removeLast()
-                    authViewModel.getUserProfile()
-                case .failure(let error):
-                    print("Edit Profile Error")
-                    print(error)
-                    switch error {
-                    case .NetworkErrorAPIError(let errorMessage):
-                        appViewModel.toggle()
-                        appViewModel.errorMessage = errorMessage
-                        print(errorMessage)
-                    case .BadURL: break
-                    case .NoData: break
-                    case .DecodingError: break
-                    }
                 }
             }
-        } else {
-            appViewModel.errorMessage = "Invaild Email"
         }
     }
 }

@@ -24,7 +24,7 @@ class UserEndPoint {
             return createApi(endPoint: "users/updateprofile")
             
         case .updateProfileImage:
-            return createApi(endPoint: "users/updateprofileimage")
+            return createApi(endPoint: "users/updateprofile")
             
         case .deleteAccount:
             return createApi(endPoint: "users/deleteaccount")

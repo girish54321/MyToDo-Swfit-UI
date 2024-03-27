@@ -51,8 +51,8 @@ struct UpdateUserParams {
     var email: String
     var deleteImage: String
     
-    func toDictionary() -> [String: Any] {
-        let params = ["firstName": firstName,"lastName": lastName,"email": email,"deleteImage":deleteImage].compactMapValues { $0 }
+    func toDictionary() -> [String: String] {
+        let params = ["firstName": firstName,"lastName": lastName,"email": email,"deleteImage":String(deleteImage)].compactMapValues { $0 }
         return params
     }
 }
