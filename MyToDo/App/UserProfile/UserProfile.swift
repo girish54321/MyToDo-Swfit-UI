@@ -95,18 +95,6 @@ struct UserProfile: View {
         }
     }
     
-    func getDate(from dateString: String) -> Date? {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-            return dateFormatter.date(from: dateString)
-        }
-
-        func formatDate(_ date: Date) -> String {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM d, yyyy h:mm a"
-            return dateFormatter.string(from: date)
-        }
-    
     func userLogOut()  {
         authViewModel.userState = nil
         authViewModel.token = ""

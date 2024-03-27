@@ -17,9 +17,6 @@ struct CreateAccountScreen: View {
     @State private var passwordText: String = ""
     @State private var firstName: String = ""
     @State private var lastName: String = ""
-
-    @AppStorage(AppConst.isSkipped) var isSkipped: Bool = false
-    @AppStorage(AppConst.token) var token: String = ""
     
     @EnvironmentObject var appViewModel: AppViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -64,13 +61,9 @@ struct CreateAccountScreen: View {
                 passwordView:  SecureField("Password", text: $passwordText),
                 title:"Password", value: $passwordText
             )
-            AppButton(text: screenType.isCreateAccount ?? true ? "Sign Up": "Login", clicked: {
-                    if(screenType.isCreateAccount == true) {
-                        createAccout()
-                    }else{
-                        UserLoginApi(email: emailText, password: passwordText)
-                    }
-                }
+            AppButton(
+                text: screenType.isCreateAccount ?? true ? "Sign Up": "Login",
+                clicked: onButtonTaped
             )
             .padding(.top)
             Spacer()
@@ -83,6 +76,14 @@ struct CreateAccountScreen: View {
         .navigationTitle(screenType.isCreateAccount ?? true ? "Create Account":"Login")
     }
     
+    func onButtonTaped () {
+        if(screenType.isCreateAccount == true) {
+            createAccout()
+        } else {
+            userLoginApi()
+        }
+    }
+    
     func toggleLoginState()  {
         withAnimation {
             screenType.isCreateAccount = !(screenType.isCreateAccount ?? false)
@@ -91,56 +92,26 @@ struct CreateAccountScreen: View {
     
     func createAccout () {
         appViewModel.alertToast = AppMessage.loadingView
-        let authParams = UserAuthParams(firstName: firstName, lastName: lastName, email: emailText, password: passwordText)
-        AuthServices().createAccount(parameters: authParams.toDictionary()) {
-            result in
-            switch result {
-            case .success(let data):
-                appViewModel.toggle()
-                withAnimation {
-                    token = data.accessToken
-                }
-                authViewModel.saveUser(data: data)
-            case .failure(let error):
-                print("Create Account Error")
-                print(error)
-                switch error {
-                case .NetworkErrorAPIError(let errorMessage):
-                    appViewModel.toggle()
-                    appViewModel.errorMessage = errorMessage
-                    print(errorMessage)
-                case .BadURL: break
-                case .NoData: break
-                case .DecodingError: break
-                }
+        let authParams = UserAuthParams(firstName: firstName, lastName: lastName, email: emailText, password: passwordText).toDictionary()
+        AuthViewModel().createAccount(parameters: authParams) {
+            (data, errorText) -> () in
+            appViewModel.toggle()
+            if(errorText != nil) {
+                appViewModel.errorMessage = errorText!
+                return
             }
         }
     }
     
-    func UserLoginApi(email : String,password : String) {
+    func userLoginApi() {
         appViewModel.alertToast = AppMessage.loadingView
-        let authParams = UserAuthParams(email: email, password: password)
-        AuthServices().userLogin(parameters: authParams.toDictionary()) {
-            result in
-            switch result {
-            case .success(let data):
-                appViewModel.toggle()
-                withAnimation {
-                    token = data.accessToken
-                }
-                authViewModel.saveUser(data: data)
-            case .failure(let error):
-                print("Create Account Error")
-                print(error)
-                switch error {
-                case .NetworkErrorAPIError(let errorMessage):
-                    appViewModel.toggle()
-                    appViewModel.errorMessage = errorMessage
-                    print(errorMessage)
-                case .BadURL: break
-                case .NoData: break
-                case .DecodingError: break
-                }
+        let authParams = UserAuthParams(email: emailText, password: passwordText).toDictionary()
+        AuthViewModel().loginUser(parameters: authParams) {
+            (data, errorText) -> () in
+            appViewModel.toggle()
+            if(errorText != nil) {
+                appViewModel.errorMessage = errorText!
+                return
             }
         }
     }

@@ -28,7 +28,7 @@ struct EditToDo: View {
                      todoImagePicker: $todoImagePicker,
                      todoImage: $todoImage,
                      imageUrl: todo.todoImage,
-                     onSubmit: todoImagePicker != nil ? updateWithImage : update,
+                     onSubmit: updateWithImage,
                      onRemoveImage: onRemoveImage
             )
         }
@@ -37,7 +37,6 @@ struct EditToDo: View {
     
     func onRemoveImage () {
         todoImagePicker = nil
-        print("What")
         todoImage = nil
         if (todo.todoImage != nil){
             todo.todoImage = nil
@@ -47,13 +46,11 @@ struct EditToDo: View {
     func updateTodoModal (item: TodoItem) {
         let upDatedToto = item
         todoViewModal.selectedTodo = upDatedToto
-        appViewModel.toggle()
         todoViewModal.getUserNotes()
         navStack.presentedScreen.removeLast()
     }
     
     func updateTodoError (errorMessage: String) {
-        appViewModel.toggle()
         appViewModel.errorMessage = errorMessage
         print(errorMessage)
     }
@@ -62,57 +59,20 @@ struct EditToDo: View {
         Task {
             appViewModel.toggle()
             let imageData = try? await todoImagePicker?.loadTransferable(type: Data.self)
-            let postDataParams = AddToDoParams(id: String(todo.id ?? 2), title: todo.title,body: todo.body,status: todo.status).toDictionary()
-            ToDoServices().updateToDoWithImage(parameters: postDataParams, multipartFormData: { multipartFormData in
-                // Adding image
-                multipartFormData.append(imageData!, withName: "todoimage", fileName: "image.jpg", mimeType: "image/jpeg")
-                //Adding post data here
-                for (key, value) in postDataParams {
-                    if let data = value.data(using: .utf8) {
-                        multipartFormData.append(data, withName: key)
-                    }
+            var deleteImage = false
+            if(todoImagePicker == nil && todo.todoImage == nil){
+                deleteImage = true
+            }
+            let postData = AddToDoParams(id: String(todo.id ?? 2), title: todo.title,body: todo.body,status: todo.status,deleteFile: deleteImage)
+
+            todoViewModal.updateTodo(imageData: imageData, postData: postData.toDictionary()) {
+                (data,errorText) ->() in
+                appViewModel.toggle()
+                if(errorText != nil) {
+                    updateTodoError(errorMessage: errorText!)
+                    return
                 }
-            }, completion:  {
-                result in
-                switch result {
-                case .success(let todoRes):
-                    updateTodoModal(item: todoRes.post!)
-                case .failure(let error):
-                    updateTodoError(errorMessage: "Error")
-                    switch error {
-                    case .NetworkErrorAPIError(let errorMessage):
-                        updateTodoError(errorMessage: errorMessage)
-                    case .BadURL: break
-                    case .NoData: break
-                    case .DecodingError: break
-                    }
-                }
-            })
-        }
-    }
-    
-    func update() {
-        appViewModel.toggle()
-        var deleteImage = false
-        if(todoImagePicker == nil && todo.todoImage == nil){
-            deleteImage = true
-        }
-        let postData = AddToDoParams(id: String(todo.id ?? 2), title: todo.title,body: todo.body,status: todo.status,deleteFile: deleteImage)
-        ToDoServices().updateToDo(parameters: postData.toDictionary()) {
-            result in
-            switch result {
-            case .success(let todoRes):
-                updateTodoModal(item: todoRes.post!)
-            case .failure(let error):
-                print("Update todo Error")
-                print(error)
-                switch error {
-                case .NetworkErrorAPIError(let errorMessage):
-                    updateTodoError(errorMessage: errorMessage)
-                case .BadURL: break
-                case .NoData: break
-                case .DecodingError: break
-                }
+                updateTodoModal(item: data!.post!)
             }
         }
     }

@@ -82,29 +82,18 @@ struct SelectedToDo: View {
     
     func deleteMyToDo () {
         appViewModel.toggle()
-        ToDoServices().deleteToDo(parameters: nil, endpoint: String(todoViewModal.selectedTodo?.id ?? 1)) {
-            result in
-            switch result {
-            case .success(let data):
-                appViewModel.toggle() 
-                if(data.deleted == true) {
-                    navStack.presentedScreen.removeLast()
-                    todoViewModal.getUserNotes()
-                } else {
-                    appViewModel.errorMessage = "Can't delete ToDo."
-                }
-            case .failure(let error):
-                print("Delete Todo Error")
-                print(error)
-                switch error {
-                case .NetworkErrorAPIError(let errorMessage):
-                    appViewModel.toggle()
-                    appViewModel.errorMessage = errorMessage
-                    print(errorMessage)
-                case .BadURL: break
-                case .NoData: break
-                case .DecodingError: break
-                }
+        todoViewModal.deleteTodo(){
+            (data,errorText) -> () in
+            appViewModel.toggle()
+            if (errorText != nil){
+                appViewModel.errorMessage = errorText!
+                return
+            }
+            if(data?.deleted == true) {
+                navStack.presentedScreen.removeLast()
+                todoViewModal.getUserNotes()
+            } else {
+                appViewModel.errorMessage = "Can't delete ToDo."
             }
         }
     }
