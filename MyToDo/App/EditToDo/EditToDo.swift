@@ -24,12 +24,8 @@ struct EditToDo: View {
         VStack {
             ToDoForm(titleText:$todo.title.toUnwrapped(defaultValue: ""),
                      bodyText: $todo.body.toUnwrapped(defaultValue: ""),
-                     todoState: $todo.status.toUnwrapped(defaultValue: "OPEN"),
-                     todoImagePicker: $todoImagePicker,
-                     todoImage: $todoImage,
-                     imageUrl: todo.todoImage,
-                     onSubmit: updateWithImage,
-                     onRemoveImage: onRemoveImage
+                     todoState: $todo.state.toUnwrapped(defaultValue: "OPEN"),
+                     onSubmit: updateTodo
             )
         }
         .navigationTitle("Update ToDo")
@@ -43,9 +39,9 @@ struct EditToDo: View {
         }
     }
     
-    func updateTodoModal (item: TodoItem) {
-        let upDatedToto = item
-        todoViewModal.selectedTodo = upDatedToto
+    func updateTodoModal () {
+//        let upDatedToto = item
+//        todoViewModal.selectedTodo = upDatedToto
         todoViewModal.getUserNotes()
         navStack.presentedScreen.removeLast()
     }
@@ -55,7 +51,7 @@ struct EditToDo: View {
         print(errorMessage)
     }
     
-    func updateWithImage () {
+    func updateTodo () {
         Task {
             appViewModel.toggle()
             let imageData = try? await todoImagePicker?.loadTransferable(type: Data.self)
@@ -63,7 +59,7 @@ struct EditToDo: View {
             if(todoImagePicker == nil && todo.todoImage == nil){
                 deleteImage = true
             }
-            let postData = AddToDoParams(id: String(todo.id ?? 2), title: todo.title,body: todo.body,status: todo.status,deleteFile: deleteImage)
+            let postData = AddToDoParams(id: String(todo.toDoId ?? "2"), title: todo.title,body: todo.body,state: todo.state,deleteFile: deleteImage)
 
             todoViewModal.updateTodo(imageData: imageData, postData: postData.toDictionary()) {
                 (data,errorText) ->() in
@@ -72,7 +68,7 @@ struct EditToDo: View {
                     updateTodoError(errorMessage: errorText!)
                     return
                 }
-                updateTodoModal(item: data!.post!)
+                updateTodoModal()
             }
         }
     }

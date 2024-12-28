@@ -45,19 +45,8 @@ class ToDoViewModal: ObservableObject {
     }
     
     //MARK: Create Todo with Image
-    func createTodo(imageData: Data?,postData: [String: String], completion: @escaping(AddToDo?,String?)->()) {
-        ToDoServices().createToDoWithImage(parameters: postData, multipartFormData: { multipartFormData in
-            if(imageData != nil) {
-                // Adding image
-                multipartFormData.append(imageData!, withName: "todoimage", fileName: "image.jpg", mimeType: "image/jpeg")
-            }
-            //Adding post data here
-            for (key, value) in postData {
-                if let data = value.data(using: .utf8) {
-                    multipartFormData.append(data, withName: key)
-                }
-            }
-        }, completion:  {
+    func createTodo(postData: [String: String], completion: @escaping(AddToDo?,String?)->()) {
+        ToDoServices().createToDo(parameters: postData)  {
             result in
             switch result {
             case .success(_):
@@ -71,23 +60,12 @@ class ToDoViewModal: ObservableObject {
                 case .DecodingError: break
                 }
             }
-        })
+        }
     }
     
     //MARK: Update Todo
     func updateTodo(imageData: Data?,postData: [String: String], completion: @escaping(AddToDo?,String?)->()) {
-        ToDoServices().updateToDoWithImage(parameters: postData, multipartFormData: { multipartFormData in
-            if(imageData != nil) {
-                // Adding image
-                multipartFormData.append(imageData!, withName: "todoimage", fileName: "image.jpg", mimeType: "image/jpeg")
-            }
-            //Adding post data here
-            for (key, value) in postData {
-                if let data = value.data(using: .utf8) {
-                    multipartFormData.append(data, withName: key)
-                }
-            }
-        }, completion:  {
+        ToDoServices().updateToDo(parameters: postData)  {
             result in
             switch result {
             case .success(let res):
@@ -101,12 +79,12 @@ class ToDoViewModal: ObservableObject {
                 case .DecodingError: break
                 }
             }
-        })
+        }
     }
     
     //MARK: Delete ToDo
-    func deleteTodo(completion: @escaping(DeleteToDoModal?,String?)->()) {
-        ToDoServices().deleteToDo(parameters: nil, endpoint: String(selectedTodo?.id ?? 1)) {
+    func deleteTodo(completion: @escaping(MutationResponse?,String?)->()) {
+        ToDoServices().deleteToDo(parameters: nil, endpoint: String(selectedTodo?.id ?? "1")) {
             result in
             switch result {
             case .success(let data):

@@ -27,7 +27,7 @@ struct ToDoList: View {
                 .refreshable {
                     todoViewModal.getUserNotes()
                 }
-            .navigationTitle("Your ToDo")
+            .navigationTitle("Home")
             .navigationDestination(for: SelectedToDoScreenType.self) { type in
                 SelectedToDo()
             }

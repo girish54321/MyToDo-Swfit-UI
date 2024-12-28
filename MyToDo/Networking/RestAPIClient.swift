@@ -33,12 +33,12 @@ class RestAPIClient {
             headers = nil
         }
 //        UnCommet for Debug
-//        print("DEBUG Only")
-//        print("API EndPoint")
-//        print(encodedURL)
-//        print("Tokan")
-//        print("Bearer \(token)")
-//        print(parameters)
+        print("DEBUG Only")
+        print("API EndPoint")
+        print(encodedURL)
+        print("Tokan")
+        print("Bearer \(token)")
+        print(parameters)
       
         AF.request(encodedURL,method: method,parameters: parameters,headers: headers)
             .response { response in
@@ -81,23 +81,34 @@ class RestAPIClient {
                                     completion(.failure(.NetworkErrorAPIError(error.localizedDescription)))
                                 }
                             } else {
+                                print("JSON EROR OLD")
                                 // If Error
                                 guard let jsonData = response.data else {
                                     return
                                 }
+                                print("Error JSON")
+                                print(jsonData)
                                 // JSON TO Types
                                 guard let obj = try? JSONDecoder().decode(NetworkErrorC.self, from: jsonData) else {
                                     return
                                 }
                                 // Pass Error with default Error Type
-                                completion(.failure(.NetworkErrorAPIError(obj.error.message)))
+                                completion(.failure(.NetworkErrorAPIError(obj.error?.message ?? "Error")))
                                 return
                                 
                             }
                         }
                     case .failure(let error):
-                        print("Failure: \(error.localizedDescription)")
-                        completion(.failure(.NetworkErrorAPIError(error.localizedDescription)))
+                        guard let jsonData = response.data else {
+                            return
+                        }
+                        guard let obj = try? JSONDecoder().decode(NetworkErrorC.self, from: jsonData) else {
+                            return
+                        }
+                        // Pass Error with default Error Type
+//                        completion(.failure(.NetworkErrorAPIError(obj.error?.message ?? "Error")))
+                        print("Failure: \(error)")
+                        completion(.failure(.NetworkErrorAPIError(obj.error?.message ?? error.localizedDescription)))
                     }
                 }
                 
@@ -117,11 +128,11 @@ enum NetworkError: Error {
 
 // MARK: - NetworkError
 struct NetworkErrorC: Codable {
-    let error: ErrorC
+    let error: ErrorC?
 }
 
 // MARK: - Error
 struct ErrorC: Codable {
-    let status: Int
-    let message: String
+    let status: Int?
+    let message: String?
 }

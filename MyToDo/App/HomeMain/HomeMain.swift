@@ -50,11 +50,6 @@ struct HomeMain: View {
             .tabItem {
                 Image(systemName: AppIconsSF.homeIcon)
                 Text("Home")
-//                Image(systemName: "square.stack.3d.up")
-//                                   .symbolEffect(.variableColor.iterative, value: appViewModel.slectedTabIndex)
-
-//                    .symbolEffect(.bounce, value: appViewModel.slectedTabIndex)
-//                Text("ToDo")
             }
             .tag(0)
            CreateToDo()
@@ -63,12 +58,12 @@ struct HomeMain: View {
                     Text("Add New")
                 }
                 .tag(1)
-          UserProfile()
-                .tabItem {
-                    Image(systemName: AppIconsSF.userIcon)
-                    Text("Profile")
-                }
-                .tag(2)
+//          UserProfile()
+//                .tabItem {
+//                    Image(systemName: AppIconsSF.userIcon)
+//                    Text("Profile")
+//                }
+//                .tag(2)
         }
         .alert(isPresented: $appViewModel.showAlert) { () -> Alert in
             Alert(title: Text("Error"), message: Text(appViewModel.errorMessage))

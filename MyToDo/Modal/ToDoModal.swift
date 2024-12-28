@@ -18,14 +18,15 @@ struct SelectedToDoType: Codable {
 
 // MARK: - Todo
 struct TodoItem: Codable, Identifiable, Hashable {
-    var id: Int?
-    var title, body, status: String?
-    var todoImage: String?
-    var userID: Int?
+    var id:String = UUID().uuidString
+    var toDoId: String?
+    var title, body, state: String?
+    var todoImage: String? = ""
+    var userID: String?
     var createdAt, updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, title, body, status, todoImage
+        case toDoId, title, body, state, todoImage
         case userID = "userId"
         case createdAt, updatedAt
     }

@@ -111,7 +111,7 @@ struct EditProfile: View {
             result in
             switch result {
             case .success(let deleteRes):
-                if(deleteRes.deleted ?? false){
+                if(deleteRes.success ?? false){
                     authViewModel.userState = nil
                     authViewModel.token = ""
                     authViewModel.isLoggedIn = false
@@ -146,15 +146,15 @@ struct EditProfile: View {
                     deleteImage: deleteProfile)
                 let imageData = try? await avatarItem?.loadTransferable(type: Data.self)
                 
-                authViewModel.updateUserProfile(imageData: imageData, parameters: postData.toDictionary()){
-                    (data,errorText) -> () in
-                    if(errorText != nil) {
-                        appViewModel.errorMessage = errorText!
-                        return
-                    }
-                    authViewModel.userData?.users![0] = (data?.user!)!
-                    navStack.presentedScreen.removeLast()
-                }
+//                authViewModel.updateUserProfile(parameters: postData.toDictionary()){
+//                    (data,errorText) -> () in
+//                    if(errorText != nil) {
+//                        appViewModel.errorMessage = errorText!
+//                        return
+//                    }
+//                    authViewModel.userData?.users![0] = (data?.user!)!
+//                    navStack.presentedScreen.removeLast()
+//                }
             }
         }
     }

@@ -31,23 +31,11 @@ class UserServise {
                                          completion: completion
             )
         }
-    
-    func updateProfileWithImage (
-        parameters: Parameters?,
-        multipartFormData: @escaping (MultipartFormData) -> Void,
-        completion: @escaping(Result<UserProfileImageUpdateRes,NetworkError>) -> Void){
-            return UploadFileClient.request(type: UserProfileImageUpdateRes.self,
-                                         endPoint: UserEndPoint().createEndPoint(endPoint: .updateProfileImage),
-                                         multipartFormData:multipartFormData,
-                                         parameters:parameters,
-                                         completion: completion
-            )
-        }
-    
+        
     func deleteAccount (
         parameters: Parameters?,
-        completion: @escaping(Result<DeleteToDoModal,NetworkError>) -> Void){
-            return RestAPIClient.request(type: DeleteToDoModal.self,
+        completion: @escaping(Result<MutationResponse,NetworkError>) -> Void){
+            return RestAPIClient.request(type: MutationResponse.self,
                                          endPoint: (UserEndPoint().createEndPoint(endPoint: .deleteAccount)),
                                          method:.delete,
                                          parameters:parameters,

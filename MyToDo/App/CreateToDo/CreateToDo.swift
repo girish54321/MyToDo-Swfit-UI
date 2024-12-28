@@ -14,33 +14,24 @@ struct CreateToDo: View {
     @State private var bodyText: String = ""
     @State private var todoState: String = "OPEN"
     
-    @State private var todoImagePicker: PhotosPickerItem?
-    @State private var todoImage: Image?
-    
     @EnvironmentObject var appViewModel: AppViewModel
     @EnvironmentObject var todoViewModal: ToDoViewModal
     
     var body: some View {
         NavigationStack {
             VStack {
-                ToDoForm(titleText: $titleText, bodyText: $bodyText, todoState: $todoState, todoImagePicker: $todoImagePicker, todoImage: $todoImage, onSubmit: addTodo, onRemoveImage: onRemoveImage,iSupDate: false)
+                ToDoForm(titleText: $titleText, bodyText: $bodyText, todoState: $todoState, onSubmit: addTodo, isUpDate: false)
             }
             .navigationTitle("Add ToDo")
         }
     }
-    
-    func onRemoveImage () {
-        todoImagePicker = nil
-        todoImage = nil
-    }
-    
+
     
     func addTodo () {
         Task {
             appViewModel.toggle()
-            let imageData = try? await todoImagePicker?.loadTransferable(type: Data.self)
-            let postData = AddToDoParams(title: titleText,body: bodyText,status: "OPEN").toDictionary()
-            todoViewModal.createTodo(imageData: imageData, postData: postData){
+            let postData = AddToDoParams(title: titleText,body: bodyText,state: "pending").toDictionary()
+            todoViewModal.createTodo(postData: postData){
                 (data,errorMessage) -> () in
                 if(errorMessage != nil) {
                     appViewModel.toggle()
@@ -52,8 +43,6 @@ struct CreateToDo: View {
                 bodyText = ""
                 appViewModel.slectedTabIndex = 0
                 todoViewModal.getUserNotes()
-                todoImagePicker = nil
-                todoImage = nil
             }
         }
     }

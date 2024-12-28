@@ -26,13 +26,6 @@ struct SelectedToDo: View {
                 Section {
                     Text(todoViewModal.selectedTodo?.body ?? "NA")
                 }
-                Picker("Status", selection: $todo.status.toUnwrapped(defaultValue: "OPEN")) {
-                    ForEach(ToDoStatuList.todoStatus) { option in
-                        Text(option.text)
-                            .tag(option.type)
-                    }
-                }
-                .pickerStyle(.inline)
                 Section ("Time Stamp") {
                     HStack {
                         Text("Created At")
@@ -89,7 +82,7 @@ struct SelectedToDo: View {
                 appViewModel.errorMessage = errorText!
                 return
             }
-            if(data?.deleted == true) {
+            if(data?.success == true) {
                 navStack.presentedScreen.removeLast()
                 todoViewModal.getUserNotes()
             } else {
