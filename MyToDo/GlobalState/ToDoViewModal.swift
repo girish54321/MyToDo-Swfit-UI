@@ -84,18 +84,23 @@ class ToDoViewModal: ObservableObject {
     
     //MARK: Delete ToDo
     func deleteTodo(completion: @escaping(MutationResponse?,String?)->()) {
-        ToDoServices().deleteToDo(parameters: nil, endpoint: String(selectedTodo?.id ?? "1")) {
+        ToDoServices().deleteToDo(parameters: nil, endpoint: String(selectedTodo?.toDoId ?? "1")) {
             result in
             switch result {
             case .success(let data):
+                print("SUCCES WITH ERROR?")
                 completion(data,nil)
             case .failure(let error):
                 switch error {
                 case .NetworkErrorAPIError(let errorMessage):
+                    print("NETWOrKING ERROR")
                     completion(nil,errorMessage)
-                case .BadURL: break
-                case .NoData: break
-                case .DecodingError: break
+                case .BadURL:
+                    print("BAD URL")
+                case .NoData:
+                    print("NO Data")
+                case .DecodingError:
+                    completion(nil,"Decoding Error")
                 }
             }
         }

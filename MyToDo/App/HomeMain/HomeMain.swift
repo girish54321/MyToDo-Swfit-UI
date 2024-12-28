@@ -58,12 +58,12 @@ struct HomeMain: View {
                     Text("Add New")
                 }
                 .tag(1)
-//          UserProfile()
-//                .tabItem {
-//                    Image(systemName: AppIconsSF.userIcon)
-//                    Text("Profile")
-//                }
-//                .tag(2)
+          UserProfile()
+                .tabItem {
+                    Image(systemName: AppIconsSF.userIcon)
+                    Text("Profile")
+                }
+                .tag(2)
         }
         .alert(isPresented: $appViewModel.showAlert) { () -> Alert in
             Alert(title: Text("Error"), message: Text(appViewModel.errorMessage))

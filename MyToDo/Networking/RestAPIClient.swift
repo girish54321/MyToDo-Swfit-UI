@@ -105,6 +105,7 @@ class RestAPIClient {
                         guard let obj = try? JSONDecoder().decode(NetworkErrorC.self, from: jsonData) else {
                             return
                         }
+                        debugPrint(error.localizedDescription)
                         // Pass Error with default Error Type
 //                        completion(.failure(.NetworkErrorAPIError(obj.error?.message ?? "Error")))
                         print("Failure: \(error)")

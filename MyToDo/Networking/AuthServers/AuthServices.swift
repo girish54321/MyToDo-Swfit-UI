@@ -31,4 +31,15 @@ class AuthServices {
                                          completion: completion
             )
         }
+    
+    func updateProfile (
+        parameters: Parameters?,
+        completion: @escaping(Result<MutationResponse,NetworkError>) -> Void){
+            return RestAPIClient.request(type: MutationResponse.self,
+                                         endPoint: AuthApiEndpoint().createEndPoint(endPoint: .updateProfile),
+                                         method:.post,
+                                         parameters:parameters,
+                                         completion: completion
+            )
+        }
 }

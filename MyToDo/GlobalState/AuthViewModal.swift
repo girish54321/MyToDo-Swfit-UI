@@ -34,7 +34,6 @@ class AuthViewModel: ObservableObject {
             switch result {
             case .success(let data):
                 self.userData = data
-                
             case .failure(let error):
                 print("User Profile Error")
                 print(error)
@@ -50,7 +49,7 @@ class AuthViewModel: ObservableObject {
     }
     
     //MARK: Create Account
-    func createAccount (parameters: Parameters?, completion:  @escaping(LoginSuccess?,String?)->()) {
+    func createAccount(parameters: Parameters?, completion:  @escaping(LoginSuccess?,String?)->()) {
         AuthServices().createAccount(parameters: parameters) {
             result in
             switch result {
@@ -70,7 +69,7 @@ class AuthViewModel: ObservableObject {
     }
     
     //MARK: Login
-    func loginUser (parameters: Parameters?, completion:  @escaping(LoginSuccess?,String?)->()) {
+    func loginUser(parameters: Parameters?, completion:  @escaping(LoginSuccess?,String?)->()) {
         AuthServices().userLogin(parameters: parameters) {
             result in
             switch result {
@@ -88,5 +87,27 @@ class AuthViewModel: ObservableObject {
             }
         }
     }
+
+    //MARK: Update profile
+    func updateProfile(parameters: Parameters?, completion:  @escaping(MutationResponse?,String?)->()) {
+        AuthServices().updateProfile(parameters: parameters) {
+            result in
+            switch result {
+            case .success(let data):
+                self.getUserProfile()
+                completion(data,nil)
+            case .failure(let error):
+                switch error {
+                case .NetworkErrorAPIError(let errorMessage):
+                    completion(nil,errorMessage)
+                    print(errorMessage)
+                case .BadURL: break
+                case .NoData: break
+                case .DecodingError: break
+                }
+            }
+        }
+    }
+
 }
 

@@ -31,13 +31,13 @@ struct UserProfile: View {
                         HStack {
                             VStack (alignment: .leading, spacing: 16) {
                                 HStack {
-                                    Text(authViewModel.userData?.users?[0].firstName ?? "Loading")
-                                    Text(authViewModel.userData?.users?[0].lastName ?? "Loading")
+                                    Text(authViewModel.userData?.users?.firstName ?? "Loading")
+                                    Text(authViewModel.userData?.users?.lastName ?? "Loading")
                                 }
-                                Text(authViewModel.userData?.users?[0].email ?? "Loading")
+                                Text(authViewModel.userData?.users?.email ?? "Loading")
                             }
                             Spacer()
-                            NetworkImage(url: URL(string: AppConst.todoimagesPath + (authViewModel.userData?.users?[0].profileimage ?? "Loading"))) { image in
+                            NetworkImage(url: URL(string: "https://irs.www.warnerbros.com/gallery-v2-jpeg/movies/node/77906/edit/WW-06907r.jpg")) { image in
                                 image
                                     .resizable()
                                 .scaledToFill()
@@ -59,12 +59,12 @@ struct UserProfile: View {
                     HStack {
                         Text("Joined At")
                         Spacer()
-                        Text(DateHelper().formDate(date: Date(authViewModel.userData?.users?[0].createdAt ?? "") ?? Date.now))
+                        Text(DateHelper().formDate(date: Date(authViewModel.userData?.users?.createdAt ?? "") ?? Date.now))
                     }
                     HStack {
                         Text("Update At")
                         Spacer()
-                        Text(DateHelper().formDate(date: Date(authViewModel.userData?.users?[0].updatedAt ?? "") ?? Date.now))
+                        Text(DateHelper().formDate(date: Date(authViewModel.userData?.users?.updatedAt ?? "") ?? Date.now))
                     }
                 }
                 Button("Logout!", action: {
@@ -81,9 +81,6 @@ struct UserProfile: View {
                             }
                 )
                 .navigationTitle("User Profile")
-                .navigationDestination(for: EditProfileScreenType.self) { type in
-                    EditProfile(userData:(authViewModel.userData?.users![0])!)
-                }
                 .alert(isPresented: $showLogOutAlert) {
                     Alert(title: Text("Log out?"),
                           message: Text("Are you sure you want to logout out? Press 'OK' to confirm or 'Cancel' to stay Logged in."),
@@ -91,6 +88,9 @@ struct UserProfile: View {
                         userLogOut()
                     }, secondaryButton: .cancel())
                 }
+            }
+            .navigationDestination(for: EditProfileScreenType.self) { type in
+                    EditProfile(userData:(authViewModel.userData?.users)!)
             }
         }
     }
