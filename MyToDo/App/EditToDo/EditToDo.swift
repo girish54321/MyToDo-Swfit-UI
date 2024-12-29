@@ -45,8 +45,8 @@ struct EditToDo: View {
     }
     
     func updateTodo () {
+        appViewModel.toggle()
             let postData = AddToDoParams(id: String(todo.toDoId ?? "2"), title: todo.title,body: todo.body,state: todo.state)
-
             todoViewModal.updateTodo(postData: postData.toDictionary()) {
                 (data,errorText) ->() in
                 appViewModel.toggle()

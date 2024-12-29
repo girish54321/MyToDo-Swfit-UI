@@ -9,20 +9,36 @@ import SwiftUI
 
 struct ErrorMessageView: View {
     var errorMessage: String?
+    var smallView: Bool? = false
     var clicked: (() -> Void)
+    
     var body: some View {
-        VStack(spacing: 18) {
-            Image(systemName: "exclamationmark.triangle")
-                .foregroundColor(.red)
-                .font(.system(size: 72))
-            
-            Text(errorMessage ?? "")
-                .font(.headline)
-            
+        if(smallView ?? false){
             HStack {
-                AppButton(text: "Try Agine", clicked: clicked)
+                Image(systemName: "exclamationmark.triangle")
+                    .foregroundColor(.red)
+                    .font(.system(size: 34))
+                Text(errorMessage ?? "")
+                    .font(.headline)
+                Spacer()
+                    Button(action: clicked) {
+                        Text("Try Agine")
+                    }
+                    .buttonStyle(.bordered)
             }
-            .frame(width:150)
+            .padding(.horizontal)
+        }else {
+            VStack(spacing: 18) {
+                Image(systemName: "exclamationmark.triangle")
+                    .foregroundColor(.red)
+                    .font(.system(size: 72))
+                Text(errorMessage ?? "")
+                    .font(.headline)
+                HStack {
+                    AppButton(text: "Try Agine", clicked: clicked)
+                }
+                .frame(width:150)
+            }
         }
     }
 }
@@ -30,7 +46,8 @@ struct ErrorMessageView: View {
 #Preview {
     var errorMessage = "Your Error Message"
     ErrorMessageView(
-        errorMessage: errorMessage
+        errorMessage: errorMessage,
+        smallView: true
     ) {
         
     }

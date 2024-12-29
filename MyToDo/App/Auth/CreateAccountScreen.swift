@@ -24,7 +24,7 @@ struct CreateAccountScreen: View {
     var body: some View {
         VStack (spacing: 14) {
             VStack(alignment: .center,spacing: 8) {
-                Text("Wlcome to My ToDo")
+                Text("Welcome to My ToDo")
                     .appTextStyle()
                 Text(screenType.isCreateAccount ?? true ? "Create account to join us." : "Login using Email And Password")
                     .font(.footnote)
