@@ -16,30 +16,42 @@ struct SelectedToDo: View {
     @State private var deleteToDo = false
     
     @State var todo: TodoItem = TodoItem()
+    @State var errorMessage: String? = nil
     
     var body: some View {
         VStack {
-            Form {
-                Section("Title") {
-                    Text(todoViewModal.selectedTodo?.title ?? "NA")
-                }
-                Section {
-                    Text(todoViewModal.selectedTodo?.body ?? "NA")
-                }
-                Section ("Time Stamp") {
-                    HStack {
-                        Text("Created At")
-                        Spacer()
-                        Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.createdAt ?? "")!))
+            VStack {
+                if(errorMessage != nil) {
+                    ErrorMessageView(errorMessage: errorMessage, clicked: {
+                        reloadScreen()
+                    })
+                } else {
+                    Form {
+                        Section("Title") {
+                            Text(todoViewModal.selectedTodo?.title ?? "NA")
+                        }
+                        Section {
+                            Text(todoViewModal.selectedTodo?.body ?? "NA")
+                        }
+                        Section ("Time Stamp") {
+                            HStack {
+                                Text("Created At")
+                                Spacer()
+                                                        Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.createdAt ?? "")!))
+                            }
+                            HStack {
+                                Text("Update At")
+                                Spacer()
+                                                        Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.updatedAt ?? "")!))
+                            }
+                        }
+                        if (todoViewModal.selectedTodo?.todoImage != nil) {
+                            ToToImageView(imageUrl: todoViewModal.selectedTodo?.todoImage ?? "")
+                        }
                     }
-                    HStack {
-                        Text("Update At")
-                        Spacer()
-                        Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.updatedAt ?? "")!))
+                    .refreshable {
+                        reloadScreen()
                     }
-                }
-                if (todoViewModal.selectedTodo?.todoImage != nil) {
-                    ToToImageView(imageUrl: todoViewModal.selectedTodo?.todoImage ?? "")
                 }
             }
             .alert(isPresented: $deleteToDo) {
@@ -73,6 +85,16 @@ struct SelectedToDo: View {
         }
     }
     
+    func reloadScreen() {
+        todoViewModal.pickToDo(data: todo, completion: {_,error in
+            if((error) != nil){
+                errorMessage = error
+            } else {
+                errorMessage = nil
+            }
+        })
+    }
+    
     func deleteMyToDo () {
         appViewModel.toggle()
         todoViewModal.deleteTodo(){
@@ -99,6 +121,7 @@ struct SelectedToDo_Previews: PreviewProvider {
         NavigationStack{
             SelectedToDo().environmentObject(ToDoViewModal())
                 .environmentObject(AppViewModel())
+                .environmentObject(ToDoNavigationStackViewModal())
         }
     }
 }

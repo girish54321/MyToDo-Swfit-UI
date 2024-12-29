@@ -64,4 +64,16 @@ class ToDoServices {
                                          completion: completion
             )
         }
+    
+    func getSelectedTodo (
+        parameters: Parameters?,
+        endpoint: String,
+        completion: @escaping(Result<SelectedToDoType,NetworkError>) -> Void){
+            return RestAPIClient.request(type: SelectedToDoType.self,
+                                         endPoint: "\(ToDoApiEndpoint().createEndPoint(endPoint: .getSelectedTodo))\(endpoint)",
+                                         method:.get,
+                                         parameters:parameters,
+                                         completion: completion
+            )
+        }
 }

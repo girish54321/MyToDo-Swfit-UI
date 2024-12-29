@@ -10,6 +10,7 @@ class ToDoApiEndpoint {
     
     enum ToDoApiType {
         case getToDo
+        case getSelectedTodo
         case addTodo
         case delete
         case updateTodo
@@ -25,6 +26,8 @@ class ToDoApiEndpoint {
             return createApi(endPoint: "todo/deletetodo/")
         case .updateTodo:
             return createApi(endPoint: "todo/updatetodo")
+        case .getSelectedTodo:
+            return createApi(endPoint: "todo/gettodo/")
         }
     }
     

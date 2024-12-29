@@ -33,6 +33,7 @@ class AuthViewModel: ObservableObject {
             result in
             switch result {
             case .success(let data):
+                print("UPdate profile")
                 self.userData = data
             case .failure(let error):
                 print("User Profile Error")
@@ -94,7 +95,6 @@ class AuthViewModel: ObservableObject {
             result in
             switch result {
             case .success(let data):
-                self.getUserProfile()
                 completion(data,nil)
             case .failure(let error):
                 switch error {

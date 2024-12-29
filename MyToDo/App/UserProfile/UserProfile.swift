@@ -89,6 +89,9 @@ struct UserProfile: View {
                     }, secondaryButton: .cancel())
                 }
             }
+            .refreshable {
+                authViewModel.getUserProfile()
+                               }
             .navigationDestination(for: EditProfileScreenType.self) { type in
                     EditProfile(userData:(authViewModel.userData?.users)!)
             }

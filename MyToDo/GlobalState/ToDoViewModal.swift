@@ -22,8 +22,18 @@ class ToDoViewModal: ObservableObject {
         }
     }
     
-    func pickToDo(data:TodoItem?)  {
-        selectedTodo = data
+    func pickToDo(data:TodoItem?,completion: @escaping(TodoItem?,String?)->())  {
+        ToDoServices().getSelectedTodo(parameters: nil, endpoint: data?.toDoId ?? "", completion: {result in
+            switch result {
+            case .success(let todoData):
+                self.selectedTodo = todoData.todo
+                completion(todoData.todo,nil)
+            case .failure(let error):
+                let errorMessage = createApiErrorMessage(errorCase: error)
+                completion(nil,errorMessage)
+            }
+            
+        })
     }
     
     //MARK: Get All ToDo
@@ -63,7 +73,7 @@ class ToDoViewModal: ObservableObject {
     }
     
     //MARK: Update Todo
-    func updateTodo(imageData: Data?,postData: [String: String], completion: @escaping(AddToDo?,String?)->()) {
+    func updateTodo(postData: [String: String], completion: @escaping(AddToDo?,String?)->()) {
         ToDoServices().updateToDo(parameters: postData)  {
             result in
             switch result {
