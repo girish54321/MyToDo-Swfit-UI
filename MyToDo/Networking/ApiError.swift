@@ -31,6 +31,19 @@ struct ApiError {
     }
 }
 
+func createApiErrorMessage(errorCase: NetworkError) -> String {
+    switch errorCase {
+    case .NetworkErrorAPIError(let errorMessage):
+        return errorMessage
+    case .BadURL:
+        return "Bad URL"
+    case .NoData:
+        return "No Data Error"
+    case .DecodingError:
+        return "JSON Decoding Error"
+    }
+}
+
 // MARK: - AppErrorRespons
 struct AppErrorRespons: Codable {
     let errors: Errors

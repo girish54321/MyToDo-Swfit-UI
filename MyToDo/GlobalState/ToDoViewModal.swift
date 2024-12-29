@@ -14,9 +14,12 @@ class ToDoViewModal: ObservableObject {
     
     @Published var selectedTodo: TodoItem? = nil
     @Published var toDoListData: ToDo? = nil
+    @Published var todoListErrorMessage: String? = nil
     
     init() {
-        getUserNotes()
+        getUserNotes(){_,_ in 
+            
+        }
     }
     
     func pickToDo(data:TodoItem?)  {
@@ -24,22 +27,18 @@ class ToDoViewModal: ObservableObject {
     }
     
     //MARK: Get All ToDo
-    func getUserNotes() {
+    func getUserNotes(completion: @escaping(ToDo?,String?)->()) {
+        self.todoListErrorMessage = nil
         ToDoServices().getUserToDo(parameters: nil) {
             result in
             switch result {
             case .success(let data):
                 self.toDoListData = data
+                completion(data,nil)
             case .failure(let error):
-                print("Get Notes Error")
-                print(error)
-                switch error {
-                case .NetworkErrorAPIError(let errorMessage):
-                    print(errorMessage)
-                case .BadURL: break
-                case .NoData: break
-                case .DecodingError: break
-                }
+                let errorMessage = createApiErrorMessage(errorCase: error)
+                self.todoListErrorMessage = errorMessage
+                completion(nil,errorMessage)
             }
         }
     }

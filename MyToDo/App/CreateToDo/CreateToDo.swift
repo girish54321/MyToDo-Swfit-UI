@@ -42,7 +42,9 @@ struct CreateToDo: View {
                 titleText = ""
                 bodyText = ""
                 appViewModel.slectedTabIndex = 0
-                todoViewModal.getUserNotes()
+                todoViewModal.getUserNotes{_,_ in 
+                    
+                }
             }
         }
     }

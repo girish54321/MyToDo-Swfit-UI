@@ -36,6 +36,7 @@
 		F440A57A2B9CA5A600FE6C9C /* ToDoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440A5792B9CA5A600FE6C9C /* ToDoList.swift */; };
 		F440A57C2B9CA5D700FE6C9C /* NavigationStackViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440A57B2B9CA5D700FE6C9C /* NavigationStackViewModal.swift */; };
 		F440A57E2B9CA88300FE6C9C /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440A57D2B9CA88300FE6C9C /* ToDoItem.swift */; };
+		F45D9BB62D203E0400861B2F /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D9BB52D203E0400861B2F /* ErrorMessageView.swift */; };
 		F48CC1B52B9B64CB00EF7704 /* MyToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CC1B42B9B64CB00EF7704 /* MyToDoApp.swift */; };
 		F48CC1B72B9B64CB00EF7704 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CC1B62B9B64CB00EF7704 /* ContentView.swift */; };
 		F48CC1B92B9B64CC00EF7704 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F48CC1B82B9B64CC00EF7704 /* Assets.xcassets */; };
@@ -98,6 +99,7 @@
 		F440A5792B9CA5A600FE6C9C /* ToDoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoList.swift; sourceTree = "<group>"; };
 		F440A57B2B9CA5D700FE6C9C /* NavigationStackViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStackViewModal.swift; sourceTree = "<group>"; };
 		F440A57D2B9CA88300FE6C9C /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
+		F45D9BB52D203E0400861B2F /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		F48CC1B12B9B64CB00EF7704 /* MyToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48CC1B42B9B64CB00EF7704 /* MyToDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToDoApp.swift; sourceTree = "<group>"; };
 		F48CC1B62B9B64CB00EF7704 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				F440A57D2B9CA88300FE6C9C /* ToDoItem.swift */,
 				F43206A82BA43FAF00AD8AC8 /* ToDoForm.swift */,
 				F4B41CF12BAF0FCD00DEAB1C /* ToToImageView.swift */,
+				F45D9BB52D203E0400861B2F /* ErrorMessageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				F440A5742B9C919500FE6C9C /* AuthViewModal.swift in Sources */,
 				F440A56A2B9C8F5700FE6C9C /* AuthServices.swift in Sources */,
 				F440A57E2B9CA88300FE6C9C /* ToDoItem.swift in Sources */,
+				F45D9BB62D203E0400861B2F /* ErrorMessageView.swift in Sources */,
 				F43206BA2BA4BE3800AD8AC8 /* EditProfile.swift in Sources */,
 				F48D06A02B9DCA3A004F9D88 /* CreateTodoModal.swift in Sources */,
 				F48CC1B72B9B64CB00EF7704 /* ContentView.swift in Sources */,

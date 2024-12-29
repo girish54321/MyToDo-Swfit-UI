@@ -32,12 +32,16 @@ class RestAPIClient {
         } else {
             headers = nil
         }
+        @AppStorage(AppConst.isSkipped) var isSkipped: Bool = false
+        @AppStorage(AppConst.token) var storeageToken: String = ""
+        
 //        UnCommet for Debug
         print("DEBUG Only")
         print("API EndPoint")
         print(encodedURL)
         print("Tokan")
         print("Bearer \(token)")
+        print("parameters")
         print(parameters)
       
         AF.request(encodedURL,method: method,parameters: parameters,headers: headers)
@@ -53,10 +57,18 @@ class RestAPIClient {
                             }
                             // Get Request Status
                             let statusCode = response.response?.statusCode
-                            
+                            print("1")
                             // Handle Stacific Status code
                             if(statusCode == 204){
+                                print("2")
                                 completion(.success("Done" as! T))
+                                return
+                            }
+                            
+                            if(statusCode == 401){
+                                isSkipped = false
+                                storeageToken = ""
+                                completion(.failure(.NoData))
                                 return
                             }
                             
@@ -84,12 +96,14 @@ class RestAPIClient {
                                 print("JSON EROR OLD")
                                 // If Error
                                 guard let jsonData = response.data else {
+                                    completion(.failure(.DecodingError))
                                     return
                                 }
                                 print("Error JSON")
                                 print(jsonData)
                                 // JSON TO Types
                                 guard let obj = try? JSONDecoder().decode(NetworkErrorC.self, from: jsonData) else {
+                                    completion(.failure(.DecodingError))
                                     return
                                 }
                                 // Pass Error with default Error Type
@@ -99,16 +113,15 @@ class RestAPIClient {
                             }
                         }
                     case .failure(let error):
+                        print("1222")
                         guard let jsonData = response.data else {
+                            completion(.failure(.NetworkErrorAPIError(error.localizedDescription)))
                             return
                         }
                         guard let obj = try? JSONDecoder().decode(NetworkErrorC.self, from: jsonData) else {
+                            completion(.failure(.DecodingError))
                             return
                         }
-                        debugPrint(error.localizedDescription)
-                        // Pass Error with default Error Type
-//                        completion(.failure(.NetworkErrorAPIError(obj.error?.message ?? "Error")))
-                        print("Failure: \(error)")
                         completion(.failure(.NetworkErrorAPIError(obj.error?.message ?? error.localizedDescription)))
                     }
                 }

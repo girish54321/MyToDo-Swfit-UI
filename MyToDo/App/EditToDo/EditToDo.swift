@@ -42,7 +42,9 @@ struct EditToDo: View {
     func updateTodoModal () {
 //        let upDatedToto = item
 //        todoViewModal.selectedTodo = upDatedToto
-        todoViewModal.getUserNotes()
+        todoViewModal.getUserNotes{_,_ in 
+            
+        }
         navStack.presentedScreen.removeLast()
     }
     

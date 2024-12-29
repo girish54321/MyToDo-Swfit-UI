@@ -84,7 +84,9 @@ struct SelectedToDo: View {
             }
             if(data?.success == true) {
                 navStack.presentedScreen.removeLast()
-                todoViewModal.getUserNotes()
+                todoViewModal.getUserNotes{_,_ in 
+                    
+                }
             } else {
 //                appViewModel.errorMessage = "Can't delete ToDo."
             }
