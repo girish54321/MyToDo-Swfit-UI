@@ -34,10 +34,11 @@ struct UserProfileImageUpdateRes: Codable {
 
 struct Userres: Codable {
     var id: Int?
-    var userId: String?
+    var userId: String? 
     var firstName, lastName, email: String?
     var profileimage: String?
     var createdAt, updatedAt: String?
+    let files: [File?]?
 }
 
 struct UpdateUser: Codable {

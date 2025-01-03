@@ -14,7 +14,7 @@ struct SelectedToDo: View {
     @EnvironmentObject var navStack: ToDoNavigationStackViewModal
     
     @State private var deleteToDo = false
-//    var todoFile: File = File()
+
     @State var todo: TodoItem = TodoItem(files: nil)
     @State var errorMessage: String? = nil
     

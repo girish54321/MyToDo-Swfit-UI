@@ -36,6 +36,15 @@ struct EditProfile: View {
                         .textInputAutocapitalization(.never)
                         .textInputAutocapitalization(.never)
                 }
+                if(!(userData.files?.isEmpty ?? false)){
+                    ForEach(userData.files!,id: \.?.id){ item in
+                        UserProfileView(onDelete: {
+                            deleteAlert.toggle()
+                        },
+                        file: item)
+                    }
+                }
+                
                 Section ("About") {
                     TextField("First Name", text: $userData.firstName.toUnwrapped(defaultValue: ""))
                         .textInputAutocapitalization(.never)
@@ -79,7 +88,7 @@ struct EditProfile: View {
                     isSkipped = false
                     token = ""
                 }
-                    
+                
             case .failure(let error):
                 switch error {
                 case .NetworkErrorAPIError(let errorMessage):
@@ -93,27 +102,27 @@ struct EditProfile: View {
     }
     
     func updateProfile () {
-            if EmailSyntaxValidator.correctlyFormatted(userData.email ?? "") {
-                let postData = UpdateUserParams(
-                    firstName: userData.firstName,
-                    lastName: userData.lastName
-                   )
-                AuthViewModel().updateProfile(parameters: postData.toDictionary()) {
-                    (data, errorText) -> () in
-                    if(errorText != nil) {
-                        appViewModel.errorMessage = errorText!
-                        return
-                    }
-                    navStack.presentedScreen.removeLast()
+        if EmailSyntaxValidator.correctlyFormatted(userData.email ?? "") {
+            let postData = UpdateUserParams(
+                firstName: userData.firstName,
+                lastName: userData.lastName
+            )
+            AuthViewModel().updateProfile(parameters: postData.toDictionary()) {
+                (data, errorText) -> () in
+                if(errorText != nil) {
+                    appViewModel.errorMessage = errorText!
+                    return
                 }
+                navStack.presentedScreen.removeLast()
             }
+        }
     }
 }
 
 struct EditProfile_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            EditProfile(userData: Userres(id: 2,firstName: "name", lastName: "last name",email: "Email.com"))
+            EditProfile(userData: Userres(id: 2,firstName: "name", lastName: "last name",email: "Email.com", files: []))
         }
     }
 }

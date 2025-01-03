@@ -26,35 +26,12 @@ struct UserProfile: View {
     var body: some View {
         NavigationStack (path: $navStack.presentedScreen) {
             List {
-                Section {
-                    VStack (alignment: .leading){
-                        HStack {
-                            VStack (alignment: .leading, spacing: 16) {
-                                HStack {
-                                    Text(authViewModel.userData?.users?.firstName ?? "Loading")
-                                    Text(authViewModel.userData?.users?.lastName ?? "Loading")
-                                }
-                                Text(authViewModel.userData?.users?.email ?? "Loading")
-                            }
-                            Spacer()
-                            NetworkImage(url: URL(string: "https://irs.www.warnerbros.com/gallery-v2-jpeg/movies/node/77906/edit/WW-06907r.jpg")) { image in
-                                image
-                                    .resizable()
-                                .scaledToFill()
-                            } placeholder: {
-                                    ZStack {
-                                        Color.secondary.opacity(0.25)
-                                        Image(systemName: "photo.fill")
-                                            .imageScale(.large)
-                                            .blendMode(.overlay)
-                                    }
-                                }
-                                .frame(width: 100, height: 100)
-                                .clipped()
-                                .clipShape(Circle())
-                        }
-                    }
-                }
+                UserProfileImage(
+                    file: authViewModel.userData?.users?.files?[0],
+                    userName: authViewModel.userData?.users?.firstName ?? "",
+                    lastName: authViewModel.userData?.users?.lastName ?? "",
+                    userEmail: authViewModel.userData?.users?.email ?? ""
+                )
                 Section {
                     HStack {
                         Text("Joined At")
