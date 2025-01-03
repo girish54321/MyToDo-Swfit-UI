@@ -81,7 +81,6 @@ struct EditProfile: View {
                 }
                     
             case .failure(let error):
-                print(error)
                 switch error {
                 case .NetworkErrorAPIError(let errorMessage):
                     print(errorMessage)
@@ -101,13 +100,10 @@ struct EditProfile: View {
                    )
                 AuthViewModel().updateProfile(parameters: postData.toDictionary()) {
                     (data, errorText) -> () in
-                    print("On Done")
                     if(errorText != nil) {
-                        print("Eror mEssage")
                         appViewModel.errorMessage = errorText!
                         return
                     }
-                    print("Remove the screen")
                     navStack.presentedScreen.removeLast()
                 }
             }

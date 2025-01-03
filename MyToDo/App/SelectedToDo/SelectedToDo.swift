@@ -12,10 +12,10 @@ struct SelectedToDo: View {
     @EnvironmentObject var todoViewModal: ToDoViewModal
     @EnvironmentObject var appViewModel: AppViewModel
     @EnvironmentObject var navStack: ToDoNavigationStackViewModal
-
-    @State private var deleteToDo = false
     
-    @State var todo: TodoItem = TodoItem()
+    @State private var deleteToDo = false
+//    var todoFile: File = File()
+    @State var todo: TodoItem = TodoItem(files: nil)
     @State var errorMessage: String? = nil
     
     var body: some View {
@@ -37,16 +37,20 @@ struct SelectedToDo: View {
                             HStack {
                                 Text("Created At")
                                 Spacer()
-                                                        Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.createdAt ?? "")!))
+                                Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.createdAt ?? "")!))
                             }
                             HStack {
                                 Text("Update At")
                                 Spacer()
-                                                        Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.updatedAt ?? "")!))
+                                Text(DateHelper().formDate(date: Date(todoViewModal.selectedTodo?.updatedAt ?? "")!))
                             }
                         }
-                        if (todoViewModal.selectedTodo?.todoImage != nil) {
-                            ToToImageView(imageUrl: todoViewModal.selectedTodo?.todoImage ?? "")
+                        if let files = todoViewModal.selectedTodo?.files {
+                            Section {
+                                ForEach(files, id: \.self) { item in
+                                    ToToImageView(imageUrl: item?.fileName ?? "")
+                                }
+                            }
                         }
                     }
                     .refreshable {
@@ -106,11 +110,9 @@ struct SelectedToDo: View {
             }
             if(data?.success == true) {
                 navStack.presentedScreen.removeLast()
-                todoViewModal.getUserNotes{_,_ in 
-                    
-                }
+                todoViewModal.reloadTodoList()
             } else {
-//                appViewModel.errorMessage = "Can't delete ToDo."
+                //                appViewModel.errorMessage = "Can't delete ToDo."
             }
         }
     }

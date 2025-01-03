@@ -19,7 +19,7 @@ class ToDoApiEndpoint {
     func createEndPoint(endPoint: ToDoApiType) -> String {
         switch endPoint {
         case .getToDo:
-            return createApi(endPoint: "todo/gettodo")
+            return createApi(endPoint: "todo/getalltodos")
         case .addTodo:
             return createApi(endPoint: "todo/addtodo")
         case .delete:

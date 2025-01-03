@@ -12,6 +12,23 @@ struct AddToDo: Codable {
     let post: TodoItem?
 }
 
+struct GetTodoParams {
+    var page: Int?
+    var size: Int?
+    var canLoadMore: Bool
+    
+    func toDictionary() -> [String: Any] {
+        var params = [String: Any]()
+        if let page = page {
+            params["page"] = page
+        }
+        if let size = size {
+            params["size"] = size
+        }
+        return params
+    }
+}
+
 
 struct AddToDoParams {
     var id: String?

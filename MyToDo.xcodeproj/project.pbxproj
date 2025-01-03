@@ -51,6 +51,7 @@
 		F4A68A132B9CB34A00CEFF91 /* ToDoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A122B9CB34A00CEFF91 /* ToDoModal.swift */; };
 		F4A68A182B9CB4F100CEFF91 /* ToDoServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A172B9CB4F100CEFF91 /* ToDoServices.swift */; };
 		F4A68A1A2B9CB51100CEFF91 /* ToDoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A192B9CB51100CEFF91 /* ToDoEndpoint.swift */; };
+		F4AA96E42D264BD8008E28BC /* UploadFileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AA96E32D264BD5008E28BC /* UploadFileClient.swift */; };
 		F4B41CEE2BAE9FFF00DEAB1C /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F4B41CED2BAE9FFF00DEAB1C /* SwiftDate */; };
 		F4B41CF22BAF0FCD00DEAB1C /* ToToImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B41CF12BAF0FCD00DEAB1C /* ToToImageView.swift */; };
 		F4E732EE2BA58ED000A6B2F2 /* SwiftEmailValidator in Frameworks */ = {isa = PBXBuildFile; productRef = F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */; };
@@ -118,6 +119,7 @@
 		F4A68A122B9CB34A00CEFF91 /* ToDoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModal.swift; sourceTree = "<group>"; };
 		F4A68A172B9CB4F100CEFF91 /* ToDoServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoServices.swift; sourceTree = "<group>"; };
 		F4A68A192B9CB51100CEFF91 /* ToDoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoEndpoint.swift; sourceTree = "<group>"; };
+		F4AA96E32D264BD5008E28BC /* UploadFileClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileClient.swift; sourceTree = "<group>"; };
 		F4B41CF12BAF0FCD00DEAB1C /* ToToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToToImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,6 +248,7 @@
 		F440A55B2B9C8DD100FE6C9C /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F4AA96E32D264BD5008E28BC /* UploadFileClient.swift */,
 				F43206B02BA45DE800AD8AC8 /* UserServers */,
 				F4A68A142B9CB48A00CEFF91 /* ToDoServers */,
 				F440A5662B9C8F4900FE6C9C /* AuthServers */,
@@ -550,6 +553,7 @@
 				F4A68A182B9CB4F100CEFF91 /* ToDoServices.swift in Sources */,
 				F43206B42BA45E1800AD8AC8 /* UserEndPoint.swift in Sources */,
 				F48D06992B9DB4BD004F9D88 /* SelectedToDo.swift in Sources */,
+				F4AA96E42D264BD8008E28BC /* UploadFileClient.swift in Sources */,
 				F440A5772B9C9F7300FE6C9C /* HomeMain.swift in Sources */,
 				F43206AC2BA4431500AD8AC8 /* EditToDo.swift in Sources */,
 				F4A68A132B9CB34A00CEFF91 /* ToDoModal.swift in Sources */,

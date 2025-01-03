@@ -13,10 +13,15 @@ struct ToDoForm: View {
     @Binding var bodyText: String
     @Binding var todoState: String
     
-    var imageUrl: String?
+    @Binding var todoImagePicker: PhotosPickerItem?
+    @Binding var todoImage: Image?
+    
+//    var imageUrl: String?
     
     var onSubmit: (() -> Void)
+    var onRemoveImage: (() -> Void)?
     var isUpDate: Bool = true
+    
     
     var body: some View {
         Form {
@@ -27,11 +32,39 @@ struct ToDoForm: View {
                 TextField("Body",text: $bodyText)
                     .frame(minHeight: 100)
             }
+//            if (imageUrl != nil && todoImagePicker == nil ) {
+//                ToToImageView(imageUrl: imageUrl!)
+//            } else {
+                Section {
+                    VStack {
+                        PhotosPicker(selection: $todoImagePicker, matching: .images){
+                            HStack {
+                                Image(systemName: AppIconsSF.attachmentIcon)
+                                Text("Pick Image")
+                            }
+                        }
+                        .task(id: todoImagePicker) {
+                            todoImage = try? await todoImagePicker?.loadTransferable(type: Image.self)
+                        }
+                    }
+                    todoImage?
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(6)
+                }
+//            }
+            if (todoImage != nil  && onRemoveImage != nil) {
+                Button(isUpDate ? "Delete Image" : "Remove Image", action: {
+                    onRemoveImage!()
+                })
+                .buttonStyle(.automatic)
+                .foregroundColor(.red)
+            }
             Section("Save your todo") {
                 Button(isUpDate ? "Update Todo" : "Add Todo") {
-                        onSubmit()
-                    }
+                    onSubmit()
                 }
+            }
         }
     }
 }
@@ -43,10 +76,12 @@ struct ToDoForm_Previews: PreviewProvider {
     
     @State static var todoImagePicker: PhotosPickerItem?
     @State static var todoImage: Image?
-
+    
     
     static var previews: some View {
-        ToDoForm(titleText: $titleText, bodyText: $bodyText, todoState: $todoState, onSubmit: {
+        ToDoForm(titleText: $titleText, bodyText: $bodyText, todoState: $todoState, todoImagePicker: $todoImagePicker, todoImage: $todoImage, onSubmit: {
+    
+        },onRemoveImage:{
             
         }, isUpDate: false)
     }

@@ -17,21 +17,35 @@ struct CreateToDo: View {
     @EnvironmentObject var appViewModel: AppViewModel
     @EnvironmentObject var todoViewModal: ToDoViewModal
     
+    @State private var todoImagePicker: PhotosPickerItem?
+    @State private var todoImage: Image?
+    
     var body: some View {
         NavigationStack {
             VStack {
-                ToDoForm(titleText: $titleText, bodyText: $bodyText, todoState: $todoState, onSubmit: addTodo, isUpDate: false)
+                ToDoForm(titleText: $titleText,
+                         bodyText: $bodyText,
+                         todoState: $todoState, todoImagePicker: $todoImagePicker,
+                         todoImage: $todoImage, onSubmit: addTodo,
+                         onRemoveImage: onRemoveImage,isUpDate: false)
+                
             }
             .navigationTitle("Add ToDo")
         }
     }
-
+    
+    func onRemoveImage () {
+        todoImagePicker = nil
+        todoImage = nil
+    }
+    
     
     func addTodo () {
         Task {
             appViewModel.toggle()
+            let imageData = try? await todoImagePicker?.loadTransferable(type: Data.self)
             let postData = AddToDoParams(title: titleText,body: bodyText,state: "pending").toDictionary()
-            todoViewModal.createTodo(postData: postData){
+            todoViewModal.createTodo(postData: postData,imageData: imageData!){
                 (data,errorMessage) -> () in
                 if(errorMessage != nil) {
                     appViewModel.toggle()
@@ -42,13 +56,11 @@ struct CreateToDo: View {
                 titleText = ""
                 bodyText = ""
                 appViewModel.slectedTabIndex = 0
-                todoViewModal.getUserNotes{_,_ in 
-                    
-                }
+                todoViewModal.reloadTodoList()
             }
         }
     }
-
+    
 }
 
 struct CreateToDo_Previews: PreviewProvider {

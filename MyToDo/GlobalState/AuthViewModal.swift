@@ -33,11 +33,8 @@ class AuthViewModel: ObservableObject {
             result in
             switch result {
             case .success(let data):
-                print("UPdate profile")
                 self.userData = data
             case .failure(let error):
-                print("User Profile Error")
-                print(error)
                 switch error {
                 case .NetworkErrorAPIError(let errorMessage):
                     print(errorMessage)

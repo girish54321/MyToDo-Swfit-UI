@@ -30,15 +30,16 @@ class ToDoServices {
                                          completion: completion
             )
         }
-    
+
     func createToDo (
         parameters: Parameters?,
+        multipartFormData: @escaping (MultipartFormData) -> Void,
         completion: @escaping(Result<AddToDo,NetworkError>) -> Void){
-            return RestAPIClient.request(type: AddToDo.self,
-                                         endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .addTodo),
-                                         method:.post,
-                                         parameters:parameters,
-                                         completion: completion
+            return UploadFileClient.request(type: AddToDo.self,
+                                            endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .addTodo),
+                                            multipartFormData:multipartFormData,
+                                            parameters:parameters,
+                                            completion: completion
             )
         }
     
