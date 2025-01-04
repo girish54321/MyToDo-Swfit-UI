@@ -38,7 +38,7 @@ struct Userres: Codable {
     var firstName, lastName, email: String?
     var profileimage: String?
     var createdAt, updatedAt: String?
-    let files: [File?]?
+    var files: [File?]?
 }
 
 struct UpdateUser: Codable {

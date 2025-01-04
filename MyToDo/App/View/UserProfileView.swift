@@ -35,6 +35,7 @@ struct UserProfileView: View {
                     }
                     HStack {
                         Button("Delete Image") {
+                            print("On delte View")
                             onDelete()
                         }
                         .buttonStyle(.automatic)

@@ -28,6 +28,13 @@ class AuthViewModel: ObservableObject {
         token = data.accessToken
     }
     
+    func deleteLocalProfileImage() {
+        print("On delete viewmodel")
+        guard var updatedUserData = userData else { return }
+        updatedUserData.users?.files = []
+        userData = updatedUserData // Trigger SwiftUI update
+    }
+
     func getUserProfile() {
         UserServise().getProfile(parameters: nil) {
             result in

@@ -40,20 +40,11 @@ struct EditProfile: View {
                         .textInputAutocapitalization(.never)
                 }
                 if(!(userData.files?.isEmpty ?? false)){
-                    ForEach(userData.files!,id: \.?.id){ item in
+                    ForEach(userData.files ?? [],id: \.?.id){ item in
                         UserProfileView(onDelete: {
-//                            deleteAlert.toggle()
+                            deleteLocalProfile()
                         },
                         file: item)
-                    }
-                }
-                if((userData.files?.isEmpty) == nil){
-                    Section {
-                        Button("Delete Profile Image") {
-                            updateProfile()
-                        }
-                        .buttonStyle(.automatic)
-                        .foregroundColor(.red)
                     }
                 }
                 Section {
@@ -73,7 +64,16 @@ struct EditProfile: View {
                         }
                     }
                 }
-                
+                if((userData.files?.isEmpty) == true || todoImage != nil){
+                    Section {
+                        Button("Delete Profile Image") {
+                            todoImage = nil
+                            deleteLocalProfile()
+                        }
+                        .buttonStyle(.automatic)
+                        .foregroundColor(.red)
+                    }
+                }
                 Section ("About") {
                     TextField("First Name", text: $userData.firstName.toUnwrapped(defaultValue: ""))
                         .textInputAutocapitalization(.never)
@@ -85,7 +85,6 @@ struct EditProfile: View {
                         updateProfile()
                     }
                 }
-                
 //                Section("Dont Touch Me") {
 //                    Button("Delete Account") {
 //                        deleteAlert.toggle()
@@ -103,6 +102,10 @@ struct EditProfile: View {
             }, secondaryButton: .cancel())
         }
         .navigationTitle("Edit Profile")
+    }
+    
+    func deleteLocalProfile(){
+        userData.files = nil
     }
     
     func deleteAccount () {

@@ -31,7 +31,7 @@ struct TodoItem: Codable, Identifiable, Hashable {
     var title, body, state: String?
     var userID: String?
     var createdAt, updatedAt: String?
-    let files: [File?]?
+    var files: [File?]?
 
     enum CodingKeys: String, CodingKey {
         case toDoId, title, body, state
