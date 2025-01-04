@@ -34,11 +34,12 @@ class AuthServices {
     
     func updateProfile (
         parameters: Parameters?,
+        multipartFormData: @escaping (MultipartFormData) -> Void,
         completion: @escaping(Result<MutationResponse,NetworkError>) -> Void){
-            return RestAPIClient.request(type: MutationResponse.self,
+            return UploadFileClient.request(type: MutationResponse.self,
                                          endPoint: AuthApiEndpoint().createEndPoint(endPoint: .updateProfile),
-                                         method:.post,
-                                         parameters:parameters,
+                                        multipartFormData:multipartFormData,
+                                        parameters:parameters,
                                          completion: completion
             )
         }

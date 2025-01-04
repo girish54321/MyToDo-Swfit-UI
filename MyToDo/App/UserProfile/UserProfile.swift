@@ -27,7 +27,7 @@ struct UserProfile: View {
         NavigationStack (path: $navStack.presentedScreen) {
             List {
                 UserProfileImage(
-                    file: authViewModel.userData?.users?.files?[0],
+                    file: authViewModel.userData?.users?.files?.isEmpty ?? true ? nil : authViewModel.userData?.users?.files?[0],
                     userName: authViewModel.userData?.users?.firstName ?? "",
                     lastName: authViewModel.userData?.users?.lastName ?? "",
                     userEmail: authViewModel.userData?.users?.email ?? ""

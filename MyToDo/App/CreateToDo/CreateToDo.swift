@@ -29,7 +29,7 @@ struct CreateToDo: View {
                          todoImage: $todoImage, onSubmit: addTodo,
                          onRemoveImage: onRemoveImage,isUpDate: false)
                 
-            }
+            } 
             .navigationTitle("Add ToDo")
         }
     }

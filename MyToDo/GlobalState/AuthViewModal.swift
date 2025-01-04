@@ -87,8 +87,17 @@ class AuthViewModel: ObservableObject {
     }
 
     //MARK: Update profile
-    func updateProfile(parameters: Parameters?, completion:  @escaping(MutationResponse?,String?)->()) {
-        AuthServices().updateProfile(parameters: parameters) {
+    func updateProfile(postData: [String: String], imageData: Data, completion: @escaping(MutationResponse?,String?)->()) {
+        AuthServices().updateProfile(parameters: postData,multipartFormData: { multipartFormData in
+            // Adding image
+            multipartFormData.append(imageData, withName: "file", fileName: "image.jpg", mimeType: "image/jpeg")
+            //Adding post data here
+            for (key, value) in postData {
+                if let data = value.data(using: .utf8) {
+                    multipartFormData.append(data, withName: key)
+                }
+            }
+        }) {
             result in
             switch result {
             case .success(let data):

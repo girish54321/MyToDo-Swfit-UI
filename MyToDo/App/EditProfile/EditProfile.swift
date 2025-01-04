@@ -27,6 +27,9 @@ struct EditProfile: View {
     @AppStorage(AppConst.isSkipped) var isSkipped: Bool = false
     @AppStorage(AppConst.token) var token: String = ""
     
+    @State private var todoImagePicker: PhotosPickerItem?
+    @State private var todoImage: Image?
+    
     var body: some View {
         VStack {
             Form {
@@ -39,9 +42,35 @@ struct EditProfile: View {
                 if(!(userData.files?.isEmpty ?? false)){
                     ForEach(userData.files!,id: \.?.id){ item in
                         UserProfileView(onDelete: {
-                            deleteAlert.toggle()
+//                            deleteAlert.toggle()
                         },
                         file: item)
+                    }
+                }
+                if((userData.files?.isEmpty) == nil){
+                    Section {
+                        Button("Delete Profile Image") {
+                            updateProfile()
+                        }
+                        .buttonStyle(.automatic)
+                        .foregroundColor(.red)
+                    }
+                }
+                Section {
+                    VStack (spacing:12) {
+                        todoImage?
+                            .resizable()
+                            .scaledToFit()
+                            .cornerRadius(6)
+                        PhotosPicker(selection: $todoImagePicker, matching: .images){
+                            HStack {
+                                Image(systemName: AppIconsSF.attachmentIcon)
+                                Text("Update Profile Image")
+                            }
+                        }
+                        .task(id: todoImagePicker) {
+                            todoImage = try? await todoImagePicker?.loadTransferable(type: Image.self)
+                        }
                     }
                 }
                 
@@ -57,13 +86,13 @@ struct EditProfile: View {
                     }
                 }
                 
-                Section("Dont Touch Me") {
-                    Button("Delete Account") {
-                        deleteAlert.toggle()
-                    }
-                    .buttonStyle(.automatic)
-                    .foregroundColor(.red)
-                }
+//                Section("Dont Touch Me") {
+//                    Button("Delete Account") {
+//                        deleteAlert.toggle()
+//                    }
+//                    .buttonStyle(.automatic)
+//                    .foregroundColor(.red)
+//                }
             }
         }
         .alert(isPresented: $deleteAlert) {
@@ -102,18 +131,21 @@ struct EditProfile: View {
     }
     
     func updateProfile () {
-        if EmailSyntaxValidator.correctlyFormatted(userData.email ?? "") {
-            let postData = UpdateUserParams(
-                firstName: userData.firstName,
-                lastName: userData.lastName
-            )
-            AuthViewModel().updateProfile(parameters: postData.toDictionary()) {
-                (data, errorText) -> () in
-                if(errorText != nil) {
-                    appViewModel.errorMessage = errorText!
-                    return
+        Task {
+            if EmailSyntaxValidator.correctlyFormatted(userData.email ?? "") {
+                let postData = UpdateUserParams(
+                    firstName: userData.firstName,
+                    lastName: userData.lastName
+                )
+                let imageData = try? await todoImagePicker?.loadTransferable(type: Data.self)
+                AuthViewModel().updateProfile(postData: postData.toDictionary(),imageData: imageData!) {
+                    (data, errorText) -> () in
+                    if(errorText != nil) {
+                        appViewModel.errorMessage = errorText!
+                        return
+                    }
+                    navStack.presentedScreen.removeLast()
                 }
-                navStack.presentedScreen.removeLast()
             }
         }
     }
