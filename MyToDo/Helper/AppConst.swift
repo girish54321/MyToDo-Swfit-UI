@@ -13,19 +13,16 @@ import SwiftUI
 struct AppConst {
 
     // MARK: Use with LocalHost
-//    static let todoimagesPath = "http://localhost:5000/"
+    static let todoimagesPath = "http://192.168.0.104:2000/"
 
-    // MARK: Use with Remort 
-    static let todoimagesPath = "https://deploy-todo-sql.onrender.com/"
+    // MARK: Use with Remort
     static let isLoggedIn = "isLoggedIn"
     static let token = "JWT_token"
     static let isSkipped = "SIKPED"
     
     struct ApiConst {
         // MARK: Use with LocalHost
-//         let apiEndPoint = "http://localhost:5000/api/v1/"
-        // MARK: Use with Remort 
-         let apiEndPoint = "https://deploy-todo-sql.onrender.com/api/v1/"
+         let apiEndPoint = "http://192.168.0.104:2000/api/v1/"
     }
 }
 

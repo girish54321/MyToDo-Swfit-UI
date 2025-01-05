@@ -18,16 +18,16 @@ class UserEndPoint {
     func createEndPoint(endPoint: UserEndPointType) -> String {
         switch endPoint {
         case .getProfile:
-            return createApi(endPoint: "users/getprofile")
+            return createApi(endPoint: "profile/user-profile")
 
         case .updateProfile:
-            return createApi(endPoint: "users/updateprofile")
+            return createApi(endPoint: "profile/updateprofile")
             
         case .updateProfileImage:
-            return createApi(endPoint: "users/updateprofileimage")
+            return createApi(endPoint: "profile/updateprofile")
             
         case .deleteAccount:
-            return createApi(endPoint: "users/deleteaccount")
+            return createApi(endPoint: "profile/deleteaccount")
         }
     }
     

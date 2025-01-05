@@ -36,6 +36,7 @@
 		F440A57A2B9CA5A600FE6C9C /* ToDoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440A5792B9CA5A600FE6C9C /* ToDoList.swift */; };
 		F440A57C2B9CA5D700FE6C9C /* NavigationStackViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440A57B2B9CA5D700FE6C9C /* NavigationStackViewModal.swift */; };
 		F440A57E2B9CA88300FE6C9C /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440A57D2B9CA88300FE6C9C /* ToDoItem.swift */; };
+		F45D9BB62D203E0400861B2F /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D9BB52D203E0400861B2F /* ErrorMessageView.swift */; };
 		F48CC1B52B9B64CB00EF7704 /* MyToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CC1B42B9B64CB00EF7704 /* MyToDoApp.swift */; };
 		F48CC1B72B9B64CB00EF7704 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CC1B62B9B64CB00EF7704 /* ContentView.swift */; };
 		F48CC1B92B9B64CC00EF7704 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F48CC1B82B9B64CC00EF7704 /* Assets.xcassets */; };
@@ -50,8 +51,10 @@
 		F4A68A132B9CB34A00CEFF91 /* ToDoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A122B9CB34A00CEFF91 /* ToDoModal.swift */; };
 		F4A68A182B9CB4F100CEFF91 /* ToDoServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A172B9CB4F100CEFF91 /* ToDoServices.swift */; };
 		F4A68A1A2B9CB51100CEFF91 /* ToDoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A68A192B9CB51100CEFF91 /* ToDoEndpoint.swift */; };
+		F4AA96E42D264BD8008E28BC /* UploadFileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AA96E32D264BD5008E28BC /* UploadFileClient.swift */; };
+		F4AA96E62D27EC19008E28BC /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AA96E52D27EC12008E28BC /* UserProfileView.swift */; };
+		F4AA96E82D280C24008E28BC /* UserProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AA96E72D280C1F008E28BC /* UserProfileImage.swift */; };
 		F4B41CEE2BAE9FFF00DEAB1C /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F4B41CED2BAE9FFF00DEAB1C /* SwiftDate */; };
-		F4B41CF02BAEDB2100DEAB1C /* UploadFileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B41CEF2BAEDB2100DEAB1C /* UploadFileClient.swift */; };
 		F4B41CF22BAF0FCD00DEAB1C /* ToToImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B41CF12BAF0FCD00DEAB1C /* ToToImageView.swift */; };
 		F4E732EE2BA58ED000A6B2F2 /* SwiftEmailValidator in Frameworks */ = {isa = PBXBuildFile; productRef = F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */; };
 /* End PBXBuildFile section */
@@ -99,6 +102,7 @@
 		F440A5792B9CA5A600FE6C9C /* ToDoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoList.swift; sourceTree = "<group>"; };
 		F440A57B2B9CA5D700FE6C9C /* NavigationStackViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStackViewModal.swift; sourceTree = "<group>"; };
 		F440A57D2B9CA88300FE6C9C /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
+		F45D9BB52D203E0400861B2F /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		F48CC1B12B9B64CB00EF7704 /* MyToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48CC1B42B9B64CB00EF7704 /* MyToDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToDoApp.swift; sourceTree = "<group>"; };
 		F48CC1B62B9B64CB00EF7704 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,7 +121,9 @@
 		F4A68A122B9CB34A00CEFF91 /* ToDoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModal.swift; sourceTree = "<group>"; };
 		F4A68A172B9CB4F100CEFF91 /* ToDoServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoServices.swift; sourceTree = "<group>"; };
 		F4A68A192B9CB51100CEFF91 /* ToDoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoEndpoint.swift; sourceTree = "<group>"; };
-		F4B41CEF2BAEDB2100DEAB1C /* UploadFileClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileClient.swift; sourceTree = "<group>"; };
+		F4AA96E32D264BD5008E28BC /* UploadFileClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileClient.swift; sourceTree = "<group>"; };
+		F4AA96E52D27EC12008E28BC /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		F4AA96E72D280C1F008E28BC /* UserProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImage.swift; sourceTree = "<group>"; };
 		F4B41CF12BAF0FCD00DEAB1C /* ToToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToToImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,11 +219,14 @@
 		F440A54A2B9C718300FE6C9C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F4AA96E72D280C1F008E28BC /* UserProfileImage.swift */,
+				F4AA96E52D27EC12008E28BC /* UserProfileView.swift */,
 				F440A54B2B9C719500FE6C9C /* AppInputBox.swift */,
 				F440A5522B9C731300FE6C9C /* AppButton.swift */,
 				F440A57D2B9CA88300FE6C9C /* ToDoItem.swift */,
 				F43206A82BA43FAF00AD8AC8 /* ToDoForm.swift */,
 				F4B41CF12BAF0FCD00DEAB1C /* ToToImageView.swift */,
+				F45D9BB52D203E0400861B2F /* ErrorMessageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -245,12 +254,12 @@
 		F440A55B2B9C8DD100FE6C9C /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F4AA96E32D264BD5008E28BC /* UploadFileClient.swift */,
 				F43206B02BA45DE800AD8AC8 /* UserServers */,
 				F4A68A142B9CB48A00CEFF91 /* ToDoServers */,
 				F440A5662B9C8F4900FE6C9C /* AuthServers */,
 				F440A55C2B9C8DF000FE6C9C /* RestAPIClient.swift */,
 				F440A5642B9C8F1600FE6C9C /* ApiError.swift */,
-				F4B41CEF2BAEDB2100DEAB1C /* UploadFileClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -528,9 +537,10 @@
 				F440A5742B9C919500FE6C9C /* AuthViewModal.swift in Sources */,
 				F440A56A2B9C8F5700FE6C9C /* AuthServices.swift in Sources */,
 				F440A57E2B9CA88300FE6C9C /* ToDoItem.swift in Sources */,
+				F45D9BB62D203E0400861B2F /* ErrorMessageView.swift in Sources */,
 				F43206BA2BA4BE3800AD8AC8 /* EditProfile.swift in Sources */,
+				F4AA96E62D27EC19008E28BC /* UserProfileView.swift in Sources */,
 				F48D06A02B9DCA3A004F9D88 /* CreateTodoModal.swift in Sources */,
-				F4B41CF02BAEDB2100DEAB1C /* UploadFileClient.swift in Sources */,
 				F48CC1B72B9B64CB00EF7704 /* ContentView.swift in Sources */,
 				F440A5562B9C736900FE6C9C /* NavModal.swift in Sources */,
 				F440A5512B9C72D900FE6C9C /* AppConst.swift in Sources */,
@@ -550,6 +560,7 @@
 				F4A68A182B9CB4F100CEFF91 /* ToDoServices.swift in Sources */,
 				F43206B42BA45E1800AD8AC8 /* UserEndPoint.swift in Sources */,
 				F48D06992B9DB4BD004F9D88 /* SelectedToDo.swift in Sources */,
+				F4AA96E42D264BD8008E28BC /* UploadFileClient.swift in Sources */,
 				F440A5772B9C9F7300FE6C9C /* HomeMain.swift in Sources */,
 				F43206AC2BA4431500AD8AC8 /* EditToDo.swift in Sources */,
 				F4A68A132B9CB34A00CEFF91 /* ToDoModal.swift in Sources */,
@@ -561,6 +572,7 @@
 				F440A54F2B9C71E600FE6C9C /* UIHelper.swift in Sources */,
 				F4B41CF22BAF0FCD00DEAB1C /* ToToImageView.swift in Sources */,
 				F440A56C2B9C902500FE6C9C /* LoginSuccess.swift in Sources */,
+				F4AA96E82D280C24008E28BC /* UserProfileImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

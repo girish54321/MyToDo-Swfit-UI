@@ -2,15 +2,13 @@
 //  UploadFileClient.swift
 //  MyToDo
 //
-//  Created by Girish Parate on 23/03/24.
+//  Created by Girish Parate on 02/01/25.
 //
-
 import Foundation
 import Alamofire
 import SwiftyJSON
 import SwiftUI
 
-// Create API Clinet
 class UploadFileClient {
     static func request<T: Codable>(type: T.Type,
                                     endPoint: String,
@@ -32,20 +30,22 @@ class UploadFileClient {
         } else {
             headers = nil
         }
-//        UnCommet for Debug
-//        print("DEBUG Only")
-//        print("API EndPoint")
-//        print(encodedURL)
-//        print("Tokan")
-//        print("Bearer \(token)")
-//        print(parameters)
+        
+        @AppStorage(AppConst.isSkipped) var isSkipped: Bool = false
+        @AppStorage(AppConst.token) var storeageToken: String = ""
+        
+            //    UnCommet for Debug
+               print("DEBUG Only")
+               print("API EndPoint")
+               print(encodedURL)
+               print("Tokan")
+               print("Bearer \(token)")
+               print(parameters)
         
         AF.upload(
             multipartFormData: multipartFormData, to: encodedURL,headers: headers)
         .validate() // Optional: Validate the response
         .response { response in
-            // Handle the response here
-            debugPrint(response)
             ApiError().handleError(response: response) { result in
                 switch result {
                 case .success(_):
@@ -57,10 +57,18 @@ class UploadFileClient {
                         }
                         // Get Request Status
                         let statusCode = response.response?.statusCode
-                        
+                        print("1")
                         // Handle Stacific Status code
                         if(statusCode == 204){
+                            print("2")
                             completion(.success("Done" as! T))
+                            return
+                        }
+                        
+                        if(statusCode == 401){
+                            isSkipped = false
+                            storeageToken = ""
+                            completion(.failure(.NoData))
                             return
                         }
                         
@@ -85,25 +93,41 @@ class UploadFileClient {
                                 completion(.failure(.NetworkErrorAPIError(error.localizedDescription)))
                             }
                         } else {
+                            print("JSON EROR OLD")
                             // If Error
                             guard let jsonData = response.data else {
+                                completion(.failure(.DecodingError))
                                 return
                             }
+                            print("Error JSON")
+                            print(jsonData)
                             // JSON TO Types
                             guard let obj = try? JSONDecoder().decode(NetworkErrorC.self, from: jsonData) else {
+                                completion(.failure(.DecodingError))
                                 return
                             }
                             // Pass Error with default Error Type
-                            completion(.failure(.NetworkErrorAPIError(obj.error.message)))
+                            completion(.failure(.NetworkErrorAPIError(obj.error?.message ?? "Error")))
                             return
                             
                         }
                     }
                 case .failure(let error):
-                    print("Failure: \(error.localizedDescription)")
-                    completion(.failure(.NetworkErrorAPIError(error.localizedDescription)))
+                    print("1222")
+                    guard let jsonData = response.data else {
+                        completion(.failure(.NetworkErrorAPIError(error.localizedDescription)))
+                        return
+                    }
+                    guard let obj = try? JSONDecoder().decode(NetworkErrorC.self, from: jsonData) else {
+                        completion(.failure(.DecodingError))
+                        return
+                    }
+                    completion(.failure(.NetworkErrorAPIError(obj.error?.message ?? error.localizedDescription)))
                 }
             }
+            
         }
+        
     }
+    
 }

@@ -30,19 +30,8 @@ class ToDoServices {
                                          completion: completion
             )
         }
-    
+
     func createToDo (
-        parameters: Parameters?,
-        completion: @escaping(Result<AddToDo,NetworkError>) -> Void){
-            return RestAPIClient.request(type: AddToDo.self,
-                                         endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .addTodo),
-                                         method:.post,
-                                         parameters:parameters,
-                                         completion: completion
-            )
-        }
-    
-    func createToDoWithImage (
         parameters: Parameters?,
         multipartFormData: @escaping (MultipartFormData) -> Void,
         completion: @escaping(Result<AddToDo,NetworkError>) -> Void){
@@ -51,18 +40,6 @@ class ToDoServices {
                                             multipartFormData:multipartFormData,
                                             parameters:parameters,
                                             completion: completion
-            )
-        }
-    
-    func updateToDoWithImage (
-        parameters: Parameters?,
-        multipartFormData: @escaping (MultipartFormData) -> Void,
-        completion: @escaping(Result<AddToDo,NetworkError>) -> Void){
-            return UploadFileClient.request(type: AddToDo.self,
-                                         endPoint: ToDoApiEndpoint().createEndPoint(endPoint: .updateTodo),
-                                         multipartFormData:multipartFormData,
-                                         parameters:parameters,
-                                         completion: completion
             )
         }
     
@@ -80,10 +57,22 @@ class ToDoServices {
     func deleteToDo (
         parameters: Parameters?,
         endpoint: String,
-        completion: @escaping(Result<DeleteToDoModal,NetworkError>) -> Void){
-            return RestAPIClient.request(type: DeleteToDoModal.self,
+        completion: @escaping(Result<MutationResponse,NetworkError>) -> Void){
+            return RestAPIClient.request(type: MutationResponse.self,
                                          endPoint: "\(ToDoApiEndpoint().createEndPoint(endPoint: .delete))\(endpoint)",
                                          method:.delete,
+                                         parameters:parameters,
+                                         completion: completion
+            )
+        }
+    
+    func getSelectedTodo (
+        parameters: Parameters?,
+        endpoint: String,
+        completion: @escaping(Result<SelectedToDoType,NetworkError>) -> Void){
+            return RestAPIClient.request(type: SelectedToDoType.self,
+                                         endPoint: "\(ToDoApiEndpoint().createEndPoint(endPoint: .getSelectedTodo))\(endpoint)",
+                                         method:.get,
                                          parameters:parameters,
                                          completion: completion
             )

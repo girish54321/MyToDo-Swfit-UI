@@ -12,17 +12,35 @@ struct AddToDo: Codable {
     let post: TodoItem?
 }
 
+struct GetTodoParams {
+    var page: Int?
+    var size: Int?
+    var canLoadMore: Bool
+    
+    func toDictionary() -> [String: Any] {
+        var params = [String: Any]()
+        if let page = page {
+            params["page"] = page
+        }
+        if let size = size {
+            params["size"] = size
+        }
+        return params
+    }
+}
+
+
 struct AddToDoParams {
     var id: String?
     var title: String?
     var body: String?
-    var status: String?
+    var state: String?
     var deleteFile: Bool?
     
     func toDictionary() -> [String: String] {
         var params = [String: String]()
         if let id = id {
-            params["id"] = id
+            params["toDoId"] = id
         }
         if let title = title {
             params["title"] = title
@@ -30,8 +48,8 @@ struct AddToDoParams {
         if let body = body {
             params["body"] = body
         }
-        if let status = status {
-            params["status"] = status
+        if let status = state {
+            params["state"] = status
         }
         if let deleteFile = deleteFile {
             params["deleteFile"] = String(deleteFile)
@@ -50,8 +68,7 @@ struct DeleteoDoParams {
     }
 }
 
-// MARK: - Welcome
-struct DeleteToDoModal: Codable {
-    let deleted: Bool?
+struct MutationResponse: Codable {
+    let success: Bool?
 }
 

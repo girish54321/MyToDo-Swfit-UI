@@ -50,11 +50,6 @@ struct HomeMain: View {
             .tabItem {
                 Image(systemName: AppIconsSF.homeIcon)
                 Text("Home")
-//                Image(systemName: "square.stack.3d.up")
-//                                   .symbolEffect(.variableColor.iterative, value: appViewModel.slectedTabIndex)
-
-//                    .symbolEffect(.bounce, value: appViewModel.slectedTabIndex)
-//                Text("ToDo")
             }
             .tag(0)
            CreateToDo()

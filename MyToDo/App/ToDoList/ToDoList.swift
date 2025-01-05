@@ -16,18 +16,35 @@ struct ToDoList: View {
     
     var body: some View {
         NavigationStack (path: $navStack.presentedScreen) {
-                List(todoViewModal.toDoListData?.todo ?? [],id: \.self,selection: $firstSelectedDataItem) { item in
-                    ToDoViewItem(todo: item)
-                        .onTapGesture {
-                            let data = SelectedToDoScreenType(selectedToDo: item)
-                            navStack.presentedScreen.append(data)
-                            todoViewModal.selectedTodo = item
+            VStack {
+                if(todoViewModal.todoListErrorMessage != nil) {
+                    ErrorMessageView(errorMessage: todoViewModal.todoListErrorMessage, clicked: getUserTodo)
+                } else {
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(todoViewModal.toDoListData?.todo ?? [], id: \.self) { item in
+                                ToDoViewItem(todo: item)
+                                    .onAppear {
+                                        todoViewModal.getUserNotes(completion: {_,_ in
+                                            
+                                        })
+                                    }
+                                    .onTapGesture {
+                                        let data = SelectedToDoScreenType(selectedToDo: item)
+                                        todoViewModal.pickToDo(data: item, completion: {_,_ in
+                                            navStack.presentedScreen.append(data)
+                                        })
+                                    }
+                            }
                         }
                     }
-                .refreshable {
-                    todoViewModal.getUserNotes()
+                    
                 }
-            .navigationTitle("Your ToDo")
+            }
+            .refreshable {
+                getUserTodo()
+            }
+            .navigationTitle("Home")
             .navigationDestination(for: SelectedToDoScreenType.self) { type in
                 SelectedToDo()
             }
@@ -36,12 +53,21 @@ struct ToDoList: View {
             }
         }
     }
+    
+    func getUserTodo() {
+        todoViewModal.getUserNotes {_,_ in
+            
+        }
+    }
+    
 }
 
 struct ToDoList_Previews: PreviewProvider {
     static var previews: some View {
+        NavigationStack {
             ToDoList()
                 .environmentObject(ToDoNavigationStackViewModal())
                 .environmentObject(ToDoViewModal())
+        }
     }
 }
