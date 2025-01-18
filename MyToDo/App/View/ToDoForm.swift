@@ -16,8 +16,6 @@ struct ToDoForm: View {
     @Binding var todoImagePicker: PhotosPickerItem?
     @Binding var todoImage: Image?
     
-//    var imageUrl: String?
-    
     var onSubmit: (() -> Void)
     var onRemoveImage: (() -> Void)?
     var isUpDate: Bool = true
@@ -25,16 +23,15 @@ struct ToDoForm: View {
     
     var body: some View {
         Form {
-            Text("Yes!\n\nYou can do it")
+            LabeledContent("Yes") {
+                Text("You can do it")
+               }
             Section {
                 TextField("Title", text: $titleText)
                     .textInputAutocapitalization(.never)
                 TextField("Body",text: $bodyText)
                     .frame(minHeight: 100)
             }
-//            if (imageUrl != nil && todoImagePicker == nil ) {
-//                ToToImageView(imageUrl: imageUrl!)
-//            } else {
                 Section {
                     VStack {
                         PhotosPicker(selection: $todoImagePicker, matching: .images){
@@ -52,7 +49,6 @@ struct ToDoForm: View {
                         .scaledToFit()
                         .cornerRadius(6)
                 }
-//            }
             if (todoImage != nil  && onRemoveImage != nil) {
                 Button(isUpDate ? "Delete Image" : "Remove Image", action: {
                     onRemoveImage!()
@@ -79,10 +75,21 @@ struct ToDoForm_Previews: PreviewProvider {
     
     
     static var previews: some View {
-        ToDoForm(titleText: $titleText, bodyText: $bodyText, todoState: $todoState, todoImagePicker: $todoImagePicker, todoImage: $todoImage, onSubmit: {
-    
-        },onRemoveImage:{
-            
-        }, isUpDate: false)
+        NavigationView {
+            VStack {
+                ToDoForm(
+                    titleText: $titleText,
+                    bodyText: $bodyText,
+                    todoState: $todoState,
+                    todoImagePicker: $todoImagePicker,
+                    todoImage: $todoImage,
+                    onSubmit: {
+                    
+                },onRemoveImage:{
+                    
+                }, isUpDate: false)
+            }
+            .navigationTitle("Add Todo")
+        }
     }
 }

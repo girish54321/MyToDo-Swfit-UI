@@ -65,6 +65,8 @@ struct EditToDo: View {
 
 struct EditToDo_Previews: PreviewProvider {
     static var previews: some View {
-        EditToDo(todo: TodoItem(title: "Hello",files: nil))
+        NavigationView {
+            EditToDo(todo: TodoItem(title: "Hello",files: nil))
+        }
     }
 }

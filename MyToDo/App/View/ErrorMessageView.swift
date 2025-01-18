@@ -45,10 +45,18 @@ struct ErrorMessageView: View {
 
 #Preview {
     var errorMessage = "Your Error Message"
-    ErrorMessageView(
-        errorMessage: errorMessage,
-        smallView: true
-    ) {
-        
+    VStack {
+        ErrorMessageView(
+            errorMessage: errorMessage,
+            smallView: false
+        ) {
+            
+        }
+        ErrorMessageView(
+            errorMessage: errorMessage,
+            smallView: true
+        ) {
+            
+        }
     }
 }

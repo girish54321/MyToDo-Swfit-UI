@@ -23,7 +23,6 @@ struct ToDoViewItem: View {
                 }
                 Spacer()
             }
-            Divider()
         }
         .padding(.horizontal)
         .padding(.top,2)
@@ -32,6 +31,24 @@ struct ToDoViewItem: View {
 
 struct ToDoViewItem_Previews: PreviewProvider {
     static var previews: some View {
-        ToDoViewItem(todo: TodoItem(id: "1", title: "Some time", body: "Body", state: "", userID: "1", createdAt: "", updatedAt: "", files: nil))
+        NavigationView {
+            List {
+                ForEach(1...5,id:\.self) { item in
+                    ToDoViewItem(
+                        todo: TodoItem(
+                            id: "1",
+                            title: "Your Text",
+                            body: "Body",
+                            state: "",
+                            userID: "1",
+                            createdAt: "",
+                            updatedAt: "",
+                            files: nil)
+                    )
+                }
+            }
+            .navigationTitle("Todo List")
+        }
+       
     }
 }

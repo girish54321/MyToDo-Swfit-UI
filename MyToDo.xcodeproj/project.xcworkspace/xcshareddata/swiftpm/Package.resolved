@@ -1,4 +1,5 @@
 {
+  "originHash" : "b75c604b56b51b995ae1c4d9340c7f44b6055815a61b238519aea6a31d7eac34",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -55,6 +56,15 @@
       }
     },
     {
+      "identity" : "swiftycrop",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/benedom/SwiftyCrop",
+      "state" : {
+        "branch" : "master",
+        "revision" : "454d0a0d4faf6f3a19c8d817ab9d7d27524bd79f"
+      }
+    },
+    {
       "identity" : "swiftyjson",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftyJSON/SwiftyJSON.git",
@@ -64,5 +74,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

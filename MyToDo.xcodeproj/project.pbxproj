@@ -56,6 +56,7 @@
 		F4AA96E82D280C24008E28BC /* UserProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AA96E72D280C1F008E28BC /* UserProfileImage.swift */; };
 		F4B41CEE2BAE9FFF00DEAB1C /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F4B41CED2BAE9FFF00DEAB1C /* SwiftDate */; };
 		F4B41CF22BAF0FCD00DEAB1C /* ToToImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B41CF12BAF0FCD00DEAB1C /* ToToImageView.swift */; };
+		F4CCE44C2D2A5DA700C25CA9 /* SwiftyCrop in Frameworks */ = {isa = PBXBuildFile; productRef = F4CCE44B2D2A5DA700C25CA9 /* SwiftyCrop */; };
 		F4E732EE2BA58ED000A6B2F2 /* SwiftEmailValidator in Frameworks */ = {isa = PBXBuildFile; productRef = F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +136,7 @@
 				F440A56F2B9C906A00FE6C9C /* AlertToast in Frameworks */,
 				F43206B72BA4612100AD8AC8 /* NetworkImage in Frameworks */,
 				F4B41CEE2BAE9FFF00DEAB1C /* SwiftDate in Frameworks */,
+				F4CCE44C2D2A5DA700C25CA9 /* SwiftyCrop in Frameworks */,
 				F440A5632B9C8ECF00FE6C9C /* SwiftyJSON in Frameworks */,
 				F440A5602B9C8EB800FE6C9C /* Alamofire in Frameworks */,
 				F4E732EE2BA58ED000A6B2F2 /* SwiftEmailValidator in Frameworks */,
@@ -411,6 +413,7 @@
 				F43206B62BA4612100AD8AC8 /* NetworkImage */,
 				F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */,
 				F4B41CED2BAE9FFF00DEAB1C /* SwiftDate */,
+				F4CCE44B2D2A5DA700C25CA9 /* SwiftyCrop */,
 			);
 			productName = MyToDo;
 			productReference = F48CC1B12B9B64CB00EF7704 /* MyToDo.app */;
@@ -491,6 +494,7 @@
 				F43206B52BA4612100AD8AC8 /* XCRemoteSwiftPackageReference "NetworkImage" */,
 				F4E732EC2BA58ED000A6B2F2 /* XCRemoteSwiftPackageReference "SwiftEmailValidator" */,
 				F4B41CEC2BAE9FFF00DEAB1C /* XCRemoteSwiftPackageReference "SwiftDate" */,
+				F4CCE44A2D2A5DA700C25CA9 /* XCRemoteSwiftPackageReference "SwiftyCrop" */,
 			);
 			productRefGroup = F48CC1B22B9B64CB00EF7704 /* Products */;
 			projectDirPath = "";
@@ -731,6 +735,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -771,6 +776,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -970,6 +976,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		F4CCE44A2D2A5DA700C25CA9 /* XCRemoteSwiftPackageReference "SwiftyCrop" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/benedom/SwiftyCrop";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		F4E732EC2BA58ED000A6B2F2 /* XCRemoteSwiftPackageReference "SwiftEmailValidator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ekscrypto/SwiftEmailValidator.git";
@@ -1005,6 +1019,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F4B41CEC2BAE9FFF00DEAB1C /* XCRemoteSwiftPackageReference "SwiftDate" */;
 			productName = SwiftDate;
+		};
+		F4CCE44B2D2A5DA700C25CA9 /* SwiftyCrop */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4CCE44A2D2A5DA700C25CA9 /* XCRemoteSwiftPackageReference "SwiftyCrop" */;
+			productName = SwiftyCrop;
 		};
 		F4E732ED2BA58ED000A6B2F2 /* SwiftEmailValidator */ = {
 			isa = XCSwiftPackageProductDependency;
