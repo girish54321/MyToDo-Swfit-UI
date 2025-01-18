@@ -36,13 +36,13 @@ class RestAPIClient {
         @AppStorage(AppConst.token) var storeageToken: String = ""
         
 //        UnCommet for Debug
-        print("DEBUG Only")
-        print("API EndPoint")
-        print(encodedURL)
-        print("Tokan")
-        print("Bearer \(token)")
-        print("parameters")
-        print(parameters)
+//        print("DEBUG Only")
+//        print("API EndPoint")
+//        print(encodedURL)
+//        print("Tokan")
+//        print("Bearer \(token)")
+//        print("parameters")
+//        print(parameters)
       
         AF.request(encodedURL,method: method,parameters: parameters,headers: headers)
             .response { response in
