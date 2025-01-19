@@ -20,25 +20,21 @@ struct ToDoList: View {
                 if(todoViewModal.todoListErrorMessage != nil) {
                     ErrorMessageView(errorMessage: todoViewModal.todoListErrorMessage, clicked: getUserTodo)
                 } else {
-                    ScrollView {
-                        LazyVStack {
+                    List {
                             ForEach(todoViewModal.toDoListData?.todo ?? [], id: \.self) { item in
-                                ToDoViewItem(todo: item)
+                                ToDoViewItem(todo: item,clicked: {
+                                    let data = SelectedToDoScreenType(selectedToDo: item)
+                                    todoViewModal.pickToDo(data: item, completion: {_,_ in
+                                        navStack.presentedScreen.append(data)
+                                    })
+                                })
                                     .onAppear {
                                         todoViewModal.getUserNotes(completion: {_,_ in
                                             
                                         })
                                     }
-                                    .onTapGesture {
-                                        let data = SelectedToDoScreenType(selectedToDo: item)
-                                        todoViewModal.pickToDo(data: item, completion: {_,_ in
-                                            navStack.presentedScreen.append(data)
-                                        })
-                                    }
                             }
-                        }
                     }
-                    
                 }
             }
             .refreshable {

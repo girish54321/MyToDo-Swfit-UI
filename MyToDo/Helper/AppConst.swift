@@ -13,7 +13,7 @@ import SwiftUI
 struct AppConst {
 
     // MARK: Use with LocalHost
-    static let todoimagesPath = "http://192.168.0.104:2000/"
+    static let todoimagesPath = "http://192.168.0.116:2000/"
 
     // MARK: Use with Remort
     static let isLoggedIn = "isLoggedIn"
@@ -22,7 +22,7 @@ struct AppConst {
     
     struct ApiConst {
         // MARK: Use with LocalHost
-         let apiEndPoint = "http://192.168.0.104:2000/api/v1/"
+         let apiEndPoint = "http://192.168.0.116:2000/api/v1/"
     }
 }
 

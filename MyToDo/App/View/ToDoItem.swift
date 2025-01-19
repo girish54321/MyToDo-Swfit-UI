@@ -9,23 +9,24 @@ import SwiftUI
 
 struct ToDoViewItem: View {
     var todo: TodoItem
+    var clicked: (() -> Void)
     
     var body: some View {
-        VStack {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(todo.title ?? "NA")
-                        .font(.title)
-                        .foregroundColor(.accentColor)
-                    Text(todo.body ?? "NA")
-                        .font(.body)
-                        .foregroundColor(.secondary)
+        Button(action: clicked, label: {
+            VStack {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(todo.title ?? "NA")
+                            .font(.title)
+                            .foregroundColor(.accentColor)
+                        Text(todo.body ?? "NA")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
                 }
-                Spacer()
             }
-        }
-        .padding(.horizontal)
-        .padding(.top,2)
+        })
     }
 }
 
@@ -43,7 +44,9 @@ struct ToDoViewItem_Previews: PreviewProvider {
                             userID: "1",
                             createdAt: "",
                             updatedAt: "",
-                            files: nil)
+                            files: nil), clicked: {
+                                
+                            }
                     )
                 }
             }
